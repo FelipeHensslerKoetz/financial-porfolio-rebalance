@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_155238) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_160638) do
+  create_table "asset_prices", force: :cascade do |t|
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "currency", null: false
+    t.datetime "last_price_sync", null: false
+    t.string "identifier", null: false
+    t.integer "data_origin_id", null: false
+    t.integer "asset_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_id"], name: "index_asset_prices_on_asset_id"
+    t.index ["data_origin_id"], name: "index_asset_prices_on_data_origin_id"
+  end
+
   create_table "asset_types", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -53,6 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_155238) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "asset_prices", "assets"
+  add_foreign_key "asset_prices", "data_origins"
   add_foreign_key "assets", "asset_types"
   add_foreign_key "assets", "users"
 end
