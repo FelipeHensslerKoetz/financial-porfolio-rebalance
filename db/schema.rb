@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_160638) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_163457) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "currency", null: false
@@ -47,6 +47,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_160638) do
   create_table "data_origins", force: :cascade do |t|
     t.string "name", null: false
     t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "http_request_logs", force: :cascade do |t|
+    t.string "request_url", null: false
+    t.string "request_method", null: false
+    t.json "request_headers"
+    t.json "request_query_params"
+    t.json "request_body"
+    t.json "response_body"
+    t.string "response_status_code", null: false
+    t.json "response_errors"
+    t.json "response_headers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
