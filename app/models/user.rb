@@ -6,4 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
+
+  has_many :assets, class_name: 'Asset', foreign_key: 'user_id', inverse_of: :user, dependent: :destroy
 end
