@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_161735) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_224023) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "currency", null: false
@@ -85,6 +85,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_161735) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "investment_portfolios", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.string "image_path"
+    t.integer "currency_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_investment_portfolios_on_currency_id"
+    t.index ["user_id"], name: "index_investment_portfolios_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,4 +119,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_161735) do
   add_foreign_key "currency_parities", "currencies", column: "currency_from_id"
   add_foreign_key "currency_parities", "currencies", column: "currency_to_id"
   add_foreign_key "currency_parities", "data_origins"
+  add_foreign_key "investment_portfolios", "currencies"
+  add_foreign_key "investment_portfolios", "users"
 end
