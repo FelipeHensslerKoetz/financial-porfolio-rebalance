@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_163457) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_161037) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "currency", null: false
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_163457) do
     t.datetime "updated_at", null: false
     t.index ["asset_type_id"], name: "index_assets_on_asset_type_id"
     t.index ["user_id"], name: "index_assets_on_user_id"
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "data_origins", force: :cascade do |t|
