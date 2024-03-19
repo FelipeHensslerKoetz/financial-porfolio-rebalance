@@ -4,6 +4,7 @@
 class InvestmentPortfolio < ApplicationRecord
   belongs_to :user
   belongs_to :currency
+  has_many :investment_portfolio_assets, dependent: :destroy
 
   validates :name, presence: true
 end
