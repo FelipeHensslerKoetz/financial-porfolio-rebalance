@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_230147) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_21_025307) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
-    t.string "currency", null: false
-    t.datetime "last_price_sync", null: false
+    t.datetime "last_sync_at", null: false
     t.string "identifier", null: false
     t.integer "data_origin_id", null: false
     t.integer "asset_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "currency_id", null: false
     t.index ["asset_id"], name: "index_asset_prices_on_asset_id"
+    t.index ["currency_id"], name: "index_asset_prices_on_currency_id"
     t.index ["data_origin_id"], name: "index_asset_prices_on_data_origin_id"
   end
 
@@ -124,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_230147) do
   end
 
   add_foreign_key "asset_prices", "assets"
+  add_foreign_key "asset_prices", "currencies"
   add_foreign_key "asset_prices", "data_origins"
   add_foreign_key "assets", "asset_types"
   add_foreign_key "assets", "users"

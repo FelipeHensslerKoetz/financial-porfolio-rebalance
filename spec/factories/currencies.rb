@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Currencies Factory
 FactoryBot.define do
   factory :currency do
-    name { "MyString" }
-    code { "MyString" }
+    name { Faker::Currency.name }
+    code { Faker::Currency.code }
   end
 end

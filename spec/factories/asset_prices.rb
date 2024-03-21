@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# AssetPrice Factory
 FactoryBot.define do
   factory :asset_price do
-    price { "9.99" }
-    currency { "MyString" }
-    last_price_sync { "2024-03-18 13:06:38" }
-    identifier { "MyString" }
-    data_origin { nil }
-    asset { nil }
+    price { Faker::Number.decimal(l_digits: 2) }
+    currency { create(:currency) }
+    last_sync_at { Time.zone.now }
+    identifier { 'asset.code' }
+    data_origin { create(:data_origin) }
+    asset { create(:asset) }
   end
 end
