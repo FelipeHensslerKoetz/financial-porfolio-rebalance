@@ -63,6 +63,7 @@ group :development, :test do
   gem 'webmock'
   gem 'vcr'
   gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :development do
