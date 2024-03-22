@@ -75,6 +75,9 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.7)
@@ -84,6 +87,9 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.1)
@@ -123,16 +129,19 @@ GEM
       net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashdiff (1.1.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
     irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
+    json (2.7.1)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.8.1)
       base64
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -172,11 +181,16 @@ GEM
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.24.0)
+    parser (3.3.0.5)
+      ast (~> 2.4.1)
+      racc
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     psych (5.1.2)
       stringio
+    public_suffix (5.0.4)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -222,15 +236,18 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redis (3.3.5)
+    regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rexml (3.2.6)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -248,6 +265,20 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.13.1)
+    rubocop (1.62.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.2)
+      parser (>= 3.3.0.4)
+    ruby-progressbar (1.13.0)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
     sidekiq (4.2.10)
@@ -266,7 +297,9 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     uri (0.13.0)
+    vcr (6.2.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-jwt_auth (0.8.0)
@@ -274,6 +307,10 @@ GEM
       dry-configurable (>= 0.13, < 2)
       jwt (~> 2.1)
       warden (~> 1.2)
+    webmock (3.23.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -302,10 +339,13 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.3, >= 7.1.3.2)
   rspec-rails (~> 6.0.0)
+  rubocop
   shoulda-matchers
   sidekiq (~> 4.1, >= 4.1.2)
   sqlite3 (~> 1.4)
   tzinfo-data
+  vcr
+  webmock
 
 RUBY VERSION
    ruby 3.3.0p0
