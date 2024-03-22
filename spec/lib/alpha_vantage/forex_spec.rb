@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AlphaVantage::Cryptocurrencies do
+RSpec.describe AlphaVantage::Forex do
   describe '#currency_exchange_rate' do
     context 'when the request is successful' do
       context 'when the currencies codes are correct' do
