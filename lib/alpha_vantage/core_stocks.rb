@@ -8,10 +8,6 @@ module AlphaVantage
       get(params: { function: 'SYMBOL_SEARCH', keywords: })['data']
     end
 
-    def time_series_daily_adjusted(symbol:)
-      get(params: { function: 'TIME_SERIES_DAILY_ADJUSTED', symbol: })['data']
-    end
-
     def global_quote(symbol:)
       get(params: { function: 'GLOBAL_QUOTE', symbol: })['data']
     end

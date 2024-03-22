@@ -223,8 +223,98 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ParsingError')
+        end
+      end
+    end
+  end
+
+  describe '#global_quote' do
+    context 'when the request is successful' do
+      context 'when request returns a match' do
+        it 'returns the search results' do
+          VCR.use_cassette('alpha_vantage/global_quote_success') do
+            response = described_class.new.global_quote(symbol: 'PETR4.SAO')
+
+            expect(response).to eq(
+              {
+                'Global Quote' => {
+                  '01. symbol' => 'PETR4.SAO',
+                  '02. open' => '36.8500',
+                  '03. high' => '37.0600',
+                  '04. low' => '35.6800',
+                  '05. price' => '35.7000',
+                  '06. volume' => '46900700',
+                  '07. latest trading day' => '2024-03-21',
+                  '08. previous close' => '36.7000',
+                  '09. change' => '-1.0000',
+                  '10. change percent' => '-2.7248%'
+                }
+              }
+            )
+          end
+        end
+      end
+
+      context 'when request returns no match' do
+        it 'returns an empty hash' do
+          VCR.use_cassette('alpha_vantage/global_quote_success_empty') do
+            response = described_class.new.global_quote(symbol: 'FELIPE.KOETZ')
+
+            expect(response).to eq({ 'Global Quote' => {} })
+          end
+        end
+      end
+    end
+
+    context 'when the request is not successful' do
+      context 'when Faraday::TimeoutError is raised' do
+        it 'raises an AlphaVantage::TimeoutError' do
+          allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(Faraday::TimeoutError)
+
+          response = described_class.new.global_quote(symbol: 'PETR4.SAO')
+
+          expect(response).to be_nil
+          # expect(response['error']['name']).to eq('Faraday::TimeoutError')
+          # expect(response['error']['backtrace']).to be_present
           # expect(response['error'].keys).to include('message')
+        end
+      end
+
+      context 'when Faraday::ConnectionFailed is raised' do
+        it 'raises an AlphaVantage::ConnectionFailedError' do
+          allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(Faraday::ConnectionFailed)
+
+          response = described_class.new.global_quote(symbol: 'PETR4.SAO')
+
+          expect(response).to be_nil
+          # expect(response['error']['name']).to eq('Faraday::ConnectionFailed')
+          # expect(response['error']['backtrace']).to be_present
+          # expect(response['error'].keys).to include('message')
+        end
+      end
+
+      context 'when Faraday::ClientError is raised' do
+        it 'raises an AlphaVantage::ClientError' do
+          allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(Faraday::ClientError)
+
+          response = described_class.new.global_quote(symbol: 'PETR4.SAO')
+
+          expect(response).to be_nil
+          # expect(response['error']['name']).to eq('Faraday::ClientError')
+          # expect(response['error']['backtrace']).to be_present
+          # expect(response['error'].keys).to include('message')
+        end
+      end
+
+      context 'when Faraday::ServerError is raised' do
+        it 'raises an AlphaVantage::ServerError' do
+          allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(Faraday::ServerError)
+
+          response = described_class.new.global_quote(symbol: 'PETR4.SAO')
+
+          expect(response).to be_nil
+          # expect(response['error']['name']).to eq('Faraday::ServerError')
+          # expect(response['error']['back
         end
       end
     end
