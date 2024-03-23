@@ -65,6 +65,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_025307) do
     t.index ["data_origin_id"], name: "index_currency_parities_on_data_origin_id"
   end
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "data_origins", force: :cascade do |t|
     t.string "name", null: false
     t.string "url", null: false
