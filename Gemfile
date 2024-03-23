@@ -56,6 +56,9 @@ gem 'faraday'
 # ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers', '~> 0.10.0'
 
+# DaraMigrate is a database migration tool for Rails
+gem 'data_migrate'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
