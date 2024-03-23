@@ -6,10 +6,21 @@ RSpec.describe Currency, type: :model do
   describe 'associations' do
     it { should have_many(:currency_parity_from).with_foreign_key('currency_from_id').class_name('CurrencyParity') }
     it { should have_many(:currency_parity_to).with_foreign_key('currency_to_id').class_name('CurrencyParity') }
+    it { should have_many(:asset_prices).class_name('AssetPrice').dependent(:destroy) }
   end
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:code) }
+
+    it 'validates uniqueness of code' do
+      create(:currency)
+      should validate_uniqueness_of(:code)
+    end
+
+    it 'validates uniqueness of name' do
+      create(:currency)
+      should validate_uniqueness_of(:name)
+    end
   end
 end
