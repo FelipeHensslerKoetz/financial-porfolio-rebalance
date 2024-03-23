@@ -42,7 +42,7 @@ gem 'devise'
 gem 'devise-jwt'
 
 # JSONAPI::Serializer is a fast JSON:API serializer for Ruby Objects
-gem 'jsonapi-serializer'
+# gem 'jsonapi-serializer'
 
 # Faker is a library for generating fake data such as names, addresses, and phone numbers
 gem 'faker'
@@ -52,6 +52,9 @@ gem 'sidekiq', '~> 4.1', '>= 4.1.2'
 
 # Faraday is an HTTP client library that provides a common interface over many adapters
 gem 'faraday'
+
+# ActiveModel::Serializer implementation and Rails hooks
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
