@@ -4,6 +4,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   include RackSessionsFix
   respond_to :json
+  skip_before_action :authenticate_user!
 
   private
 
@@ -11,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       render json: {
         status: { code: 200, message: 'Signed up successfully.' },
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
+        data: current_user
       }
     else
       render json: {
