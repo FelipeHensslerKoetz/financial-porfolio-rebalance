@@ -16,6 +16,14 @@ module Api
           render json: nil, status: :not_found
         end
       end
+
+      def search
+        @assets = Asset.global.where(
+          'name LIKE :asset or identifier LIKE :asset', asset: "%#{params[:asset]}%"
+        )
+
+        render json: @assets
+      end
     end
   end
 end
