@@ -7,4 +7,7 @@ class Asset < ApplicationRecord
   has_many :asset_prices, class_name: 'AssetPrice', foreign_key: 'asset_id', inverse_of: :asset, dependent: :destroy
 
   validates :name, presence: true
+  validates :identifier, :name, uniqueness: true
+
+  scope :global, -> { where(user: nil, custom: false) }
 end

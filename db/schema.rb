@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_21_025307) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_23_195644) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "last_sync_at", null: false
@@ -41,7 +41,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_025307) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identifier", null: false
     t.index ["asset_type_id"], name: "index_assets_on_asset_type_id"
+    t.index ["identifier"], name: "index_assets_on_identifier", unique: true
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 

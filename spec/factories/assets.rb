@@ -9,6 +9,10 @@ FactoryBot.define do
     origin_country { Faker::Address.country }
     image_path { Faker::Avatar.image }
     custom { false }
-    user { create(:user) }
+    identifier { SecureRandom.uuid }
+  end
+
+  trait :custom do
+    custom { true }
   end
 end
