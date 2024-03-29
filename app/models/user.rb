@@ -7,5 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :assets, class_name: 'Asset', foreign_key: 'user_id', inverse_of: :user, dependent: :destroy
+  has_many :assets, class_name: 'Asset', inverse_of: :user, dependent: :destroy
+  has_many :investment_portfolios, class_name: 'InvestmentPortfolio', inverse_of: :user, dependent: :destroy
+  has_many :rebalance_orders, class_name: 'RebalanceOrder', inverse_of: :user, dependent: :destroy
 end

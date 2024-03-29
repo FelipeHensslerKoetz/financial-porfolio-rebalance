@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_195644) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "last_sync_at", null: false
@@ -114,6 +114,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_195644) do
     t.index ["user_id"], name: "index_investment_portfolios_on_user_id"
   end
 
+  create_table "rebalance_orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "investment_portfolio_id", null: false
+    t.string "status", null: false
+    t.string "type", null: false
+    t.decimal "amount"
+    t.datetime "requested_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investment_portfolio_id"], name: "index_rebalance_orders_on_investment_portfolio_id"
+    t.index ["user_id"], name: "index_rebalance_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -141,4 +154,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_195644) do
   add_foreign_key "investment_portfolio_assets", "investment_portfolios"
   add_foreign_key "investment_portfolios", "currencies"
   add_foreign_key "investment_portfolios", "users"
+  add_foreign_key "rebalance_orders", "investment_portfolios"
+  add_foreign_key "rebalance_orders", "users"
 end
