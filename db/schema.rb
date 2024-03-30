@@ -17,23 +17,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
     t.string "identifier", null: false
     t.integer "data_origin_id", null: false
     t.integer "asset_id", null: false
+    t.integer "currency_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "currency_id", null: false
     t.index ["asset_id"], name: "index_asset_prices_on_asset_id"
     t.index ["currency_id"], name: "index_asset_prices_on_currency_id"
     t.index ["data_origin_id"], name: "index_asset_prices_on_data_origin_id"
   end
 
-  create_table "asset_types", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "assets", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "name", null: false
-    t.integer "asset_type_id", null: false
+    t.string "asset_type"
     t.string "sector"
     t.string "origin_country"
     t.string "image_path"
@@ -41,8 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "identifier", null: false
-    t.index ["asset_type_id"], name: "index_assets_on_asset_type_id"
     t.index ["identifier"], name: "index_assets_on_identifier", unique: true
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
@@ -67,12 +60,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
     t.index ["data_origin_id"], name: "index_currency_parities_on_data_origin_id"
   end
 
-  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
-  end
-
   create_table "data_origins", force: :cascade do |t|
     t.string "name", null: false
-    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -145,7 +134,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
   add_foreign_key "asset_prices", "assets"
   add_foreign_key "asset_prices", "currencies"
   add_foreign_key "asset_prices", "data_origins"
-  add_foreign_key "assets", "asset_types"
   add_foreign_key "assets", "users"
   add_foreign_key "currency_parities", "currencies", column: "currency_from_id"
   add_foreign_key "currency_parities", "currencies", column: "currency_to_id"

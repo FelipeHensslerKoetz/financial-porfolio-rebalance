@@ -17,7 +17,6 @@ RSpec.describe Asset, type: :model do
   end
 
   describe 'associations' do
-    it { should belong_to(:asset_type) }
     it { should belong_to(:user).optional }
   end
 

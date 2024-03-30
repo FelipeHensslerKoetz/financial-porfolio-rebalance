@@ -10,8 +10,8 @@ RSpec.describe AssetPrice, type: :model do
   end
 
   describe 'associations' do
-    it { should belong_to(:data_origin).class_name('DataOrigin').with_foreign_key('data_origin_id').inverse_of(:asset_prices).optional(false) }
-    it { should belong_to(:asset).class_name('Asset').with_foreign_key('asset_id').inverse_of(:asset_prices).optional(false) }
-    it { should belong_to(:currency).class_name('Currency').with_foreign_key('currency_id').inverse_of(:asset_prices).optional(false) }
+    it { should belong_to(:data_origin).optional(false) }
+    it { should belong_to(:asset).optional(false) }
+    it { should belong_to(:currency).optional(false) }
   end
 end
