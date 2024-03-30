@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
     t.string "name", null: false
     t.string "asset_type"
     t.string "sector"
-    t.string "origin_country"
+    t.string "region"
     t.string "image_path"
     t.boolean "custom", default: false, null: false
     t.integer "user_id"

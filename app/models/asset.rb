@@ -6,7 +6,7 @@ class Asset < ApplicationRecord
   has_many :asset_prices, class_name: 'AssetPrice', inverse_of: :asset, dependent: :destroy
 
   validates :name, presence: true
-  validates :identifier, :name, uniqueness: true
+  validates :identifier, uniqueness: true
 
   scope :global, -> { where(user: nil, custom: false) }
 end

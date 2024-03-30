@@ -9,11 +9,6 @@ RSpec.describe Asset, type: :model do
       create(:asset)
       should validate_uniqueness_of(:identifier)
     end
-
-    it 'validates uniqueness of name' do
-      create(:asset)
-      should validate_uniqueness_of(:name)
-    end
   end
 
   describe 'associations' do

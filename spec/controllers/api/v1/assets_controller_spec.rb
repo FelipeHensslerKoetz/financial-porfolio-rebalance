@@ -82,4 +82,6 @@ RSpec.describe Api::V1::AssetsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #deep_search'
 end

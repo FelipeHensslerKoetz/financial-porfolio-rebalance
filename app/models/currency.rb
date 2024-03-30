@@ -7,5 +7,5 @@ class Currency < ApplicationRecord
   has_many :asset_prices, class_name: 'AssetPrice', dependent: :destroy
 
   validates :name, :code, presence: true
-  validates :name, :code, uniqueness: true
+  validates :code, uniqueness: true
 end

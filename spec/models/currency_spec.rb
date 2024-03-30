@@ -17,10 +17,5 @@ RSpec.describe Currency, type: :model do
       create(:currency)
       should validate_uniqueness_of(:code)
     end
-
-    it 'validates uniqueness of name' do
-      create(:currency)
-      should validate_uniqueness_of(:name)
-    end
   end
 end

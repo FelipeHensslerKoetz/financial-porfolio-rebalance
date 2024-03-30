@@ -5,7 +5,7 @@ class CreateAssets < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :asset_type
       t.string :sector
-      t.string :origin_country
+      t.string :region
       t.string :image_path
       t.boolean :custom, null: false, default: false
       t.references :user, null: true, foreign_key: true

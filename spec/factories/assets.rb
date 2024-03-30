@@ -5,7 +5,7 @@ FactoryBot.define do
   factory :asset do
     name { Faker::Company.name }
     sector { Faker::Company.industry }
-    origin_country { Faker::Address.country }
+    region { Faker::Address.country }
     image_path { Faker::Avatar.image }
     custom { false }
     identifier { SecureRandom.uuid }
