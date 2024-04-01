@@ -5,14 +5,19 @@ require 'rails_helper'
 RSpec.describe Asset, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:name) }
-    it 'validates uniqueness of identifier' do
+    it { should validate_presence_of(:business_name) }
+    it { should validate_presence_of(:code) }
+    it { should validate_inclusion_of(:custom).in_array([true, false]) }
+
+    it 'validates uniqueness of code' do
       create(:asset)
-      should validate_uniqueness_of(:identifier)
+      should validate_uniqueness_of(:code)
     end
   end
 
   describe 'associations' do
     it { should belong_to(:user).optional }
+    it { should have_many(:asset_prices).dependent(:destroy) }
   end
 
   describe 'scopes' do

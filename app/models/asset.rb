@@ -5,8 +5,9 @@ class Asset < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :assets, optional: true
   has_many :asset_prices, class_name: 'AssetPrice', inverse_of: :asset, dependent: :destroy
 
-  validates :name, presence: true
-  validates :identifier, uniqueness: true
+  validates :name, :business_name, :code, presence: true
+  validates :code, uniqueness: true
+  validates :custom, inclusion: { in: [true, false] }
 
   scope :global, -> { where(user: nil, custom: false) }
 end

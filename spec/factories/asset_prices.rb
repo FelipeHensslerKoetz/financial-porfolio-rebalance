@@ -6,7 +6,7 @@ FactoryBot.define do
     price { Faker::Number.decimal(l_digits: 2) }
     currency { create(:currency) }
     last_sync_at { Time.zone.now }
-    identifier { 'asset.code' }
+    code { 'asset.code' }
     data_origin { create(:data_origin) }
     asset { create(:asset) }
   end

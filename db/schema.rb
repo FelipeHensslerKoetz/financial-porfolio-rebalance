@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
   create_table "asset_prices", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "last_sync_at", null: false
-    t.string "identifier", null: false
+    t.string "code", null: false
     t.integer "data_origin_id", null: false
     t.integer "asset_id", null: false
     t.integer "currency_id", null: false
@@ -26,17 +26,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
   end
 
   create_table "assets", force: :cascade do |t|
-    t.string "identifier", null: false
+    t.string "code", null: false
     t.string "name", null: false
-    t.string "asset_type"
+    t.string "business_name", null: false
+    t.string "document"
+    t.string "description"
+    t.string "website"
+    t.string "kind"
     t.string "sector"
     t.string "region"
-    t.string "image_path"
+    t.json "image_path"
+    t.json "market_time"
     t.boolean "custom", default: false, null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["identifier"], name: "index_assets_on_identifier", unique: true
+    t.index ["code"], name: "index_assets_on_code", unique: true
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 

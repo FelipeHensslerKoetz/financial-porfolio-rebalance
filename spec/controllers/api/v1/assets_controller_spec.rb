@@ -52,7 +52,7 @@ RSpec.describe Api::V1::AssetsController, type: :controller do
 
   describe 'GET #search' do
     context 'when there are matching assets' do
-      let!(:assets) { create(:asset, name: 'Bitcoin', identifier: 'BTC') }
+      let!(:assets) { create(:asset, name: 'Bitcoin', code: 'BTC') }
 
       context 'when matching by asset name' do
         it 'returns a list of assets' do

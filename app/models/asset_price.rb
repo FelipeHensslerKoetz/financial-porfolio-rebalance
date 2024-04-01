@@ -6,5 +6,5 @@ class AssetPrice < ApplicationRecord
   belongs_to :asset, optional: false
   belongs_to :currency, optional: false
 
-  validates :price, :last_sync_at, :identifier, presence: true
+  validates :price, :last_sync_at, :code, presence: true
 end
