@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :assets, only: [:index, :show] do 
         collection do
           get :search
+          get :deep_search
         end
       end
     end

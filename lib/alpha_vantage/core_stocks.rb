@@ -5,11 +5,11 @@ module AlphaVantage
   # CoreStocks class
   class CoreStocks < AlphaVantage::Base
     def symbol_search(keywords:)
-      get(params: { function: 'SYMBOL_SEARCH', keywords: })['data']
+      get(params: { function: 'SYMBOL_SEARCH', keywords: })
     end
 
     def global_quote(symbol:)
-      get(params: { function: 'GLOBAL_QUOTE', symbol: })['data']
+      get(params: { function: 'GLOBAL_QUOTE', symbol: })
     end
   end
 end

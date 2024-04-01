@@ -7,7 +7,7 @@ class CreateHttpRequestLogs < ActiveRecord::Migration[7.1]
       t.json :request_query_params
       t.json :request_body
       t.json :response_body
-      t.string :response_status_code, null: false
+      t.string :response_status_code
       t.json :response_errors
       t.json :response_headers
 

@@ -23,6 +23,7 @@ RSpec.describe AlphaVantage::CoreStocks do
                 }
               ] }
             )
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -148,6 +149,7 @@ RSpec.describe AlphaVantage::CoreStocks do
                 ]
               }
             )
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -158,6 +160,7 @@ RSpec.describe AlphaVantage::CoreStocks do
             response = described_class.new.symbol_search(keywords: 'koetz')
 
             expect(response).to eq({ 'bestMatches' => [] })
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -171,9 +174,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::TimeoutError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -184,9 +185,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ConnectionFailed')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -197,9 +196,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ClientError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -210,9 +207,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ServerError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -223,6 +218,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.symbol_search(keywords: 'petr4')
 
           expect(response).to be_nil
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
     end
@@ -251,6 +247,7 @@ RSpec.describe AlphaVantage::CoreStocks do
                 }
               }
             )
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -261,6 +258,7 @@ RSpec.describe AlphaVantage::CoreStocks do
             response = described_class.new.global_quote(symbol: 'FELIPE.KOETZ')
 
             expect(response).to eq({ 'Global Quote' => {} })
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -274,9 +272,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.global_quote(symbol: 'PETR4.SAO')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::TimeoutError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -287,9 +283,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.global_quote(symbol: 'PETR4.SAO')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ConnectionFailed')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -300,9 +294,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.global_quote(symbol: 'PETR4.SAO')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ClientError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -313,8 +305,7 @@ RSpec.describe AlphaVantage::CoreStocks do
           response = described_class.new.global_quote(symbol: 'PETR4.SAO')
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ServerError')
-          # expect(response['error']['back
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
     end

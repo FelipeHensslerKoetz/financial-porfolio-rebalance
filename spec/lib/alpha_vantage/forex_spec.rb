@@ -25,6 +25,8 @@ RSpec.describe AlphaVantage::Forex do
                   }
               }
             )
+
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -40,6 +42,8 @@ RSpec.describe AlphaVantage::Forex do
                 'Error Message' => 'Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for CURRENCY_EXCHANGE_RATE.'
               }
             )
+
+            expect(HttpRequestLog.count).to eq(1)
           end
         end
       end
@@ -55,9 +59,7 @@ RSpec.describe AlphaVantage::Forex do
           )
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::TimeoutError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -70,9 +72,7 @@ RSpec.describe AlphaVantage::Forex do
           )
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ConnectionFailed')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -85,9 +85,7 @@ RSpec.describe AlphaVantage::Forex do
           )
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ClientError')
-          # expect(response['error']['backtrace']).to be_present
-          # expect(response['error'].keys).to include('message')
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
 
@@ -100,8 +98,7 @@ RSpec.describe AlphaVantage::Forex do
           )
 
           expect(response).to be_nil
-          # expect(response['error']['name']).to eq('Faraday::ServerError')
-          # expect(response['error']['back
+          expect(HttpRequestLog.count).to eq(1)
         end
       end
     end

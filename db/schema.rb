@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_201529) do
     t.json "request_query_params"
     t.json "request_body"
     t.json "response_body"
-    t.string "response_status_code", null: false
+    t.string "response_status_code"
     t.json "response_errors"
     t.json "response_headers"
     t.datetime "created_at", null: false
