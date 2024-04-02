@@ -3,7 +3,7 @@
 # Asset model
 class Asset < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :assets, optional: true
-  has_many :asset_prices, class_name: 'AssetPrice', inverse_of: :asset, dependent: :destroy
+  has_many :asset_price_trackers, dependent: :destroy
 
   validates :name, :business_name, :code, presence: true
   validates :code, uniqueness: true

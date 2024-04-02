@@ -17,7 +17,7 @@ RSpec.describe Asset, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user).optional }
-    it { should have_many(:asset_prices).dependent(:destroy) }
+    it { should have_many(:asset_price_trackers).dependent(:destroy) }
   end
 
   describe 'scopes' do
