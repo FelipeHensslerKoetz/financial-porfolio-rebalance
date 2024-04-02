@@ -18,7 +18,7 @@ module Assets
       private
 
       def asset
-        @asset ||= ::HgBrasil::Stocks.new.stock_price(symbol:)&.dig('results', symbol.to_s.upcase)
+        @asset ||= ::HgBrasil::Stocks.new.stock_price(symbol:)&.dig('results', symbol)
       end
 
       def formatted_asset_attributes
@@ -35,7 +35,7 @@ module Assets
           sector: asset['sector'],
           region: asset['region'],
           market_time: asset['market_time'],
-          logo: asset['logo']
+          image_path: asset['logo']
         }
       end
     end
