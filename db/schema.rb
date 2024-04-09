@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_09_161434) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_161927) do
   create_table "asset_price_trackers", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.integer "data_origin_id", null: false
@@ -122,6 +122,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_161434) do
     t.index ["user_id"], name: "index_rebalance_orders_on_user_id"
   end
 
+  create_table "rebalances", force: :cascade do |t|
+    t.integer "rebalance_order_id", null: false
+    t.json "before_rebalance", null: false
+    t.json "after_rebalance", null: false
+    t.string "status", null: false
+    t.boolean "reflected_to_investment_portfolio", default: false, null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rebalance_order_id"], name: "index_rebalances_on_rebalance_order_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -150,4 +162,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_161434) do
   add_foreign_key "investment_portfolios", "users"
   add_foreign_key "rebalance_orders", "investment_portfolios"
   add_foreign_key "rebalance_orders", "users"
+  add_foreign_key "rebalances", "rebalance_orders"
 end
