@@ -1,0 +1,292 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=NVDA
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 01:47:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"52327892de77b29f6e5f440d626bdd1f"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - dbcaa17d-d95b-4b01-ae1d-0df1141ec71a
+      X-Runtime:
+      - '0.010425'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=G9%2BvXhS75SMYDcQBTcdzcIvMmLWYnlo1O5wXJ2T2aT1QSlFsPqnbXyl7Du%2BFJopB3P8Ws1iyALykb8PX098yDLZyxN7J0RBZXBGCunaG4ab6fFtBCARa%2BC6vqYeGLNFaw0KQXvJjva4knI7MLJx6"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716d3e86e28a16a-GRU
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJOVkRBIjp7ImVycm9yIjp0cnVlLCJtZXNzYWdlIjoiRXJyb3IgdG8gZ2V0IFN0b2NrIGZvciAjTlZEQTogRXJybyA4NTIgLSBTw61tYm9sbyBuw6NvIGVuY29udHJhZG8sIHBvciBmYXZvciBlbnRyZSBlbSBjb250YXRvIGNvbm9zY28gZW0gY29uc29sZS5oZ2JyYXNpbC5jb20uIn19LCJleGVjdXRpb25fdGltZSI6MC4wLCJmcm9tX2NhY2hlIjp0cnVlfQ==
+  recorded_at: Tue, 09 Apr 2024 01:47:12 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=SYMBOL_SEARCH&keywords=NVDA
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 01:47:13 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712627232&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=%2FoeMTJZIQx5AhH8aZu1TnQPgA6Q0aIf%2F8VoQ3roxKGI%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1712627232&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=%2FoeMTJZIQx5AhH8aZu1TnQPgA6Q0aIf%2F8VoQ3roxKGI%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716d3ec18130129-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "bestMatches": [
+                {
+                    "1. symbol": "NVDA",
+                    "2. name": "NVIDIA Corp",
+                    "3. type": "Equity",
+                    "4. region": "United States",
+                    "5. marketOpen": "09:30",
+                    "6. marketClose": "16:00",
+                    "7. timezone": "UTC-04",
+                    "8. currency": "USD",
+                    "9. matchScore": "1.0000"
+                },
+                {
+                    "1. symbol": "NVDAX",
+                    "2. name": "Wells Fargo Diversified Eqs Fd USD Class A",
+                    "3. type": "Mutual Fund",
+                    "4. region": "United States",
+                    "5. marketOpen": "09:30",
+                    "6. marketClose": "16:00",
+                    "7. timezone": "UTC-04",
+                    "8. currency": "USD",
+                    "9. matchScore": "0.8889"
+                }
+            ]
+        }
+  recorded_at: Tue, 09 Apr 2024 01:47:13 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=NVDA
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 01:47:13 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712627233&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=EdAOOSCuvg6RK6xmjhvpgD9jvfQNwQ9IQaXdBFSIk2I%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1712627233&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=EdAOOSCuvg6RK6xmjhvpgD9jvfQNwQ9IQaXdBFSIk2I%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716d3ef7a80a4de-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "NVDA",
+                "02. open": "887.0000",
+                "03. high": "888.3000",
+                "04. low": "867.3200",
+                "05. price": "871.3300",
+                "06. volume": "27907532",
+                "07. latest trading day": "2024-04-08",
+                "08. previous close": "880.0800",
+                "09. change": "-8.7500",
+                "10. change percent": "-0.9942%"
+            }
+        }
+  recorded_at: Tue, 09 Apr 2024 01:47:13 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=NVDAX
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 01:47:16 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712627236&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=KFPH%2FvpqvNN9C0hGlUeAWoF1wv95FpMw%2FftAFxj8bBA%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1712627236&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=KFPH%2FvpqvNN9C0hGlUeAWoF1wv95FpMw%2FftAFxj8bBA%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716d3fffcaf6b09-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "NVDAX",
+                "02. open": "15.6900",
+                "03. high": "15.6900",
+                "04. low": "15.6900",
+                "05. price": "15.6900",
+                "06. volume": "0",
+                "07. latest trading day": "2022-03-28",
+                "08. previous close": "15.6900",
+                "09. change": "0.0000",
+                "10. change percent": "0.0000%"
+            }
+        }
+  recorded_at: Tue, 09 Apr 2024 01:47:16 GMT
+recorded_with: VCR 6.2.0

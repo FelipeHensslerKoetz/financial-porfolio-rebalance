@@ -1,0 +1,195 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=PETR4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 02:00:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"86327813bb6a30f55925c59237189e4e"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9cf0faf2-d9bf-4adc-a011-c8941be95b71
+      X-Runtime:
+      - '0.014695'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=mzNigoqg7hgnmwDQBfnhIpi3Yxk4tsaV4PpuT9tzPgRw2m%2BIaY33pW%2FVF%2BQ3WR%2BwyOcpFjuMqGW%2BRkXRrkyLno%2Bg6s2pbAp3l3uUKzV6X2sEKVpkydTipqXbyUIExV7DtXis4txCKZ%2BKcR7PMYC1"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716e6fa0d5402eb-GRU
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJQRVRSNCI6eyJraW5kIjoic3RvY2siLCJzeW1ib2wiOiJQRVRSNCIsIm5hbWUiOiJQZXRyb2JyYXMiLCJjb21wYW55X25hbWUiOiJQZXRyb2xlbyBCcmFzaWxlaXJvIFMuQS4gUGV0cm9icmFzIiwiZG9jdW1lbnQiOiIzMy4wMDAuMTY3LzAwMDEtMDEiLCJkZXNjcmlwdGlvbiI6IlBlc3F1aXNhLiBMYXZyYS4gUmVmaW5hw6fDo28uIFByb2Nlc3NhbWVudG8uIENvbcOpcmNpbyBFIFRyYW5zcG9ydGUgZGUgUGV0csOzbGVvLiBkZSBTZXVzIERlcml2YWRvcy4gZGUgR8OhcyBOYXR1cmFsIEUgZGUgT3V0cm9zIEhpZHJvY2FyYm9uZXRvcyBGbHVpZG9zLiBBbMOpbSBEYXMgQXRpdmlkYWRlcyBWaW5jdWxhZGFzIMOgIEVuZXJnaWEuIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cucGV0cm9icmFzLmNvbS5ici8iLCJzZWN0b3IiOiJQZXRyw7NsZW8uIEfDoXMgZSBCaW9jb21idXN0w612ZWlzIC8gUGV0csOzbGVvLiBHw6FzIGUgQmlvY29tYnVzdMOtdmVpcyAvIEV4cGxvcmHDp8Ojby4gUmVmaW5vIGUgRGlzdHJpYnVpw6fDo28iLCJmaW5hbmNpYWxzIjp7InF1b3RhX2NvdW50IjowLCJkaXZpZGVuZHMiOnsieWllbGRfMTJtIjpudWxsLCJ5aWVsZF8xMm1fc3VtIjpudWxsfX0sInJlZ2lvbiI6IkJyYXppbC9TYW8gUGF1bG8iLCJjdXJyZW5jeSI6IkJSTCIsIm1hcmtldF90aW1lIjp7Im9wZW4iOiIxMDowMCIsImNsb3NlIjoiMTc6MzAiLCJ0aW1lem9uZSI6LTN9LCJsb2dvIjp7InNtYWxsIjoiaHR0cHM6Ly9hc3NldHMuaGdicmFzaWwuY29tL2ZpbmFuY2UvY29tcGFuaWVzL3NtYWxsL3BldHJvYnJhcy5wbmciLCJiaWciOiJodHRwczovL2Fzc2V0cy5oZ2JyYXNpbC5jb20vZmluYW5jZS9jb21wYW5pZXMvYmlnL3BldHJvYnJhcy5wbmcifSwibWFya2V0X2NhcCI6NTExMDAyLjAsInByaWNlIjozOC42MywiY2hhbmdlX3BlcmNlbnQiOjEuMzksImNoYW5nZV9wcmljZSI6MC41MywidXBkYXRlZF9hdCI6IjIwMjQtMDQtMDggMTc6MDc6NDIifX0sImV4ZWN1dGlvbl90aW1lIjowLjAxLCJmcm9tX2NhY2hlIjpmYWxzZX0=
+  recorded_at: Tue, 09 Apr 2024 02:00:13 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=SYMBOL_SEARCH&keywords=PETR4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 02:00:13 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712628013&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=4xIG7XPuFU2EfDhAultBXwJ3O7PSoLrGesJyFBKIbTk%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1712628013&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=4xIG7XPuFU2EfDhAultBXwJ3O7PSoLrGesJyFBKIbTk%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716e6fc1e6c00d9-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICAgImJlc3RNYXRjaGVzIjogWwogICAgICAgIHsKICAgICAgICAgICAgIjEuIHN5bWJvbCI6ICJQRVRSNC5TQU8iLAogICAgICAgICAgICAiMi4gbmFtZSI6ICJQZXRyw7NsZW8gQnJhc2lsZWlybyBTLkEuIC0gUGV0cm9icmFzIiwKICAgICAgICAgICAgIjMuIHR5cGUiOiAiRXF1aXR5IiwKICAgICAgICAgICAgIjQuIHJlZ2lvbiI6ICJCcmF6aWwvU2FvIFBhb2xvIiwKICAgICAgICAgICAgIjUuIG1hcmtldE9wZW4iOiAiMTA6MDAiLAogICAgICAgICAgICAiNi4gbWFya2V0Q2xvc2UiOiAiMTc6MzAiLAogICAgICAgICAgICAiNy4gdGltZXpvbmUiOiAiVVRDLTAzIiwKICAgICAgICAgICAgIjguIGN1cnJlbmN5IjogIkJSTCIsCiAgICAgICAgICAgICI5LiBtYXRjaFNjb3JlIjogIjAuNzY5MiIKICAgICAgICB9CiAgICBdCn0=
+  recorded_at: Tue, 09 Apr 2024 02:00:13 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PETR4.SAO
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Apr 2024 02:00:14 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712628014&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=PaI7ecsB970vWouzHyJzeDDrB1oxQEftDdsj2gMu1yU%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1712628014&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=PaI7ecsB970vWouzHyJzeDDrB1oxQEftDdsj2gMu1yU%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8716e6fe9a2ea623-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PETR4.SAO",
+                "02. open": "38.0300",
+                "03. high": "39.0600",
+                "04. low": "37.7300",
+                "05. price": "38.6300",
+                "06. volume": "36218200",
+                "07. latest trading day": "2024-04-08",
+                "08. previous close": "38.1000",
+                "09. change": "0.5300",
+                "10. change percent": "1.3911%"
+            }
+        }
+  recorded_at: Tue, 09 Apr 2024 02:00:14 GMT
+recorded_with: VCR 6.2.0
