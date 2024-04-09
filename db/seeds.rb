@@ -42,8 +42,6 @@ parsed_physical_currency_list_csv.each do |row|
   if !Currency.exists?(code: code, name: name)
     Currency.create!(name: name, code: code)
     puts "#{name}(#{code}) created!"
-  else
-    puts "#{name}(#{code}) already exists, skipping..."
   end
 end
 
@@ -62,9 +60,49 @@ parsed_digital_currency_list_csv.each do |row|
   if !Currency.exists?(code: code, name: name)
     Currency.create!(name: name, code: code)
     puts "#{name}(#{code}) created!"
-  else 
-    puts "#{name}(#{code}) already exists, skipping..."
   end
 end
 
 puts 'Cryptocurrencies generated!'
+
+# Generate brazilian stocks
+
+puts 'Generating brazilian stocks...'
+
+brazilian_stock_list_csv = File.read(Rails.root.join('db', 'csv', 'brazilian_stocks.csv'))
+parsed_brazilian_stock_list_csv = CSV.parse(brazilian_stock_list_csv, headers: true, encoding: 'utf-8')
+
+parsed_brazilian_stock_list_csv.each do |row|
+  code = row['Ticker']
+
+  if !Asset.exists?(code: code)
+    puts '---------------------------'
+    puts "Searching for #{code}"
+    news_assets = Assets::Discovery::Global.new(keywords: code).call
+    news_assets.each do |asset|
+      puts "New asset created: #{asset.name}(#{asset.code})"
+    end
+  end
+end
+
+puts 'Brazilian stocks generated!'
+
+puts 'Generating brazilian mutual funds...'
+
+brazilian_mutual_fund_list_csv = File.read(Rails.root.join('db', 'csv', 'brazilian_mutual_funds.csv'))
+parsed_brazilian_mutual_fund_list_csv = CSV.parse(brazilian_mutual_fund_list_csv, headers: true, encoding: 'utf-8')
+
+parsed_brazilian_mutual_fund_list_csv.each do |row|
+  code = row['Ticker']
+
+  if !Asset.exists?(code: code)
+    puts '---------------------------'
+    puts "Searching for #{code}"
+    news_assets = Assets::Discovery::Global.new(keywords: code).call
+    news_assets.each do |asset|
+      puts "New asset created: #{asset.name}(#{asset.code})"
+    end
+  end
+end
+
+puts 'Brazilian mutual funds generated!'
