@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_221330) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_224853) do
   create_table "asset_price_trackers", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.integer "data_origin_id", null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_221330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "reference_date"
+    t.string "status", null: false
+    t.string "error_message"
     t.index ["asset_id"], name: "index_asset_price_trackers_on_asset_id"
     t.index ["currency_id"], name: "index_asset_price_trackers_on_currency_id"
     t.index ["data_origin_id"], name: "index_asset_price_trackers_on_data_origin_id"
