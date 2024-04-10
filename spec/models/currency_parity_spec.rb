@@ -5,6 +5,7 @@ RSpec.describe CurrencyParity, type: :model do
     it { should belong_to(:currency_from).class_name('Currency') }
     it { should belong_to(:currency_to).class_name('Currency') }
     it { should belong_to(:data_origin) }
+    it { should have_many(:currency_parity_trackers).dependent(:destroy) }
   end
 
   describe 'validations' do

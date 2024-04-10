@@ -6,5 +6,7 @@ class CurrencyParity < ApplicationRecord
 
   belongs_to :data_origin
 
+  has_many :currency_parity_trackers, dependent: :destroy
+
   validates :exchange_rate, :last_sync_at, presence: true
 end
