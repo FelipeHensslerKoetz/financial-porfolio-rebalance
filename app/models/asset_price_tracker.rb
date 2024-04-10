@@ -3,5 +3,5 @@ class AssetPriceTracker < ApplicationRecord
   belongs_to :data_origin
   belongs_to :currency
 
-  validates :price, :last_sync_at, presence: true
+  validates :price, :last_sync_at, :reference_date, presence: true
 end

@@ -49,6 +49,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to be_a(Time)
         end
       end
     end
@@ -91,6 +92,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to be_a(Time)
         end
       end
     end
@@ -133,6 +135,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to be_a(Time)
         end
       end
     end

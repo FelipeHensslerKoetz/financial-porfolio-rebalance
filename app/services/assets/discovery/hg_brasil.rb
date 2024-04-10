@@ -41,7 +41,7 @@ module Assets
 
       def create_asset
         ActiveRecord::Base.transaction do
-          @new_asset = Asset.create!(discovered_asset_attributes.except(:price))
+          @new_asset = Asset.create!(discovered_asset_attributes.except(:price, :updated_at))
           create_asset_price_tracker(@new_asset)
         end
 
@@ -57,7 +57,8 @@ module Assets
                                   price: discovered_asset_attributes[:price],
                                   last_sync_at: Time.zone.now,
                                   code: discovered_asset_attributes[:code],
-                                  currency:)
+                                  currency:,
+                                  reference_date: discovered_asset_attributes[:updated_at])
       end
 
       # TODO: treat exception
@@ -81,7 +82,8 @@ module Assets
           market_time: asset['market_time'],
           image_path: asset['logo'],
           custom: false,
-          price: asset['price']
+          price: asset['price'],
+          updated_at: asset['updated_at']
         }
       end
     end

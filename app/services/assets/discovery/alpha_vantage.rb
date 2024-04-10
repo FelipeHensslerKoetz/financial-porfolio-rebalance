@@ -40,22 +40,25 @@ module Assets
       end
 
       def create_asset_price_tracker(asset, asset_params)
-        asset_price = fetch_asset_price(asset_params[:alpha_vantage_code])
+        asset_price_details = fetch_asset_price(asset_params[:alpha_vantage_code])
+        price = asset_price_details&.dig('Global Quote', '05. price')
+        reference_date = asset_price_details&.dig('Global Quote', '07. latest trading day')
         currency = fetch_currency(asset_params[:currency])
 
         AssetPriceTracker.create!(
           code: asset_params[:alpha_vantage_code],
           asset:,
           data_origin:,
-          price: asset_price,
+          price:,
           currency:,
-          last_sync_at: Time.zone.now
+          last_sync_at: Time.zone.now,
+          reference_date:
         )
       end
 
       # TODO: treat exception
       def fetch_asset_price(alpha_vantage_code)
-        ::AlphaVantage::CoreStocks.new.global_quote(symbol: alpha_vantage_code)&.dig('Global Quote', '05. price')
+        ::AlphaVantage::CoreStocks.new.global_quote(symbol: alpha_vantage_code)
       end
 
       def fetch_currency(currency_code)

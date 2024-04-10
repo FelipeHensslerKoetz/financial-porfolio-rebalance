@@ -52,6 +52,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to eq(Time.zone.parse('2024-04-05'))
         end
       end
     end
@@ -94,6 +95,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to eq(Time.zone.parse('2024-04-05'))
         end
       end
     end
@@ -136,6 +138,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset_price_tracker.last_sync_at).to be_a(Time)
           expect(asset_price_tracker.created_at).to be_a(Time)
           expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price_tracker.reference_date).to eq(Time.zone.parse('2024-04-05'))
         end
       end
     end
@@ -247,6 +250,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
             expect(asset_price_tracker.last_sync_at).to be_a(Time)
             expect(asset_price_tracker.created_at).to be_a(Time)
             expect(asset_price_tracker.updated_at).to be_a(Time)
+            expect(asset_price_tracker.reference_date).to eq(Time.zone.parse('2024-04-05'))
           end
         end
       end

@@ -6,5 +6,6 @@ FactoryBot.define do
     currency { build(:currency) }
     price { 9.99 }
     last_sync_at { Time.zone.now }
+    reference_date { Time.zone.now }
   end
 end
