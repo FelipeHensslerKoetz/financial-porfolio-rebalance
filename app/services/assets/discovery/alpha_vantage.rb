@@ -13,40 +13,39 @@ module Assets
       end
 
       def call
-        alpha_vantage_assets_params.map do |asset_params|
-          asset = Asset.global.find_by(code: asset_params[:code])
+        alpha_vantage_assets.map do |alpha_vantage_asset|
+          asset = Asset.global.find_by(code: alpha_vantage_asset[:code])
 
           next if asset_already_discovered?(asset)
 
           if asset.present?
-            create_asset_price_tracker(asset, asset_params)
+            create_asset_price_tracker(asset, alpha_vantage_asset)
             asset
           else
-            create_asset(asset_params)
+            create_asset(alpha_vantage_asset)
           end
         end.compact
       end
 
       private
 
-      def create_asset(asset_params)
+      def create_asset(alpha_vantage_asset)
         ActiveRecord::Base.transaction do
-          @new_asset = Asset.create!(asset_params.except(:alpha_vantage_code,
-                                                         :currency))
-          create_asset_price_tracker(@new_asset, asset_params)
+          @new_asset = Asset.create!(alpha_vantage_asset.except(:alpha_vantage_code, :currency))
+          create_asset_price_tracker(@new_asset, alpha_vantage_asset)
         end
 
         @new_asset
       end
 
-      def create_asset_price_tracker(asset, asset_params)
-        asset_price_details = fetch_asset_price(asset_params[:alpha_vantage_code])
-        price = asset_price_details&.dig('Global Quote', '05. price')
-        reference_date = asset_price_details&.dig('Global Quote', '07. latest trading day')
-        currency = fetch_currency(asset_params[:currency])
+      def create_asset_price_tracker(asset, alpha_vantage_asset)
+        asset_price_details = fetch_asset_price(alpha_vantage_asset[:alpha_vantage_code])
+        price = asset_price_details[:price]
+        reference_date = asset_price_details[:reference_date]
+        currency = fetch_currency(alpha_vantage_asset[:currency])
 
         AssetPriceTracker.create!(
-          code: asset_params[:alpha_vantage_code],
+          code: alpha_vantage_asset[:alpha_vantage_code],
           asset:,
           data_origin:,
           price:,
@@ -73,27 +72,7 @@ module Assets
 
       # TODO: treat exception
       def alpha_vantage_assets
-        @alpha_vantage_assets ||= ::AlphaVantage::CoreStocks.new.symbol_search(keywords:)&.dig('bestMatches') || []
-      end
-
-      def alpha_vantage_assets_params
-        alpha_vantage_assets.map do |asset|
-          {
-            alpha_vantage_code: asset['1. symbol'],
-            code: asset['1. symbol'].split('.').first.upcase,
-            kind: asset['3. type'],
-            name: asset['2. name'],
-            business_name: asset['2. name'],
-            region: asset['4. region'],
-            market_time: {
-              'open' => asset['5. marketOpen'],
-              'close' => asset['6. marketClose'],
-              'timezone' => asset['7. timezone']
-            },
-            custom: false,
-            currency: asset['8. currency']
-          }
-        end
+        @alpha_vantage_assets ||= ::AlphaVantage::CoreStocks.symbol_search(keywords:)
       end
     end
   end
