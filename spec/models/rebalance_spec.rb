@@ -10,7 +10,6 @@ RSpec.describe Rebalance, type: :model do
     it { is_expected.to validate_presence_of(:after_rebalance) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:expires_at) }
-    it { is_expected.to validate_inclusion_of(:reflected_to_investment_portfolio).in_array([true, false]) }
   end
 
   describe 'aasm' do

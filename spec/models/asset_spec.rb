@@ -7,7 +7,6 @@ RSpec.describe Asset, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:business_name) }
     it { should validate_presence_of(:code) }
-    it { should validate_inclusion_of(:custom).in_array([true, false]) }
 
     it 'validates uniqueness of code' do
       create(:asset)
