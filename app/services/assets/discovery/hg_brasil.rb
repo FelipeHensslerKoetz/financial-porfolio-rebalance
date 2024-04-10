@@ -15,19 +15,18 @@ module Assets
       end
 
       def call
-        if asset_already_discovered? || discovered_asset_attributes.blank?
-          return
-        end
+        return if skip_discovery?
 
-        if existing_asset.present?
-          create_asset_price_tracker(existing_asset)
-          nil
-        else
-          create_asset
-        end
+        return create_asset if existing_asset.blank?
+
+        create_asset_price_tracker(existing_asset)
       end
 
       private
+
+      def skip_discovery?
+        asset_already_discovered? || asset_details.blank?
+      end
 
       def asset_already_discovered?
         existing_asset.present? && existing_asset.asset_price_trackers.any? do |asset_price_tracker|
@@ -36,12 +35,12 @@ module Assets
       end
 
       def currency
-        @currency ||= Currency.find_by!(code: asset['currency'])
+        @currency ||= Currency.find_by!(code: asset_details[:currency])
       end
 
       def create_asset
         ActiveRecord::Base.transaction do
-          @new_asset = Asset.create!(discovered_asset_attributes.except(:price, :updated_at))
+          @new_asset = Asset.create!(asset_details.except(:price, :reference_date, :currency))
           create_asset_price_tracker(@new_asset)
         end
 
@@ -54,37 +53,17 @@ module Assets
       def create_asset_price_tracker(target_asset)
         AssetPriceTracker.create!(asset: target_asset,
                                   data_origin:,
-                                  price: discovered_asset_attributes[:price],
+                                  price: asset_details[:price],
                                   last_sync_at: Time.zone.now,
-                                  code: discovered_asset_attributes[:code],
+                                  code: asset_details[:code],
                                   currency:,
-                                  reference_date: discovered_asset_attributes[:updated_at])
+                                  reference_date: asset_details[:reference_date])
+        nil
       end
 
       # TODO: treat exception
-      def asset
-        @asset ||= ::HgBrasil::Stocks.new.stock_price(symbol:)&.dig('results', symbol)
-      end
-
-      def discovered_asset_attributes
-        return if asset.blank? || asset['error']
-
-        {
-          code: asset['symbol'].upcase,
-          kind: asset['kind'],
-          business_name: asset['name'] || asset['company_name'],
-          name: asset['company_name'] || asset['name'],
-          document: asset['document'],
-          description: asset['description'],
-          website: asset['website'],
-          sector: asset['sector'],
-          region: asset['region'],
-          market_time: asset['market_time'],
-          image_path: asset['logo'],
-          custom: false,
-          price: asset['price'],
-          updated_at: asset['updated_at']
-        }
+      def asset_details
+        @asset_details ||= ::HgBrasil::Stocks.asset_details(symbol:)
       end
     end
   end

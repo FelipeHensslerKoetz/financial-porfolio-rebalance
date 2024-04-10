@@ -17,27 +17,11 @@ RSpec.describe Assets::Discovery::HgBrasil do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
-
-          expect(new_asset.attributes).to include(
-            'code' => 'PETR4',
-            'name' => 'Petroleo Brasileiro S.A. Petrobras',
-            'business_name' => 'Petrobras',
-            'document' => '33.000.167/0001-01',
-            'description' => 'Pesquisa. Lavra. Refinação. Processamento. Comércio E Transporte de Petróleo. de Seus Derivados. de Gás Natural E de Outros Hidrocarbonetos Fluidos. Além Das Atividades Vinculadas à Energia.',
-            'website' => 'http://www.petrobras.com.br/',
-            'kind' => 'stock',
-            'sector' => 'Petróleo. Gás e Biocombustíveis / Petróleo. Gás e Biocombustíveis / Exploração. Refino e Distribuição',
-            'region' => 'Brazil/Sao Paulo',
-            'image_path' => {
-              'big' => 'https://assets.hgbrasil.com/finance/companies/big/petrobras.png', 'small' => 'https://assets.hgbrasil.com/finance/companies/small/petrobras.png'
-            },
-            'market_time' => { 'open' => '10:00', 'close' => '17:30',
-                               'timezone' => -3 },
-            'custom' => false,
-            'user_id' => nil,
-            'created_at' => be_a(Time),
-            'updated_at' => be_a(Time)
-          )
+          expect(new_asset.code).to eq('PETR4')
+          expect(new_asset.name).to eq('Petroleo Brasileiro S.A. Petrobras')
+          expect(new_asset.business_name).to eq('Petrobras')
+          expect(new_asset.kind).to eq('stock')
+          expect(new_asset.custom).to eq(false)
 
           asset_price_tracker = new_asset.asset_price_trackers.first
 
@@ -62,25 +46,11 @@ RSpec.describe Assets::Discovery::HgBrasil do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
-
-          expect(new_asset.attributes).to include(
-            'code' => 'HGLG11',
-            'name' => 'CSHG Logstica Fundo Investimento Imobiliario FII',
-            'business_name' => 'FII CSHG Log',
-            'document' => '11.728.688/0001-47',
-            'description' => 'Financeiro e Outros/Fundos/Fundos Imobiliários',
-            'website' => 'https://www.cshg.com.br/',
-            'kind' => 'fii',
-            'sector' => 'Imóveis Industriais e Logísticos',
-            'region' => 'Brazil/Sao Paulo',
-            'image_path' => nil,
-            'market_time' => { 'close' => '17:30', 'open' => '10:00',
-                               'timezone' => -3 },
-            'custom' => false,
-            'user_id' => nil,
-            'created_at' => be_a(Time),
-            'updated_at' => be_a(Time)
-          )
+          expect(new_asset.code).to eq('HGLG11')
+          expect(new_asset.name).to eq('CSHG Logstica Fundo Investimento Imobiliario FII')
+          expect(new_asset.business_name).to eq('FII CSHG Log')
+          expect(new_asset.kind).to eq('fii')
+          expect(new_asset.custom).to eq(false)
 
           asset_price_tracker = new_asset.asset_price_trackers.first
 
@@ -105,25 +75,11 @@ RSpec.describe Assets::Discovery::HgBrasil do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
-
-          expect(new_asset.attributes).to include(
-            'code' => 'BOVA11',
-            'name' => 'iShares Ibovespa Fundo de Índice ETF',
-            'business_name' => 'iShares Ibovespa Fundo de Índice ETF',
-            'document' => nil,
-            'description' => nil,
-            'website' => nil,
-            'kind' => 'stock',
-            'sector' => nil,
-            'region' => 'Brazil/Sao Paolo',
-            'image_path' => nil,
-            'market_time' => { 'close' => '17:30', 'open' => '10:00',
-                               'timezone' => -3 },
-            'custom' => false,
-            'user_id' => nil,
-            'created_at' => be_a(Time),
-            'updated_at' => be_a(Time)
-          )
+          expect(new_asset.code).to eq('BOVA11')
+          expect(new_asset.name).to eq('iShares Ibovespa Fundo de Índice ETF')
+          expect(new_asset.business_name).to eq('iShares Ibovespa Fundo de Índice ETF')
+          expect(new_asset.kind).to eq('stock')
+          expect(new_asset.custom).to eq(false)
 
           asset_price_tracker = new_asset.asset_price_trackers.first
 

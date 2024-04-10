@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_09_161927) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_025354) do
   create_table "asset_price_trackers", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.integer "data_origin_id", null: false
@@ -30,13 +30,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_161927) do
     t.string "code", null: false
     t.string "name", null: false
     t.string "business_name", null: false
-    t.string "document"
-    t.string "description"
-    t.string "website"
     t.string "kind"
-    t.string "sector"
     t.string "region"
-    t.json "image_path"
+    t.string "image_path"
     t.json "market_time"
     t.boolean "custom", default: false, null: false
     t.integer "user_id"
