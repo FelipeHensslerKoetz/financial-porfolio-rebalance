@@ -13,7 +13,7 @@ module AlphaVantage
     end
 
     def symbol_search(keywords:)
-      response = get(params: { function: 'SYMBOL_SEARCH', keywords: })
+      response ||= get(params: { function: 'SYMBOL_SEARCH', keywords: })
       best_matches = response&.dig('bestMatches')
 
       return nil unless best_matches.is_a?(Array)
@@ -32,7 +32,7 @@ module AlphaVantage
     end
 
     def global_quote(symbol:)
-      response = get(params: { function: 'GLOBAL_QUOTE', symbol: })
+      response ||= get(params: { function: 'GLOBAL_QUOTE', symbol: })
 
       price = response&.dig('Global Quote', '05. price')
       reference_date = response&.dig('Global Quote', '07. latest trading day')

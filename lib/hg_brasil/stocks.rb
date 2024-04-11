@@ -5,7 +5,7 @@ module HgBrasil
     end
 
     def asset_details(symbol:)
-      response = get(url: '/stock_price', params: { symbol: })&.dig('results', symbol.upcase)
+      response ||= get(url: '/stock_price', params: { symbol: })&.dig('results', symbol.upcase)
 
       return nil if response.blank? || response['error']
 
