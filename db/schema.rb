@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_225429) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_11_012417) do
   create_table "asset_price_trackers", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.integer "data_origin_id", null: false
@@ -125,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_225429) do
     t.datetime "requested_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "error_message"
     t.index ["investment_portfolio_id"], name: "index_rebalance_orders_on_investment_portfolio_id"
     t.index ["user_id"], name: "index_rebalance_orders_on_user_id"
   end
@@ -138,6 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_225429) do
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "error_message"
     t.index ["rebalance_order_id"], name: "index_rebalances_on_rebalance_order_id"
   end
 
