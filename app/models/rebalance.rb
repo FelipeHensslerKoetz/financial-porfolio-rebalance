@@ -28,7 +28,11 @@ class Rebalance < ApplicationRecord
     end
 
     event :expire do
-      transitions from: :pending, to: :expired
+      transitions from: :completed, to: :expired
+    end
+
+    event :reprocess do
+      transitions from: :failed, to: :processing
     end
   end
 end

@@ -17,6 +17,7 @@ RSpec.describe Rebalance, type: :model do
     it { is_expected.to transition_from(:pending).to(:processing).on_event(:process) }
     it { is_expected.to transition_from(:processing).to(:completed).on_event(:complete) }
     it { is_expected.to transition_from(:processing).to(:failed).on_event(:fail) }
-    it { is_expected.to transition_from(:pending).to(:expired).on_event(:expire) }
+    it { is_expected.to transition_from(:completed).to(:expired).on_event(:expire) }
+    it { is_expected.to transition_from(:failed).to(:processing).on_event(:reprocess) }
   end
 end

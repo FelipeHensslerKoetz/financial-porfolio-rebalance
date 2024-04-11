@@ -17,14 +17,9 @@ RSpec.describe RebalanceOrder, type: :model do
 
   describe 'aasm' do
     it { is_expected.to have_state(:pending) }
-    it {
-      is_expected.to transition_from(:pending).to(:processing).on_event(:process)
-    }
-    it {
-      is_expected.to transition_from(:processing).to(:completed).on_event(:complete)
-    }
-    it {
-      is_expected.to transition_from(:processing).to(:failed).on_event(:fail)
-    }
+    it { is_expected.to transition_from(:pending).to(:processing).on_event(:process) }
+    it { is_expected.to transition_from(:processing).to(:completed).on_event(:complete) }
+    it { is_expected.to transition_from(:processing).to(:error).on_event(:fail) }
+    it { is_expected.to transition_from(:error).to(:processing).on_event(:reprocess) }
   end
 end

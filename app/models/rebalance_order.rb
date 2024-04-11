@@ -1,19 +1,19 @@
 class RebalanceOrder < ApplicationRecord
   include AASM
 
-  TYPES = %w[default deposit withdraw].freeze
+  REBALANCE_TYPES = %w[default deposit withdraw].freeze
 
   belongs_to :user
   belongs_to :investment_portfolio
 
   validates :status, :type, presence: true
-  validates :type, inclusion: { in: TYPES }
+  validates :type, inclusion: { in: REBALANCE_TYPES }
 
   aasm column: :status do
     state :pending, initial: true
     state :processing
     state :completed
-    state :failed
+    state :error
 
     event :process do
       transitions from: :pending, to: :processing
@@ -24,7 +24,11 @@ class RebalanceOrder < ApplicationRecord
     end
 
     event :fail do
-      transitions from: :processing, to: :failed
+      transitions from: :processing, to: :error
+    end
+
+    event :reprocess do
+      transitions from: :error, to: :processing
     end
   end
 end
