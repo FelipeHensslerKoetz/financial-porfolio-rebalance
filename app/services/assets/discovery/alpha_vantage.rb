@@ -39,19 +39,16 @@ module Assets
       end
 
       def create_asset_price_tracker(asset, alpha_vantage_asset)
-        asset_price_details = fetch_asset_price(alpha_vantage_asset[:alpha_vantage_code])
-        price = asset_price_details[:price]
-        reference_date = asset_price_details[:reference_date]
-        currency = fetch_currency(alpha_vantage_asset[:currency])
+        asset_price_details ||= fetch_asset_price(alpha_vantage_asset[:alpha_vantage_code])
 
         AssetPriceTracker.create!(
           code: alpha_vantage_asset[:alpha_vantage_code],
           asset:,
           data_origin:,
-          price:,
-          currency:,
+          price: asset_price_details[:price],
+          currency: fetch_currency(alpha_vantage_asset[:currency]),
           last_sync_at: Time.zone.now,
-          reference_date:
+          reference_date: asset_price_details[:reference_date]
         )
       end
 
@@ -70,7 +67,6 @@ module Assets
         end
       end
 
-      # TODO: treat exception
       def alpha_vantage_assets
         @alpha_vantage_assets ||= ::AlphaVantage::CoreStocks.symbol_search(keywords:)
       end
