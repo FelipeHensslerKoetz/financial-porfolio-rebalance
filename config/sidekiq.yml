@@ -1,0 +1,6 @@
+---
+:queues:
+  - critical
+  - asset_discovery
+  - default
+  - low

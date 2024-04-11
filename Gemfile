@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3", ">= 7.1.3.2"
+gem 'rails', '~> 7.1', '>= 7.1.3.2'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -48,7 +48,7 @@ gem 'devise-jwt'
 gem 'faker'
 
 # Sidekiq is a simple, efficient background processing for Ruby
-gem 'sidekiq', '~> 4.1', '>= 4.1.2'
+gem 'sidekiq', '~> 6.5', '>= 6.5.12'
 
 # Faraday is an HTTP client library that provides a common interface over many adapters
 gem 'faraday'
@@ -78,4 +78,8 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'rspec-sidekiq', '~> 4.1'
 end
