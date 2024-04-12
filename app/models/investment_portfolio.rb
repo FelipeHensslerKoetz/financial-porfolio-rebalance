@@ -7,4 +7,6 @@ class InvestmentPortfolio < ApplicationRecord
   has_many :investment_portfolio_assets, dependent: :destroy
 
   validates :name, presence: true
+
+  accepts_nested_attributes_for :investment_portfolio_assets, allow_destroy: true
 end
