@@ -30,6 +30,7 @@ Rails.application.routes.draw do
           get :deep_search
         end
       end
+      resources :investment_portfolios
     end
   end
 end
