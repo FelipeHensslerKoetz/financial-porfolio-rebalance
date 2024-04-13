@@ -62,6 +62,9 @@ gem 'data_migrate'
 # AASM is a library for adding finite state machines to Ruby classes
 gem 'aasm'
 
+# Kaminari is a Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs
+gem "kaminari", "~> 1.2"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -83,3 +86,4 @@ end
 group :test do
   gem 'rspec-sidekiq', '~> 4.1'
 end
+
