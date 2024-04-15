@@ -1,5 +1,4 @@
-# TODO: rename to currency_parity_exchange_rates
-class CurrencyParityTracker < ApplicationRecord
+class CurrencyParityExchangeRate < ApplicationRecord
   include AASM
 
   belongs_to :currency_parity

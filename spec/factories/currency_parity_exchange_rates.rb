@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :currency_parity_tracker do
+  factory :currency_parity_exchange_rate do
     currency_parity { create(:currency_parity) }
     exchange_rate { 5.0 }
     last_sync_at { Time.zone.now }

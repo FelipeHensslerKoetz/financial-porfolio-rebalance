@@ -14,7 +14,7 @@ module Assets
     def call
       validate_arguments
       validate_any_asset_prices_up_to_date
-      validate_any_currency_parities_trackers_up_to_date
+      validate_any_currency_parities_exchange_rates_up_to_date
 
       average_price(all_converted_asset_prices)
     end
@@ -32,7 +32,7 @@ module Assets
       raise OutdatedAssetPriceError.new(asset:)
     end
 
-    def validate_any_currency_parities_trackers_up_to_date
+    def validate_any_currency_parities_exchange_rates_up_to_date
       return if all_prices_in_output_currency?
 
       currencies_to.each do |currency_to|
@@ -73,10 +73,10 @@ module Assets
 
       currency_parity = currency_parities.find_by(currency_to: asset_price.currency)
 
-      currency_parity_trackers = currency_parity.currency_parity_trackers.up_to_date
+      currency_parity_exchange_rates = currency_parity.currency_parity_exchange_rates.up_to_date
 
-      currency_parity_trackers.map do |currency_parity_tracker|
-        asset_price.price.to_d / currency_parity_tracker.exchange_rate.to_d
+      currency_parity_exchange_rates.map do |currency_parity_exchange_rate|
+        asset_price.price.to_d / currency_parity_exchange_rate.exchange_rate.to_d
       end
     end
 

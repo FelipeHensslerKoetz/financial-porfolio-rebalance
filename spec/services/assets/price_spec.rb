@@ -28,7 +28,7 @@ RSpec.describe Assets::Price do
                                currency_from: usd_currency,
                                currency_to: brl_currency)
 
-      create(:currency_parity_tracker,
+      create(:currency_parity_exchange_rate,
              currency_parity:,
              exchange_rate: 5.12)
     end
@@ -92,8 +92,8 @@ RSpec.describe Assets::Price do
                currency_to: brl_currency)
       end
 
-      let!(:currency_parity_tracker) do
-        create(:currency_parity_tracker, currency_parity:, status: 'outdated')
+      let!(:currency_parity_exchange_rate) do
+        create(:currency_parity_exchange_rate, currency_parity:, status: 'outdated')
       end
 
       it { expect { price.call }.to raise_error(OutdatedCurrencyParityError) }
