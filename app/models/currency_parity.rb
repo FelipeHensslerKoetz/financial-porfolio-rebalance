@@ -5,4 +5,8 @@ class CurrencyParity < ApplicationRecord
                            inverse_of: :currency_parities_as_to
 
   has_many :currency_parity_trackers, dependent: :destroy
+
+  def up_to_date?
+    currency_parity_trackers.up_to_date.any?
+  end
 end

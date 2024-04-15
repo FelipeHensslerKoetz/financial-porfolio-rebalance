@@ -6,4 +6,20 @@ RSpec.describe CurrencyParity, type: :model do
     it { should belong_to(:currency_to).class_name('Currency') }
     it { should have_many(:currency_parity_trackers).dependent(:destroy) }
   end
+
+  describe 'methods' do
+    describe '#up_to_date?' do
+      it 'returns true if there is an up to date currency parity tracker' do
+        currency_parity = create(:currency_parity)
+        create(:currency_parity_tracker, currency_parity:, status: 'up_to_date')
+        expect(currency_parity.up_to_date?).to eq(true)
+      end
+
+      it 'returns false if there is no up to date currency parity tracker' do
+        currency_parity = create(:currency_parity)
+        create(:currency_parity_tracker, currency_parity:, status: 'outdated')
+        expect(currency_parity.up_to_date?).to eq(false)
+      end
+    end
+  end
 end
