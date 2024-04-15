@@ -1,3 +1,4 @@
+# TODO: rename model to AssetPrices
 class AssetPriceTracker < ApplicationRecord
   include AASM
 
@@ -6,6 +7,11 @@ class AssetPriceTracker < ApplicationRecord
   belongs_to :currency
 
   validates :price, :last_sync_at, :reference_date, presence: true
+
+  scope :up_to_date, -> { where(status: 'up_to_date') }
+  scope :outdated, -> { where(status: 'outdated') }
+  scope :processing, -> { where(status: 'processing') }
+  scope :error, -> { where(status: 'error') }
 
   aasm column: :status do
     state :up_to_date, initial: true
