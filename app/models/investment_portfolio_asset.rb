@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-# InvestmentPortfolioAsset model
+# TODO: add index for asset + investment_portfolio (avoid double records)
 class InvestmentPortfolioAsset < ApplicationRecord
   belongs_to :asset
   belongs_to :investment_portfolio

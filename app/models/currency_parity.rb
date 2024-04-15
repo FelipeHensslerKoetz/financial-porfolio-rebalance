@@ -1,3 +1,4 @@
+# TODO: create index for currency_from + currency_to (avoid double records)
 class CurrencyParity < ApplicationRecord
   belongs_to :currency_from, class_name: 'Currency',
                              inverse_of: :currency_parities_as_from
