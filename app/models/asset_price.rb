@@ -1,4 +1,3 @@
-# TODO: rename model to AssetPrices
 class AssetPrice < ApplicationRecord
   include AASM
 
