@@ -28,6 +28,9 @@ module Api
         render json: { error: e.message }, status: :unprocessable_entity
       end
 
+      # TODO: check if the total_allocation_weight is equal to 100.0
+      # TODO: allow register investment_portfolio_assets by code
+      # TODO: block register new investment_portfolio_assets that already exists (code)
       def update
         if @investment_portfolio.update(investment_portfolio_params)
           render json: @investment_portfolio, include: %i[investment_portfolio_assets user currency], status: :ok
