@@ -14,7 +14,7 @@ module Assets
       private
 
       def assets
-        @assets ||= [hg_brasil_asset].compact #+ [alpha_vantage_assets]).flatten.compact.uniq
+        @assets ||= ([hg_brasil_asset] + [alpha_vantage_assets]).flatten.compact.uniq
       end
 
       def hg_brasil_asset
