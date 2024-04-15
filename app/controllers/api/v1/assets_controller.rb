@@ -1,38 +1,36 @@
 module Api
   module V1
     class AssetsController < ApplicationController
-      # List all global assets - paginate results
+      # TODO: paginate the results with kaminari
       def index
         @assets = Asset.global
 
-        render json: @assets
+        render json: @assets, status: :ok
       end
 
-      # Show a specific global asset
       def show
         @asset = Asset.global.find_by(id: params[:id])
 
         if @asset
-          render json: @asset
+          render json: @asset, status: :ok
         else
           render json: nil, status: :not_found
         end
       end
 
-      # Search for a specific global asset (name or identifier) - search bar
       def search
         @assets = Asset.global.where(
           'name LIKE :asset or code LIKE :asset', asset: "%#{params[:asset]}%"
         )
 
-        render json: @assets
+        render json: @assets, status: :ok
       end
 
-      # deep search for a specific global asset (name or identifier) - searchbar
+      # TODO: control the jobs calls
       def deep_search
-        @assets = Assets::Discovery.new(asset: params[:asset]).call
+        AssetDiscoveryJob.perform_async(params[:asset])
 
-        render json: @assets
+        render json: { message: 'Asset discovery job has been scheduled' }, status: :ok
       end
     end
   end

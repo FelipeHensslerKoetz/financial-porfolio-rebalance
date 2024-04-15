@@ -10,4 +10,10 @@ class Asset < ApplicationRecord
   validates :custom, inclusion: { in: [true, false] }
 
   scope :global, -> { where(user: nil, custom: false) }
+  scope :custom, -> { where(custom: true) }
+  scope :by_user, ->(user) { where(user:) }
+
+  def up_to_date?
+    asset_price_trackers.up_to_date.any?
+  end
 end

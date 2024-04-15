@@ -83,5 +83,18 @@ RSpec.describe Api::V1::AssetsController, type: :controller do
     end
   end
 
-  describe 'GET #deep_search'
+  describe 'GET #deep_search' do 
+    it 'schedules an asset discovery job' do
+      expect {
+        get :deep_search, params: { asset: 'Bitcoin' }
+      }.to change(AssetDiscoveryJob.jobs, :size).by(1)
+    end
+
+    it 'returns a success message' do
+      get :deep_search, params: { asset: 'Bitcoin' }
+
+      expect(response).to be_successful
+      expect(response.parsed_body['message']).to eq('Asset discovery job has been scheduled')
+    end
+  end
 end
