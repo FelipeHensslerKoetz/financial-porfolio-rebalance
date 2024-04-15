@@ -13,15 +13,15 @@ RSpec.describe Assets::Discovery::Global do
   context 'when assetS were found in one data origin' do
     let(:keywords) { 'NVDA' }
 
-    it 'creates a the asset with one asset price tracker' do
+    it 'creates a the asset with one asset price' do
       VCR.use_cassette('global_discovery/single_data_origin_discovery') do
         assets = global_discovery.call
 
         expect(assets.count).to eq(2)
-        expect(assets.first.asset_price_trackers.count).to eq(1)
-        expect(assets.second.asset_price_trackers.count).to eq(1)
-        expect(assets.first.asset_price_trackers.first.data_origin.name).to eq('Alpha Vantage')
-        expect(assets.last.asset_price_trackers.first.data_origin.name).to eq('Alpha Vantage')
+        expect(assets.first.asset_prices.count).to eq(1)
+        expect(assets.second.asset_prices.count).to eq(1)
+        expect(assets.first.asset_prices.first.data_origin.name).to eq('Alpha Vantage')
+        expect(assets.last.asset_prices.first.data_origin.name).to eq('Alpha Vantage')
       end
     end
   end
@@ -29,14 +29,14 @@ RSpec.describe Assets::Discovery::Global do
   context 'when asset was found in multiple data origins' do
     let(:keywords) { 'PETR4' }
 
-    it 'creates a the asset with two asset price trackers' do
+    it 'creates a the asset with two asset prices' do
       VCR.use_cassette('global_discovery/multiple_data_origin_discovery') do
         assets = global_discovery.call
 
         expect(assets.count).to eq(1)
-        expect(assets.first.asset_price_trackers.count).to eq(2)
-        expect(assets.first.asset_price_trackers.first.data_origin.name).to eq('HG Brasil')
-        expect(assets.first.asset_price_trackers.second.data_origin.name).to eq('Alpha Vantage')
+        expect(assets.first.asset_prices.count).to eq(2)
+        expect(assets.first.asset_prices.first.data_origin.name).to eq('HG Brasil')
+        expect(assets.first.asset_prices.second.data_origin.name).to eq('Alpha Vantage')
       end
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe Assets::Discovery::Global do
 
         expect(assets).to be_empty
         expect(Asset.count).to eq(0)
-        expect(AssetPriceTracker.count).to eq(0)
+        expect(AssetPrice.count).to eq(0)
       end
     end
   end

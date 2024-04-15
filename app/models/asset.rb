@@ -3,7 +3,7 @@
 # Asset model
 class Asset < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :assets, optional: true
-  has_many :asset_price_trackers, dependent: :destroy
+  has_many :asset_prices, dependent: :destroy
 
   validates :name, :business_name, :code, presence: true
   validates :code, uniqueness: true
@@ -14,6 +14,6 @@ class Asset < ApplicationRecord
   scope :by_user, ->(user) { where(user:) }
 
   def up_to_date?
-    asset_price_trackers.up_to_date.any?
+    asset_prices.up_to_date.any?
   end
 end

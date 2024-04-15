@@ -12,7 +12,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
     context 'when symbol is a stock' do
       let(:symbol) { 'PETR4' }
 
-      it 'creates a new Asset and AssetPriceTrack' do
+      it 'creates a new Asset and AssetPrice' do
         VCR.use_cassette('hg_brasil/asset_discovery_success') do
           new_asset = hg_brasil_asset_discovery
 
@@ -23,17 +23,17 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.kind).to eq('stock')
           expect(new_asset.custom).to eq(false)
 
-          asset_price_tracker = new_asset.asset_price_trackers.first
+          asset_price = new_asset.asset_prices.first
 
-          expect(new_asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker).to be_a(AssetPriceTracker)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.data_origin.name).to eq('HG Brasil')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(new_asset.asset_prices.count).to eq(1)
+          expect(asset_price).to be_a(AssetPrice)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
     context 'when symbol is a fii' do
       let(:symbol) { 'HGLG11' }
 
-      it 'creates a new Asset and AssetPriceTrack' do
+      it 'creates a new Asset and AssetPrice' do
         VCR.use_cassette('hg_brasil/asset_discovery_fii_success') do
           new_asset = hg_brasil_asset_discovery
 
@@ -52,17 +52,17 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.kind).to eq('fii')
           expect(new_asset.custom).to eq(false)
 
-          asset_price_tracker = new_asset.asset_price_trackers.first
+          asset_price = new_asset.asset_prices.first
 
-          expect(new_asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker).to be_a(AssetPriceTracker)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.data_origin.name).to eq('HG Brasil')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(new_asset.asset_prices.count).to eq(1)
+          expect(asset_price).to be_a(AssetPrice)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
     context 'when symbol is an ETF' do
       let(:symbol) { 'BOVA11' }
 
-      it 'creates a new Asset and AssetPriceTrack' do
+      it 'creates a new Asset and AssetPrice' do
         VCR.use_cassette('hg_brasil/asset_discovery_etf_success') do
           new_asset = hg_brasil_asset_discovery
 
@@ -81,17 +81,17 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.kind).to eq('stock')
           expect(new_asset.custom).to eq(false)
 
-          asset_price_tracker = new_asset.asset_price_trackers.first
+          asset_price = new_asset.asset_prices.first
 
-          expect(new_asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker).to be_a(AssetPriceTracker)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.data_origin.name).to eq('HG Brasil')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(new_asset.asset_prices.count).to eq(1)
+          expect(asset_price).to be_a(AssetPrice)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end

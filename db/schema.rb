@@ -11,21 +11,21 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_04_11_012417) do
-  create_table "asset_price_trackers", force: :cascade do |t|
+  create_table "asset_prices", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.integer "data_origin_id", null: false
     t.string "code", null: false
     t.integer "currency_id", null: false
     t.decimal "price", precision: 10, scale: 2
     t.datetime "last_sync_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.datetime "reference_date"
     t.string "status", null: false
     t.string "error_message"
-    t.index ["asset_id"], name: "index_asset_price_trackers_on_asset_id"
-    t.index ["currency_id"], name: "index_asset_price_trackers_on_currency_id"
-    t.index ["data_origin_id"], name: "index_asset_price_trackers_on_data_origin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_id"], name: "index_asset_prices_on_asset_id"
+    t.index ["currency_id"], name: "index_asset_prices_on_currency_id"
+    t.index ["data_origin_id"], name: "index_asset_prices_on_data_origin_id"
   end
 
   create_table "assets", force: :cascade do |t|
@@ -158,9 +158,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_012417) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "asset_price_trackers", "assets"
-  add_foreign_key "asset_price_trackers", "currencies"
-  add_foreign_key "asset_price_trackers", "data_origins"
+  add_foreign_key "asset_prices", "assets"
+  add_foreign_key "asset_prices", "currencies"
+  add_foreign_key "asset_prices", "data_origins"
   add_foreign_key "assets", "users"
   add_foreign_key "currency_parities", "currencies", column: "currency_from_id"
   add_foreign_key "currency_parities", "currencies", column: "currency_to_id"

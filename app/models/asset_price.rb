@@ -1,5 +1,5 @@
 # TODO: rename model to AssetPrices
-class AssetPriceTracker < ApplicationRecord
+class AssetPrice < ApplicationRecord
   include AASM
 
   belongs_to :asset

@@ -19,7 +19,7 @@ module Assets
 
         return create_asset if existing_asset.blank?
 
-        create_asset_price_tracker(existing_asset)
+        create_asset_price(existing_asset)
       end
 
       private
@@ -29,8 +29,8 @@ module Assets
       end
 
       def asset_already_discovered?
-        existing_asset.present? && existing_asset.asset_price_trackers.any? do |asset_price_tracker|
-          asset_price_tracker.data_origin == data_origin
+        existing_asset.present? && existing_asset.asset_prices.any? do |asset_price|
+          asset_price.data_origin == data_origin
         end
       end
 
@@ -41,7 +41,7 @@ module Assets
       def create_asset
         ActiveRecord::Base.transaction do
           @new_asset = Asset.create!(asset_details.except(:price, :reference_date, :currency))
-          create_asset_price_tracker(@new_asset)
+          create_asset_price(@new_asset)
         end
 
         @new_asset
@@ -50,14 +50,14 @@ module Assets
         nil
       end
 
-      def create_asset_price_tracker(target_asset)
-        AssetPriceTracker.create!(asset: target_asset,
-                                  data_origin:,
-                                  price: asset_details[:price],
-                                  last_sync_at: Time.zone.now,
-                                  code: asset_details[:code],
-                                  currency:,
-                                  reference_date: asset_details[:reference_date])
+      def create_asset_price(target_asset)
+        AssetPrice.create!(asset: target_asset,
+                           data_origin:,
+                           price: asset_details[:price],
+                           last_sync_at: Time.zone.now,
+                           code: asset_details[:code],
+                           currency:,
+                           reference_date: asset_details[:reference_date])
         nil
       end
 

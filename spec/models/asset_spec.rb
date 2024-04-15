@@ -16,7 +16,7 @@ RSpec.describe Asset, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user).optional }
-    it { should have_many(:asset_price_trackers).dependent(:destroy) }
+    it { should have_many(:asset_prices).dependent(:destroy) }
   end
 
   describe 'scopes' do
@@ -51,13 +51,13 @@ RSpec.describe Asset, type: :model do
     let(:asset) { create(:asset) }
 
     describe '#up_to_date?' do
-      it 'returns true if there are up to date asset price trackers' do
-        create(:asset_price_tracker, asset:, status: 'up_to_date')
+      it 'returns true if there are up to date asset prices' do
+        create(:asset_price, asset:, status: 'up_to_date')
         expect(asset.up_to_date?).to eq(true)
       end
 
-      it 'returns false if there are no up to date asset price trackers' do
-        create(:asset_price_tracker, asset:, status: 'outdated')
+      it 'returns false if there are no up to date asset prices' do
+        create(:asset_price, asset:, status: 'outdated')
         expect(asset.up_to_date?).to eq(false)
       end
     end

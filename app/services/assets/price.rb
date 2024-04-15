@@ -13,7 +13,7 @@ module Assets
 
     def call
       validate_arguments
-      validate_any_asset_price_trackers_up_to_date
+      validate_any_asset_prices_up_to_date
       validate_any_currency_parities_trackers_up_to_date
 
       average_price(all_converted_asset_prices)
@@ -26,8 +26,8 @@ module Assets
       raise ArgumentError, 'output_currency argument must be a Currency' unless output_currency.is_a?(Currency)
     end
 
-    def validate_any_asset_price_trackers_up_to_date
-      return if up_to_date_asset_price_trackers.any?
+    def validate_any_asset_prices_up_to_date
+      return if up_to_date_asset_prices.any?
 
       raise OutdatedAssetPriceError.new(asset:)
     end
@@ -49,8 +49,8 @@ module Assets
       currencies_to.all? { |currency_to| currency_to == output_currency }
     end
 
-    def up_to_date_asset_price_trackers
-      @up_to_date_asset_price_trackers ||= asset.asset_price_trackers.up_to_date
+    def up_to_date_asset_prices
+      @up_to_date_asset_prices ||= asset.asset_prices.up_to_date
     end
 
     def currency_parities
@@ -59,24 +59,24 @@ module Assets
     end
 
     def currencies_to
-      @currencies_to ||= up_to_date_asset_price_trackers.map(&:currency).uniq
+      @currencies_to ||= up_to_date_asset_prices.map(&:currency).uniq
     end
 
     def all_converted_asset_prices
-      up_to_date_asset_price_trackers.map do |asset_price_tracker|
-        converted_asset_prices(asset_price_tracker)
+      up_to_date_asset_prices.map do |asset_price|
+        converted_asset_prices(asset_price)
       end.flatten
     end
 
-    def converted_asset_prices(asset_price_tracker)
-      return asset_price_tracker.price if asset_price_tracker.currency == output_currency
+    def converted_asset_prices(asset_price)
+      return asset_price.price if asset_price.currency == output_currency
 
-      currency_parity = currency_parities.find_by(currency_to: asset_price_tracker.currency)
+      currency_parity = currency_parities.find_by(currency_to: asset_price.currency)
 
       currency_parity_trackers = currency_parity.currency_parity_trackers.up_to_date
 
       currency_parity_trackers.map do |currency_parity_tracker|
-        asset_price_tracker.price.to_d / currency_parity_tracker.exchange_rate.to_d
+        asset_price.price.to_d / currency_parity_tracker.exchange_rate.to_d
       end
     end
 

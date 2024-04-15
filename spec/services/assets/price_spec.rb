@@ -18,7 +18,7 @@ RSpec.describe Assets::Price do
     let(:output_currency) { usd_currency }
 
     before do
-      create(:asset_price_tracker,
+      create(:asset_price,
              asset:,
              currency: brl_currency,
              price: 38.94,
@@ -56,7 +56,7 @@ RSpec.describe Assets::Price do
       it { expect { price.call }.to raise_error(ArgumentError) }
     end
 
-    context 'when all asset price trackers are outdated or does not exists' do
+    context 'when all asset prices are outdated or does not exists' do
       let(:asset) { petr4_asset }
       let(:output_currency) { usd_currency }
 
@@ -66,8 +66,8 @@ RSpec.describe Assets::Price do
     context 'when there are no currency parities' do
       let(:asset) { petr4_asset }
       let(:output_currency) { btc_currency }
-      let!(:asset_price_tracker) do
-        create(:asset_price_tracker,
+      let!(:asset_price) do
+        create(:asset_price,
                asset:,
                currency: brl_currency,
                status: :up_to_date)
@@ -79,8 +79,8 @@ RSpec.describe Assets::Price do
     context 'when there are outdated only currency parities' do
       let(:asset) { petr4_asset }
       let(:output_currency) { btc_currency }
-      let!(:asset_price_tracker) do
-        create(:asset_price_tracker,
+      let!(:asset_price) do
+        create(:asset_price,
                asset:,
                currency: brl_currency,
                status: :up_to_date)

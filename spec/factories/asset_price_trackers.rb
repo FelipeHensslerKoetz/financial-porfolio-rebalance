@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :asset_price_tracker do
+  factory :asset_price do
     asset { create(:asset) }
     data_origin { create(:data_origin) }
     code { 'code' }

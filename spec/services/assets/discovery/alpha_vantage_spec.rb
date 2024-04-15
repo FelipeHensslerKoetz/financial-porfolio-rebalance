@@ -21,7 +21,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         VCR.use_cassette('alpha_vantage/asset_discovery_single_equity') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
-          asset_price_tracker = asset.asset_price_trackers.first
+          asset_price = asset.asset_prices.first
 
           expect(Asset.count).to eq(1)
           expect(asset.code).to eq('PETR4')
@@ -29,15 +29,15 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.business_name).to eq('Petróleo Brasileiro S.A. - Petrobras')
           expect(asset.kind).to eq('Equity')
           expect(asset.custom).to eq(false)
-          expect(asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker.code).to eq('PETR4.SAO')
-          expect(asset_price_tracker.data_origin.name).to eq('Alpha Vantage')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(asset.asset_prices.count).to eq(1)
+          expect(asset_price.code).to eq('PETR4.SAO')
+          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         VCR.use_cassette('alpha_vantage/asset_discovery_single_mutual_fund') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
-          asset_price_tracker = asset.asset_price_trackers.first
+          asset_price = asset.asset_prices.first
 
           expect(Asset.count).to eq(1)
           expect(asset.code).to eq('HGLG11')
@@ -57,15 +57,15 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.business_name).to eq('Cshg Logistica - Fundo De Investimento Imobiliario')
           expect(asset.kind).to eq('Mutual Fund')
           expect(asset.custom).to eq(false)
-          expect(asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker.code).to eq('HGLG11.SAO')
-          expect(asset_price_tracker.data_origin.name).to eq('Alpha Vantage')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(asset.asset_prices.count).to eq(1)
+          expect(asset_price.code).to eq('HGLG11.SAO')
+          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end
@@ -77,7 +77,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         VCR.use_cassette('alpha_vantage/asset_discovery_single_etf') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
-          asset_price_tracker = asset.asset_price_trackers.first
+          asset_price = asset.asset_prices.first
 
           expect(Asset.count).to eq(1)
           expect(asset.code).to eq('IVVB11')
@@ -85,15 +85,15 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.business_name).to eq('iShares S&P 500 Fundo de Investimento - Investimento No Exterior')
           expect(asset.kind).to eq('ETF')
           expect(asset.custom).to eq(false)
-          expect(asset.asset_price_trackers.count).to eq(1)
-          expect(asset_price_tracker.code).to eq('IVVB11.SAO')
-          expect(asset_price_tracker.data_origin.name).to eq('Alpha Vantage')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.currency.code).to eq('BRL')
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
-          expect(asset_price_tracker.reference_date).to be_a(Time)
+          expect(asset.asset_prices.count).to eq(1)
+          expect(asset_price.code).to eq('IVVB11.SAO')
+          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.currency.code).to eq('BRL')
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
+          expect(asset_price.reference_date).to be_a(Time)
         end
       end
     end
@@ -109,19 +109,19 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         expect(new_assets.count).to eq(10)
 
         new_assets.each do |asset|
-          asset_price_tracker = asset.asset_price_trackers.first
+          asset_price = asset.asset_prices.first
 
           expect(asset.code).to be_a(String)
           expect(asset.name).to be_a(String)
           expect(asset.business_name).to be_a(String)
           expect(asset.kind).to be_a(String)
           expect(asset.custom).to eq(false)
-          expect(asset_price_tracker.data_origin.name).to eq('Alpha Vantage')
-          expect(asset_price_tracker.price).to be_a(BigDecimal)
-          expect(asset_price_tracker.currency).to be_a(Currency)
-          expect(asset_price_tracker.last_sync_at).to be_a(Time)
-          expect(asset_price_tracker.created_at).to be_a(Time)
-          expect(asset_price_tracker.updated_at).to be_a(Time)
+          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.price).to be_a(BigDecimal)
+          expect(asset_price.currency).to be_a(Currency)
+          expect(asset_price.last_sync_at).to be_a(Time)
+          expect(asset_price.created_at).to be_a(Time)
+          expect(asset_price.updated_at).to be_a(Time)
         end
       end
     end
@@ -146,7 +146,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
 
       before do
         asset = create(:asset, code: 'PETR4')
-        create(:asset_price_tracker,
+        create(:asset_price,
                asset:,
                code: 'PETR4.SAO',
                data_origin: DataOrigin.find_by(name: 'Alpha Vantage'),
@@ -161,7 +161,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
 
           expect(assets.count).to eq(0)
           expect(Asset.count).to eq(1)
-          expect(AssetPriceTracker.count).to eq(1)
+          expect(AssetPrice.count).to eq(1)
         end
       end
     end
@@ -174,23 +174,23 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           create(:asset, code: 'PETR4')
         end
 
-        it 'creates a asset price tracker' do
+        it 'creates an asset price' do
           VCR.use_cassette('alpha_vantage/asset_discovery_single_equity_already_existent_by_other_source') do
             assets = alpha_vantage_discovery.call
             asset = assets.first.reload
-            asset_price_tracker = asset.asset_price_trackers.first
+            asset_price = asset.asset_prices.first
 
             expect(Asset.count).to eq(1)
             expect(asset.code).to eq('PETR4')
-            expect(asset.asset_price_trackers.count).to eq(1)
-            expect(asset_price_tracker.code).to eq('PETR4.SAO')
-            expect(asset_price_tracker.data_origin.name).to eq('Alpha Vantage')
-            expect(asset_price_tracker.price).to be_a(BigDecimal)
-            expect(asset_price_tracker.currency.code).to eq('BRL')
-            expect(asset_price_tracker.last_sync_at).to be_a(Time)
-            expect(asset_price_tracker.created_at).to be_a(Time)
-            expect(asset_price_tracker.updated_at).to be_a(Time)
-            expect(asset_price_tracker.reference_date).to eq(Time.zone.parse('2024-04-05'))
+            expect(asset.asset_prices.count).to eq(1)
+            expect(asset_price.code).to eq('PETR4.SAO')
+            expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+            expect(asset_price.price).to be_a(BigDecimal)
+            expect(asset_price.currency.code).to eq('BRL')
+            expect(asset_price.last_sync_at).to be_a(Time)
+            expect(asset_price.created_at).to be_a(Time)
+            expect(asset_price.updated_at).to be_a(Time)
+            expect(asset_price.reference_date).to eq(Time.zone.parse('2024-04-05'))
           end
         end
       end
@@ -208,7 +208,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
 
             expect(assets).to be_empty
             expect(Asset.count).to eq(1)
-            expect(AssetPriceTracker.count).to eq(0)
+            expect(AssetPrice.count).to eq(0)
           end
         end
       end

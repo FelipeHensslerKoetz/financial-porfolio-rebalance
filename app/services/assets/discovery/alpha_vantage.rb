@@ -19,7 +19,7 @@ module Assets
           next if asset_already_discovered?(asset)
 
           if asset.present?
-            create_asset_price_tracker(asset, alpha_vantage_asset)
+            create_asset_price(asset, alpha_vantage_asset)
             asset
           else
             create_asset(alpha_vantage_asset)
@@ -32,16 +32,16 @@ module Assets
       def create_asset(alpha_vantage_asset)
         ActiveRecord::Base.transaction do
           @new_asset = Asset.create!(alpha_vantage_asset.except(:alpha_vantage_code, :currency))
-          create_asset_price_tracker(@new_asset, alpha_vantage_asset)
+          create_asset_price(@new_asset, alpha_vantage_asset)
         end
 
         @new_asset
       end
 
-      def create_asset_price_tracker(asset, alpha_vantage_asset)
+      def create_asset_price(asset, alpha_vantage_asset)
         asset_price_details ||= fetch_asset_price(alpha_vantage_asset[:alpha_vantage_code])
 
-        AssetPriceTracker.create!(
+        AssetPrice.create!(
           code: alpha_vantage_asset[:alpha_vantage_code],
           asset:,
           data_origin:,
@@ -62,8 +62,8 @@ module Assets
       end
 
       def asset_already_discovered?(asset)
-        asset.present? && asset.asset_price_trackers.any? do |asset_price_tracker|
-          asset_price_tracker.data_origin == @data_origin
+        asset.present? && asset.asset_prices.any? do |asset_price|
+          asset_price.data_origin == @data_origin
         end
       end
 
