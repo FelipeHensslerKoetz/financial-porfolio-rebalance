@@ -1,3 +1,4 @@
+# TODO: rename to currency_parity_exchange_rates
 class CurrencyParityTracker < ApplicationRecord
   include AASM
 
@@ -5,6 +6,11 @@ class CurrencyParityTracker < ApplicationRecord
   belongs_to :data_origin
 
   validates :exchange_rate, :reference_date, :last_sync_at, presence: true
+
+  scope :up_to_date, -> { where(status: :up_to_date) }
+  scope :outdated, -> { where(status: :outdated) }
+  scope :processing, -> { where(status: :processing) }
+  scope :error, -> { where(status: :error) }
 
   aasm column: :status do
     state :up_to_date, initial: true
