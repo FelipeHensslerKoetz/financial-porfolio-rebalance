@@ -6,6 +6,7 @@ class CreateRebalances < ActiveRecord::Migration[7.1]
       t.json :after_rebalance, null: false
       t.string :status, null: false
       t.boolean :reflected_to_investment_portfolio, null: false, default: false
+      t.string :error_message
       t.datetime :expires_at, null: false
 
       t.timestamps
