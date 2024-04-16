@@ -20,5 +20,30 @@ module HgBrasil
         custom: false
       }
     end
+
+    def asset_details_batch(symbols:)
+      response ||= get(url: '/stock_price', params: { symbol: symbols.join(',') })&.dig('results')
+
+      return nil if response.blank? || response['error'] || !response.is_a?(Hash)
+
+      formatted_response = []
+
+      response.each_value do |value|
+        next if value['error']
+
+        formatted_response << {
+          code: value['symbol'].upcase,
+          kind: value['kind'],
+          business_name: value['name'] || value['company_name'],
+          name: value['company_name'] || value['name'],
+          price: value['price'],
+          reference_date: Time.zone.parse(value['updated_at']),
+          currency: value['currency'],
+          custom: false
+        }
+      end
+
+      formatted_response
+    end
   end
 end

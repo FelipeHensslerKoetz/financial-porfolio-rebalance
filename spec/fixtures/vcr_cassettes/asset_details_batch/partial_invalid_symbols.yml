@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=FELIPE,HGLG11,INVALID,PETR4,VALE3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Apr 2024 21:17:53 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"3c43c8ca8012c259fac4ffa52297a801"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - fb82f63c-037b-4bed-afc9-9a49a0b0a407
+      X-Runtime:
+      - '0.027744'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=cVN%2FAd9ZQgOgx7MyIHRbvQYiOVDsT66MNs%2B58MFplvOyzMV4qRD7cGiflshRigd7OL4PYE%2FV0dCxFSW%2FA8cPMAh7ENRdu1Mz4StMl5g0mMCS5WbadTcqGJuYtJ3V3ZyKffgWA%2Fdy0b74bKZoP7p0"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8757346739c1a432-GRU
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJGRUxJUEUiOnsiZXJyb3IiOnRydWUsIm1lc3NhZ2UiOiJFcnJvciB0byBnZXQgU3RvY2sgZm9yICNGRUxJUEU6IEVycm8gODUyIC0gU8OtbWJvbG8gbsOjbyBlbmNvbnRyYWRvLCBwb3IgZmF2b3IgZW50cmUgZW0gY29udGF0byBjb25vc2NvIGVtIGNvbnNvbGUuaGdicmFzaWwuY29tLiJ9LCJIR0xHMTEiOnsia2luZCI6ImZpaSIsInN5bWJvbCI6IkhHTEcxMSIsIm5hbWUiOiJGSUkgQ1NIRyBMb2ciLCJjb21wYW55X25hbWUiOiJDU0hHIExvZ3N0aWNhIEZ1bmRvIEludmVzdGltZW50byBJbW9iaWxpYXJpbyBGSUkiLCJkb2N1bWVudCI6IjExLjcyOC42ODgvMDAwMS00NyIsImRlc2NyaXB0aW9uIjoiRmluYW5jZWlybyBlIE91dHJvcy9GdW5kb3MvRnVuZG9zIEltb2JpbGnDoXJpb3MiLCJ3ZWJzaXRlIjoiaHR0cHM6Ly93d3cuY3NoZy5jb20uYnIvIiwic2VjdG9yIjoiSW3Ds3ZlaXMgSW5kdXN0cmlhaXMgZSBMb2fDrXN0aWNvcyIsImZpbmFuY2lhbHMiOnsiZXF1aXR5Ijo1MzMxNTY4MjQ0LCJxdW90YV9jb3VudCI6MzM3ODc1NzUsImVxdWl0eV9wZXJfc2hhcmUiOjE1Ny43OTcsInByaWNlX3RvX2Jvb2tfcmF0aW8iOjEuMDQ3LCJkaXZpZGVuZHMiOnsieWllbGRfMTJtIjo4Ljg5NiwieWllbGRfMTJtX3N1bSI6MTQuN319LCJyZWdpb24iOiJCcmF6aWwvU2FvIFBhdWxvIiwiY3VycmVuY3kiOiJCUkwiLCJtYXJrZXRfdGltZSI6eyJvcGVuIjoiMTA6MDAiLCJjbG9zZSI6IjE3OjMwIiwidGltZXpvbmUiOi0zfSwibG9nbyI6bnVsbCwibWFya2V0X2NhcCI6NTYyNS42MywicHJpY2UiOjE2Ni41LCJjaGFuZ2VfcGVyY2VudCI6MC43NiwiY2hhbmdlX3ByaWNlIjoxLjI2LCJ1cGRhdGVkX2F0IjoiMjAyNC0wNC0xNiAxNzowNzo0NCJ9LCJJTlZBTElEIjp7ImVycm9yIjp0cnVlLCJtZXNzYWdlIjoiRXJyb3IgdG8gZ2V0IFN0b2NrIGZvciAjSU5WQUxJRDogRXJybyA4NTIgLSBTw61tYm9sbyBuw6NvIGVuY29udHJhZG8sIHBvciBmYXZvciBlbnRyZSBlbSBjb250YXRvIGNvbm9zY28gZW0gY29uc29sZS5oZ2JyYXNpbC5jb20uIn0sIlBFVFI0Ijp7ImtpbmQiOiJzdG9jayIsInN5bWJvbCI6IlBFVFI0IiwibmFtZSI6IlBldHJvYnJhcyIsImNvbXBhbnlfbmFtZSI6IlBldHJvbGVvIEJyYXNpbGVpcm8gUy5BLiBQZXRyb2JyYXMiLCJkb2N1bWVudCI6IjMzLjAwMC4xNjcvMDAwMS0wMSIsImRlc2NyaXB0aW9uIjoiUGVzcXVpc2EuIExhdnJhLiBSZWZpbmHDp8Ojby4gUHJvY2Vzc2FtZW50by4gQ29tw6lyY2lvIEUgVHJhbnNwb3J0ZSBkZSBQZXRyw7NsZW8uIGRlIFNldXMgRGVyaXZhZG9zLiBkZSBHw6FzIE5hdHVyYWwgRSBkZSBPdXRyb3MgSGlkcm9jYXJib25ldG9zIEZsdWlkb3MuIEFsw6ltIERhcyBBdGl2aWRhZGVzIFZpbmN1bGFkYXMgw6AgRW5lcmdpYS4iLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5wZXRyb2JyYXMuY29tLmJyLyIsInNlY3RvciI6IlBldHLDs2xlby4gR8OhcyBlIEJpb2NvbWJ1c3TDrXZlaXMgLyBQZXRyw7NsZW8uIEfDoXMgZSBCaW9jb21idXN0w612ZWlzIC8gRXhwbG9yYcOnw6NvLiBSZWZpbm8gZSBEaXN0cmlidWnDp8OjbyIsImZpbmFuY2lhbHMiOnsicXVvdGFfY291bnQiOjAsImRpdmlkZW5kcyI6eyJ5aWVsZF8xMm0iOm51bGwsInlpZWxkXzEybV9zdW0iOm51bGx9fSwicmVnaW9uIjoiQnJhemlsL1NhbyBQYXVsbyIsImN1cnJlbmN5IjoiQlJMIiwibWFya2V0X3RpbWUiOnsib3BlbiI6IjEwOjAwIiwiY2xvc2UiOiIxNzozMCIsInRpbWV6b25lIjotM30sImxvZ28iOnsic21hbGwiOiJodHRwczovL2Fzc2V0cy5oZ2JyYXNpbC5jb20vZmluYW5jZS9jb21wYW5pZXMvc21hbGwvcGV0cm9icmFzLnBuZyIsImJpZyI6Imh0dHBzOi8vYXNzZXRzLmhnYnJhc2lsLmNvbS9maW5hbmNlL2NvbXBhbmllcy9iaWcvcGV0cm9icmFzLnBuZyJ9LCJtYXJrZXRfY2FwIjo1MjY5NDAuMCwicHJpY2UiOjM5LjQ5LCJjaGFuZ2VfcGVyY2VudCI6MC40NiwiY2hhbmdlX3ByaWNlIjowLjE4LCJ1cGRhdGVkX2F0IjoiMjAyNC0wNC0xNiAxNzowNzo0NCJ9LCJWQUxFMyI6eyJraW5kIjoic3RvY2siLCJzeW1ib2wiOiJWQUxFMyIsIm5hbWUiOiJWYWxlIiwiY29tcGFueV9uYW1lIjoiVmFsZSBTLkEuIiwiZG9jdW1lbnQiOiIzMy41OTIuNTEwLzAwMDEtNTQiLCJkZXNjcmlwdGlvbiI6Ik1pbmVyYcOnw6NvIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cudmFsZS5jb20vIiwic2VjdG9yIjoiTWF0ZXJpYWlzIELDoXNpY29zIC8gTWluZXJhw6fDo28gLyBNaW5lcmFpcyBNZXTDoWxpY29zIiwiZmluYW5jaWFscyI6eyJxdW90YV9jb3VudCI6MCwiZGl2aWRlbmRzIjp7InlpZWxkXzEybSI6bnVsbCwieWllbGRfMTJtX3N1bSI6bnVsbH19LCJyZWdpb24iOiJCcmF6aWwvU2FvIFBhdWxvIiwiY3VycmVuY3kiOiJCUkwiLCJtYXJrZXRfdGltZSI6eyJvcGVuIjoiMTA6MDAiLCJjbG9zZSI6IjE3OjMwIiwidGltZXpvbmUiOi0zfSwibG9nbyI6eyJzbWFsbCI6Imh0dHBzOi8vYXNzZXRzLmhnYnJhc2lsLmNvbS9maW5hbmNlL2NvbXBhbmllcy9zbWFsbC92YWxlLnBuZyIsImJpZyI6Imh0dHBzOi8vYXNzZXRzLmhnYnJhc2lsLmNvbS9maW5hbmNlL2NvbXBhbmllcy9iaWcvdmFsZS5wbmcifSwibWFya2V0X2NhcCI6Mjc4ODc3LjAsInByaWNlIjo2MS40NCwiY2hhbmdlX3BlcmNlbnQiOi0wLjg5LCJjaGFuZ2VfcHJpY2UiOi0wLjU1LCJ1cGRhdGVkX2F0IjoiMjAyNC0wNC0xNiAxNzowNzo0NCJ9fSwiZXhlY3V0aW9uX3RpbWUiOjAuMDEsImZyb21fY2FjaGUiOmZhbHNlfQ==
+  recorded_at: Tue, 16 Apr 2024 21:17:53 GMT
+recorded_with: VCR 6.2.0

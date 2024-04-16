@@ -126,4 +126,84 @@ RSpec.describe HgBrasil::Stocks do
       end
     end
   end
+
+  describe '#asset_details_batch' do
+    subject(:asset_details_batch) { described_class.new.asset_details_batch(symbols:) }
+
+    context 'when searching for up to 5' do
+      context 'when all stocks are valid' do
+        let(:symbols) { %w[EMBR3 HGLG11 ITSA4 PETR4 VALE3] }
+
+        it 'returns the stock prices' do
+          VCR.use_cassette('asset_details_batch/valid_symbols') do
+            result = asset_details_batch
+
+            expect(result).to be_an(Array)
+            expect(result.size).to eq(5)
+
+            result.each do |stock|
+              expect(stock).to include(
+                code: be_a(String),
+                kind: be_a(String),
+                business_name: be_a(String),
+                name: be_a(String),
+                price: be_a(Float),
+                reference_date: be_a(Time),
+                custom: false
+              )
+            end
+          end
+        end
+      end
+
+      context 'when some stocks are invalid' do
+        let(:symbols) { %w[FELIPE HGLG11 INVALID PETR4 VALE3] }
+
+        it 'returns the stock prices' do
+          VCR.use_cassette('asset_details_batch/partial_invalid_symbols') do
+            result = asset_details_batch
+
+            expect(result).to be_an(Array)
+            expect(result.size).to eq(3)
+
+            result.each do |stock|
+              expect(stock).to include(
+                code: be_a(String),
+                kind: be_a(String),
+                business_name: be_a(String),
+                name: be_a(String),
+                price: be_a(Float),
+                reference_date: be_a(Time),
+                custom: false
+              )
+            end
+          end
+        end
+      end
+
+      context 'when all stocks are invalid' do
+        let(:symbols) { %w[INVALID INVALID2 INVALID3 INVALID4] }
+
+        it 'returns an empty array' do
+          VCR.use_cassette('asset_details_batch/all_invalid_symbols') do
+            result = asset_details_batch
+
+            expect(result).to eq([])
+          end
+        end
+      end
+    end
+
+    context 'when searching for more than 5 stocks' do
+      let(:symbols) { %w[EMBR3 HGLG11 ITSA4 PETR4 VALE3 B3SA3] }
+
+      it 'returns an empty array' do 
+        VCR.use_cassette('asset_details_batch/more_than_5_symbols') do
+          result = asset_details_batch
+
+          expect(result).to be_nil
+        end
+      end
+    end
+  end
 end
