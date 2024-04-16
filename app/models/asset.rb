@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Asset model
 class Asset < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :assets, optional: true
   has_many :asset_prices, dependent: :destroy
@@ -15,5 +12,11 @@ class Asset < ApplicationRecord
 
   def up_to_date?
     asset_prices.up_to_date.any?
+  end
+
+  def latest_asset_price
+    return unless up_to_date?
+
+    asset_prices.up_to_date.order(reference_date: :desc).first
   end
 end

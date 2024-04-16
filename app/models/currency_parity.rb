@@ -10,4 +10,10 @@ class CurrencyParity < ApplicationRecord
   def up_to_date?
     currency_parity_exchange_rates.up_to_date.any?
   end
+
+  def latest_currency_parity_exchange_rate
+    return unless up_to_date?
+
+    currency_parity_exchange_rates.up_to_date.order(reference_date: :desc).first
+  end
 end

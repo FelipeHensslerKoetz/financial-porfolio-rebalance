@@ -13,10 +13,10 @@ module Assets
 
     def call
       validate_arguments
-      validate_any_asset_prices_up_to_date
-      validate_any_currency_parities_exchange_rates_up_to_date
+      validate_asset_price
+      validate_currency_parity_exchange_rate
 
-      average_price(all_converted_asset_prices)
+      price
     end
 
     private
@@ -26,62 +26,40 @@ module Assets
       raise ArgumentError, 'output_currency argument must be a Currency' unless output_currency.is_a?(Currency)
     end
 
-    def validate_any_asset_prices_up_to_date
-      return if up_to_date_asset_prices.any?
+    def validate_asset_price
+      return if asset_price.present?
 
       raise OutdatedAssetPriceError.new(asset:)
     end
 
-    def validate_any_currency_parities_exchange_rates_up_to_date
-      return if all_prices_in_output_currency?
+    def validate_currency_parity_exchange_rate
+      return if input_currency == output_currency
 
-      currencies_to.each do |currency_to|
-        next if currency_to == output_currency
-
-        currency_parity = currency_parities.find_by(currency_from: output_currency, currency_to:)
-
-        raise MissingCurrencyParityError.new(currency_from: output_currency, currency_to:) if currency_parity.blank?
-        raise OutdatedCurrencyParityError.new(currency_parity:) unless currency_parity.up_to_date?
-      end
+      raise MissingCurrencyParityError.new(currency_from: output_currency, currency_to: input_currency) if currency_parity.blank?
+      raise OutdatedCurrencyParityError.new(currency_parity:) unless currency_parity.up_to_date?
     end
 
-    def all_prices_in_output_currency?
-      currencies_to.all? { |currency_to| currency_to == output_currency }
+    def asset_price
+      @asset_price ||= asset.latest_asset_price
     end
 
-    def up_to_date_asset_prices
-      @up_to_date_asset_prices ||= asset.asset_prices.up_to_date
+    def currency_parity
+      @currency_parity ||= CurrencyParity.find_by(currency_from: output_currency,
+                                                  currency_to: input_currency)
     end
 
-    def currency_parities
-      @currency_parities ||= CurrencyParity.where(currency_from: output_currency,
-                                                  currency_to: currencies_to)
+    def input_currency
+      @input_currency ||= asset_price.currency
     end
 
-    def currencies_to
-      @currencies_to ||= up_to_date_asset_prices.map(&:currency).uniq
+    def currency_parity_exchange_rate
+      @currency_parity_exchange_rate ||= currency_parity.latest_currency_parity_exchange_rate
     end
 
-    def all_converted_asset_prices
-      up_to_date_asset_prices.map do |asset_price|
-        converted_asset_prices(asset_price)
-      end.flatten
-    end
+    def price
+      return asset_price.price if input_currency == output_currency
 
-    def converted_asset_prices(asset_price)
-      return asset_price.price if asset_price.currency == output_currency
-
-      currency_parity = currency_parities.find_by(currency_to: asset_price.currency)
-
-      currency_parity_exchange_rates = currency_parity.currency_parity_exchange_rates.up_to_date
-
-      currency_parity_exchange_rates.map do |currency_parity_exchange_rate|
-        asset_price.price.to_d / currency_parity_exchange_rate.exchange_rate.to_d
-      end
-    end
-
-    def average_price(prices)
-      prices.sum.to_d / prices.size.to_d
+      asset_price.price.to_d / currency_parity_exchange_rate.exchange_rate.to_d
     end
   end
 end

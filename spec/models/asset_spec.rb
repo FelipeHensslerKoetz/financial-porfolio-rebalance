@@ -61,5 +61,18 @@ RSpec.describe Asset, type: :model do
         expect(asset.up_to_date?).to eq(false)
       end
     end
+
+    describe '#latest_asset_price' do
+      it 'returns the latest asset price' do
+        asset_price = create(:asset_price, asset:, status: 'up_to_date', reference_date: Time.zone.today)
+        create(:asset_price, asset:, status: 'up_to_date', reference_date: Date.yesterday)
+        expect(asset.latest_asset_price).to eq(asset_price)
+      end
+
+      it 'returns nil if there are no up to date asset prices' do
+        create(:asset_price, asset:, status: 'outdated')
+        expect(asset.latest_asset_price).to eq(nil)
+      end
+    end
   end
 end
