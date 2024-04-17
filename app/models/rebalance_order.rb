@@ -9,26 +9,31 @@ class RebalanceOrder < ApplicationRecord
   validates :status, :type, presence: true
   validates :type, inclusion: { in: REBALANCE_TYPES }
 
+  scope :scheduled, -> { where(status: :scheduled) }
+  scope :processing, -> { where(status: :processing) }
+  scope :finished, -> { where(status: :finished) }
+  scope :failed, -> { where(status: :failed) }
+
   aasm column: :status do
-    state :pending, initial: true
+    state :scheduled, initial: true
     state :processing
-    state :completed
-    state :error
+    state :finished
+    state :failed
 
     event :process do
-      transitions from: :pending, to: :processing
+      transitions from: :scheduled, to: :processing
     end
 
-    event :complete do
-      transitions from: :processing, to: :completed
+    event :finish do
+      transitions from: :processing, to: :finished
     end
 
     event :fail do
-      transitions from: :processing, to: :error
+      transitions from: :processing, to: :failed
     end
 
-    event :reprocess do
-      transitions from: :error, to: :processing
+    event :schedule do
+      transitions from: %i[failed], to: :scheduled
     end
   end
 end
