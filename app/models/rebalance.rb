@@ -8,31 +8,27 @@ class Rebalance < ApplicationRecord
 
   validates :reflected_to_investment_portfolio, inclusion: { in: [true, false] }
 
+  scope :pending, -> { where(status: :pending) }
+  scope :processing, -> { where(status: :processing) }
+  scope :finished, -> { where(status: :finished) }
+  scope :failed, -> { where(status: :failed) }
+
   aasm column: :status do
     state :pending, initial: true
     state :processing
-    state :completed
+    state :finished
     state :failed
-    state :expired
 
     event :process do
-      transitions from: :pending, to: :processing
+      transitions from: %i[pending failed], to: :processing
     end
 
-    event :complete do
-      transitions from: :processing, to: :completed
+    event :finish do
+      transitions from: :processing, to: :finished
     end
 
     event :fail do
       transitions from: :processing, to: :failed
-    end
-
-    event :expire do
-      transitions from: :completed, to: :expired
-    end
-
-    event :reprocess do
-      transitions from: :failed, to: :processing
     end
   end
 end
