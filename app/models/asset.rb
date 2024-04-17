@@ -10,13 +10,13 @@ class Asset < ApplicationRecord
   scope :custom, -> { where(custom: true) }
   scope :by_user, ->(user) { where(user:) }
 
-  def up_to_date?
-    asset_prices.up_to_date.any?
+  def updated?
+    asset_prices.updated.any?
   end
 
   def latest_asset_price
-    return unless up_to_date?
+    return unless updated?
 
-    asset_prices.up_to_date.order(reference_date: :desc).first
+    asset_prices.updated.order(reference_date: :desc).first
   end
 end

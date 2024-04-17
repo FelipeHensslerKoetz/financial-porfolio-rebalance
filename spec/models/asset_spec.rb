@@ -50,22 +50,22 @@ RSpec.describe Asset, type: :model do
   describe 'methods' do
     let(:asset) { create(:asset) }
 
-    describe '#up_to_date?' do
+    describe '#updated?' do
       it 'returns true if there are up to date asset prices' do
-        create(:asset_price, asset:, status: 'up_to_date')
-        expect(asset.up_to_date?).to eq(true)
+        create(:asset_price, asset:, status: 'updated')
+        expect(asset.updated?).to eq(true)
       end
 
       it 'returns false if there are no up to date asset prices' do
         create(:asset_price, asset:, status: 'outdated')
-        expect(asset.up_to_date?).to eq(false)
+        expect(asset.updated?).to eq(false)
       end
     end
 
     describe '#latest_asset_price' do
       it 'returns the latest asset price' do
-        asset_price = create(:asset_price, asset:, status: 'up_to_date', reference_date: Time.zone.today)
-        create(:asset_price, asset:, status: 'up_to_date', reference_date: Date.yesterday)
+        asset_price = create(:asset_price, asset:, status: 'updated', reference_date: Time.zone.today)
+        create(:asset_price, asset:, status: 'updated', reference_date: Date.yesterday)
         expect(asset.latest_asset_price).to eq(asset_price)
       end
 

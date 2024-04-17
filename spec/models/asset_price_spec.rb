@@ -14,19 +14,19 @@ RSpec.describe AssetPrice do
   end
 
   describe 'scopes' do
-    describe '.up_to_date' do
+    describe '.updated' do
       it 'returns up to date asset prices' do
-        up_to_date_asset_price = create(:asset_price, status: 'up_to_date')
+        updated_asset_price = create(:asset_price, status: 'updated')
         create(:asset_price, status: 'outdated')
-        expect(AssetPrice.up_to_date.count).to eq(1)
-        expect(AssetPrice.up_to_date).to include(up_to_date_asset_price)
+        expect(AssetPrice.updated.count).to eq(1)
+        expect(AssetPrice.updated).to include(updated_asset_price)
       end
     end
 
     describe '.outdated' do
       it 'returns outdated asset prices' do
         outdated_asset_price = create(:asset_price, status: 'outdated')
-        create(:asset_price, status: 'up_to_date')
+        create(:asset_price, status: 'updated')
         expect(AssetPrice.outdated.count).to eq(1)
         expect(AssetPrice.outdated).to include(outdated_asset_price)
       end
@@ -35,28 +35,29 @@ RSpec.describe AssetPrice do
     describe '.processing' do
       it 'returns processing asset prices' do
         processing_asset_price = create(:asset_price, status: 'processing')
-        create(:asset_price, status: 'up_to_date')
+        create(:asset_price, status: 'updated')
         expect(AssetPrice.processing.count).to eq(1)
         expect(AssetPrice.processing).to include(processing_asset_price)
       end
     end
 
-    describe '.error' do
-      it 'returns error asset prices' do
-        error_asset_price = create(:asset_price, status: 'error')
-        create(:asset_price, status: 'up_to_date')
-        expect(AssetPrice.error.count).to eq(1)
-        expect(AssetPrice.error).to include(error_asset_price)
+    describe '.failed' do
+      it 'returns failed asset prices' do
+        failed_asset_price = create(:asset_price, status: 'failed')
+        create(:asset_price, status: 'updated')
+        expect(AssetPrice.failed.count).to eq(1)
+        expect(AssetPrice.failed).to include(failed_asset_price)
       end
     end
   end
 
   describe 'aasm' do
-    it { is_expected.to have_state(:up_to_date) }
-    it { is_expected.to transition_from(:up_to_date).to(:outdated).on_event(:outdate) }
-    it { is_expected.to transition_from(:outdated).to(:processing).on_event(:process) }
-    it { is_expected.to transition_from(:processing).to(:error).on_event(:fail) }
-    it { is_expected.to transition_from(:processing).to(:up_to_date).on_event(:success) }
-    it { is_expected.to transition_from(:error).to(:processing).on_event(:reprocess) }
+    it { should have_state(:updated) }
+    it { should transition_from(:outdated).to(:scheduled).on_event(:schedule) }
+    it { should transition_from(:failed).to(:scheduled).on_event(:schedule) }
+    it { should transition_from(:scheduled).to(:processing).on_event(:process) }
+    it { should transition_from(:processing).to(:failed).on_event(:fail) }
+    it { should transition_from(:processing).to(:updated).on_event(:up_to_date) }
+    it { should transition_from(:updated).to(:outdated).on_event(:out_of_date) }
   end
 end

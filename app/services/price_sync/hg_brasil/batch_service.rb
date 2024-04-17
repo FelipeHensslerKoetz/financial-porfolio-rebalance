@@ -10,8 +10,7 @@ module PriceSync
       def initialize(asset_symbols:)
         @asset_symbols = asset_symbols
         @data_origin = DataOrigin.find_by!(name: 'HG Brasil')
-        @asset_prices = AssetPrice.where(code: @asset_symbols.split(','),
-                                         data_origin: @data_origin)
+        @asset_prices = AssetPrice.where(code: asset_symbols.split(','), data_origin:)
       end
 
       def call
@@ -19,7 +18,7 @@ module PriceSync
           next unless asset_price.may_process?
 
           asset_price.process!
-          asset_price.success! if asset_price.update!(asset_details(asset_price.code))
+          asset_price.up_to_date! if asset_price.update!(asset_details(asset_price.code))
         rescue StandardError
           # TODO: saver error message
           asset_price.fail!

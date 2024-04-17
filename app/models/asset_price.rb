@@ -7,35 +7,37 @@ class AssetPrice < ApplicationRecord
 
   validates :price, :last_sync_at, :reference_date, presence: true
 
-  scope :up_to_date, -> { where(status: 'up_to_date') }
-  scope :outdated, -> { where(status: 'outdated') }
-  scope :processing, -> { where(status: 'processing') }
-  scope :error, -> { where(status: 'error') }
+  scope :updated, -> { where(status: :updated) }
+  scope :scheduled, -> { where(status: :scheduled) }
+  scope :processing, -> { where(status: :processing) }
+  scope :outdated, -> { where(status: :outdated) }
+  scope :failed, -> { where(status: :failed) }
 
   aasm column: :status do
-    state :up_to_date, initial: true
-    state :outdated
+    state :updated, initial: true
+    state :scheduled
     state :processing
-    state :error
+    state :outdated
+    state :failed
 
-    event :outdate do
-      transitions from: :up_to_date, to: :outdated
+    event :schedule do
+      transitions from: %i[outdated failed], to: :scheduled
     end
 
     event :process do
-      transitions from: :outdated, to: :processing
+      transitions from: :scheduled, to: :processing
     end
 
     event :fail do
-      transitions from: :processing, to: :error
+      transitions from: :processing, to: :failed
     end
 
-    event :success do
-      transitions from: :processing, to: :up_to_date
+    event :up_to_date do
+      transitions from: :processing, to: :updated
     end
 
-    event :reprocess do
-      transitions from: :error, to: :processing
+    event :out_of_date do
+      transitions from: :updated, to: :outdated
     end
   end
 end

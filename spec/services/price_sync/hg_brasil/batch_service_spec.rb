@@ -10,7 +10,7 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
     create(:asset_price,
            asset: petr4,
            code: 'PETR4',
-           status: 'outdated',
+           status: 'scheduled',
            data_origin:)
   end
 
@@ -18,7 +18,7 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
     create(:asset_price,
            asset: wizc3,
            code: 'WIZC3',
-           status: 'outdated',
+           status: 'scheduled',
            data_origin:)
   end
 
@@ -57,10 +57,10 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
       end
 
       it 'updates assets to success status' do
-        expect(petr4_price.reload.status).to eq('up_to_date')
+        expect(petr4_price.reload.status).to eq('updated')
         expect(petr4_price.reload.price).to eq(hg_brasil_response[0][:price])
         expect(petr4_price.reference_date).to eq(hg_brasil_response[0][:reference_date])
-        expect(wizc3_price.reload.status).to eq('up_to_date')
+        expect(wizc3_price.reload.status).to eq('updated')
         expect(wizc3_price.reload.price).to eq(hg_brasil_response[1][:price])
         expect(wizc3_price.reference_date).to eq(hg_brasil_response[1][:reference_date])
         expect(HgBrasil::Stocks).to have_received(:asset_details_batch).with(symbols: asset_symbols).once
@@ -73,9 +73,9 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
         batch_service.call
       end
 
-      it 'update assets to error status' do
-        expect(petr4_price.reload.status).to eq('error')
-        expect(wizc3_price.reload.status).to eq('error')
+      it 'update assets to failed status' do
+        expect(petr4_price.reload.status).to eq('failed')
+        expect(wizc3_price.reload.status).to eq('failed')
       end
     end
   end

@@ -22,7 +22,7 @@ RSpec.describe Assets::Price do
              asset:,
              currency: brl_currency,
              price: 38.94,
-             status: 'up_to_date')
+             status: :updated)
 
       currency_parity = create(:currency_parity,
                                currency_from: usd_currency,
@@ -70,7 +70,7 @@ RSpec.describe Assets::Price do
         create(:asset_price,
                asset:,
                currency: brl_currency,
-               status: :up_to_date)
+               status: :updated)
       end
 
       it { expect { price.call }.to raise_error(MissingCurrencyParityError) }
@@ -83,7 +83,7 @@ RSpec.describe Assets::Price do
         create(:asset_price,
                asset:,
                currency: brl_currency,
-               status: :up_to_date)
+               status: :updated)
       end
 
       let!(:currency_parity) do
