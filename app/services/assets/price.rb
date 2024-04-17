@@ -36,7 +36,7 @@ module Assets
       return if input_currency == output_currency
 
       raise MissingCurrencyParityError.new(currency_from: output_currency, currency_to: input_currency) if currency_parity.blank?
-      raise OutdatedCurrencyParityError.new(currency_parity:) unless currency_parity.up_to_date?
+      raise OutdatedCurrencyParityError.new(currency_parity:) unless currency_parity.updated?
     end
 
     def asset_price

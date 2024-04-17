@@ -7,13 +7,13 @@ class CurrencyParity < ApplicationRecord
 
   has_many :currency_parity_exchange_rates, dependent: :destroy
 
-  def up_to_date?
-    currency_parity_exchange_rates.up_to_date.any?
+  def updated?
+    currency_parity_exchange_rates.updated.any?
   end
 
   def latest_currency_parity_exchange_rate
-    return unless up_to_date?
+    return unless updated?
 
-    currency_parity_exchange_rates.up_to_date.order(reference_date: :desc).first
+    currency_parity_exchange_rates.updated.order(reference_date: :desc).first
   end
 end

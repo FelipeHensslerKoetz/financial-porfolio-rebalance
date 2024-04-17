@@ -13,19 +13,19 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
   end
 
   describe 'scopes' do
-    describe '.up_to_date' do
+    describe '.updated' do
       it 'returns up to date currency parity exchange rate' do
-        up_to_date_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'up_to_date')
+        updated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'updated')
         create(:currency_parity_exchange_rate, status: 'outdated')
-        expect(CurrencyParityExchangeRate.up_to_date.count).to eq(1)
-        expect(CurrencyParityExchangeRate.up_to_date).to include(up_to_date_currency_parity_exchange_rate)
+        expect(CurrencyParityExchangeRate.updated.count).to eq(1)
+        expect(CurrencyParityExchangeRate.updated).to include(updated_currency_parity_exchange_rate)
       end
     end
 
     describe '.outdated' do
       it 'returns outdated currency parity exchange rate' do
         outdated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'outdated')
-        create(:currency_parity_exchange_rate, status: 'up_to_date')
+        create(:currency_parity_exchange_rate, status: 'updated')
         expect(CurrencyParityExchangeRate.outdated.count).to eq(1)
         expect(CurrencyParityExchangeRate.outdated).to include(outdated_currency_parity_exchange_rate)
       end
@@ -34,28 +34,38 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
     describe '.processing' do
       it 'returns processing currency parity exchange rate' do
         processing_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'processing')
-        create(:currency_parity_exchange_rate, status: 'up_to_date')
+        create(:currency_parity_exchange_rate, status: 'updated')
         expect(CurrencyParityExchangeRate.processing.count).to eq(1)
         expect(CurrencyParityExchangeRate.processing).to include(processing_currency_parity_exchange_rate)
       end
     end
 
-    describe '.error' do
-      it 'returns error currency parity exchange rate' do
-        error_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'error')
-        create(:currency_parity_exchange_rate, status: 'up_to_date')
-        expect(CurrencyParityExchangeRate.error.count).to eq(1)
-        expect(CurrencyParityExchangeRate.error).to include(error_currency_parity_exchange_rate)
+    describe '.failed' do
+      it 'returns failed currency parity exchange rate' do
+        failed_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'failed')
+        create(:currency_parity_exchange_rate, status: 'updated')
+        expect(CurrencyParityExchangeRate.failed.count).to eq(1)
+        expect(CurrencyParityExchangeRate.failed).to include(failed_currency_parity_exchange_rate)
+      end
+    end
+
+    describe '.scheduled' do
+      it 'returns scheduled currency parity exchange rate' do
+        scheduled_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'scheduled')
+        create(:currency_parity_exchange_rate, status: 'updated')
+        expect(CurrencyParityExchangeRate.scheduled.count).to eq(1)
+        expect(CurrencyParityExchangeRate.scheduled).to include(scheduled_currency_parity_exchange_rate)
       end
     end
   end
 
   describe 'aasm' do
-    it { should have_state(:up_to_date) }
-    it { should transition_from(:up_to_date).to(:outdated).on_event(:outdate) }
-    it { should transition_from(:outdated).to(:processing).on_event(:process) }
-    it { should transition_from(:processing).to(:error).on_event(:fail) }
-    it { should transition_from(:processing).to(:up_to_date).on_event(:success) }
-    it { should transition_from(:error).to(:processing).on_event(:reprocess) }
+    it { should have_state(:updated) }
+    it { should transition_from(:outdated).to(:scheduled).on_event(:schedule) }
+    it { should transition_from(:failed).to(:scheduled).on_event(:schedule) }
+    it { should transition_from(:scheduled).to(:processing).on_event(:process) }
+    it { should transition_from(:processing).to(:failed).on_event(:fail) }
+    it { should transition_from(:processing).to(:updated).on_event(:up_to_date) }
+    it { should transition_from(:updated).to(:outdated).on_event(:out_of_date) }
   end
 end

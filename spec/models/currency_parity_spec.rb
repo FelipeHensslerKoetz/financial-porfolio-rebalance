@@ -8,17 +8,17 @@ RSpec.describe CurrencyParity, type: :model do
   end
 
   describe 'methods' do
-    describe '#up_to_date?' do
+    describe '#updated?' do
       it 'returns true if there is an up to date currency parity exchange rate' do
         currency_parity = create(:currency_parity)
-        create(:currency_parity_exchange_rate, currency_parity:, status: 'up_to_date')
-        expect(currency_parity.up_to_date?).to eq(true)
+        create(:currency_parity_exchange_rate, currency_parity:, status: 'updated')
+        expect(currency_parity.updated?).to eq(true)
       end
 
       it 'returns false if there is no up to date currency parity exchange rate' do
         currency_parity = create(:currency_parity)
         create(:currency_parity_exchange_rate, currency_parity:, status: 'outdated')
-        expect(currency_parity.up_to_date?).to eq(false)
+        expect(currency_parity.updated?).to eq(false)
       end
     end
 
