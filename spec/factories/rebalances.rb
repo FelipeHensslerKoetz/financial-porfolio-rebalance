@@ -1,10 +1,25 @@
 FactoryBot.define do
   factory :rebalance do
     rebalance_order { create(:rebalance_order) }
-    before_rebalance { { 'data' => [] } }
-    after_rebalance { { 'data' => [] } }
-    status { 'pending' }
-    reflected_to_investment_portfolio { false }
-    expires_at { Time.zone.tomorrow }
+    state_before_rebalance { { 'data' => [] } }
+    state_after_rebalance { { 'data' => [] } }
+    calculation_details { { 'data' => [] } }
+    recommended_actions { { 'data' => [] } }
+
+    trait :pending do
+      status { 'pending' }
+    end
+
+    trait :processing do
+      status { 'processing' }
+    end
+
+    trait :finished do
+      status { 'finished' }
+    end
+
+    trait :failed do
+      status { 'failed' }
+    end
   end
 end

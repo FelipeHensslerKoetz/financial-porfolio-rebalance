@@ -2,7 +2,7 @@ class AssetPrice < ApplicationRecord
   include AASM
 
   belongs_to :asset
-  belongs_to :data_origin
+  belongs_to :partner_resource
   belongs_to :currency
 
   validates :price, :last_sync_at, :reference_date, presence: true

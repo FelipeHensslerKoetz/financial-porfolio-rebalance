@@ -10,27 +10,54 @@
 
 require 'csv'
 
-# Create  application data origins 
-puts 'Generating data origins...'
-
-data_origins = [
+# Generate partners
+partner_names = [
   'Alpha Vantage',
   'HG Brasil',
 ]
 
-data_origins.each do |data_origin|
-  if !DataOrigin.exists?(name: data_origin)
-    DataOrigin.create!(name: data_origin)
-    puts "#{data_origin} created!"
-  else
-    puts "#{data_origin} already exists, skipping..."
+partner_names.each do |partner_name|
+  if !Partner.exists?(name: partner_name)
+    Partner.create!(name: partner_name)
+    puts "#{partner_name} partner created!"
   end
 end
 
-puts 'Data origins generated!'
+# Generate partner resources
+partner_resources_attributes = [
+  { 
+    name: 'HG Brasil - Stock Price',
+    description: 'API that retrieves brazilian asset prices with a delay between 15 minutes up to 1 hour. The endpoint example is: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=embr3',
+    url: 'https://console.hgbrasil.com/documentation/finance',
+    partner_id: Partner.find_by(name: 'HG Brasil').id
+  },
+  {
+    name: 'Alpha Vantage - Symbol Search',
+    description: 'API that retrieves asset information based on a keyword search. The endpoint example is: https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=IBM&apikey=demo',
+    url: 'https://www.alphavantage.co/documentation/',
+    partner_id: Partner.find_by(name: 'Alpha Vantage').id
+  },
+  {
+    name: 'Alpha Vantage - Global Quote',
+    description: 'API that retrieves asset price and reference date. The endpoint example is: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo',
+    url: 'https://www.alphavantage.co/documentation/',
+    partner_id: Partner.find_by(name: 'Alpha Vantage').id
+  },
+  {
+    name: 'Alpha Vantage - Currency Exchange Rate',
+    description: 'API that retrieves currency exchange rate. The endpoint example is: https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=demo',
+    url: 'https://www.alphavantage.co/documentation/',
+    partner_id: Partner.find_by(name: 'Alpha Vantage').id
+  }
+]
 
-# Generate currencies
-puts 'Generating currencies...'
+partner_resources_attributes.each do |partner_resource_attribute|
+  if !PartnerResource.exists?(name: partner_resource_attribute[:name])
+    PartnerResource.create!(partner_resource_attribute)
+    puts "#{partner_resource_attribute[:name]} partner resource created!"
+  end
+end
+
 
 physical_currency_list_csv = File.read(Rails.root.join('db', 'csv', 'physical_currency_list.csv'))
 parsed_physical_currency_list_csv = CSV.parse(physical_currency_list_csv, headers: true, encoding: 'utf-8')
@@ -41,15 +68,11 @@ parsed_physical_currency_list_csv.each do |row|
 
   if !Currency.exists?(code: code, name: name)
     Currency.create!(name: name, code: code)
-    puts "#{name}(#{code}) created!"
+    puts "#{name}(#{code}) currency created!"
   end
 end
 
-puts 'Currencies generated!'
-
 # Generate cryptocurrencies
-puts 'Generating cryptocurrencies...'
-
 digital_currency_list_csv = File.read(Rails.root.join('db', 'csv', 'digital_currency_list.csv'))
 parsed_digital_currency_list_csv = CSV.parse(digital_currency_list_csv, headers: true, encoding: 'utf-8')
 
@@ -59,8 +82,6 @@ parsed_digital_currency_list_csv.each do |row|
 
   if !Currency.exists?(code: code, name: name)
     Currency.create!(name: name, code: code)
-    puts "#{name}(#{code}) created!"
+    puts "#{name}(#{code})  currency created!"
   end
 end
-
-puts 'Cryptocurrencies generated!'

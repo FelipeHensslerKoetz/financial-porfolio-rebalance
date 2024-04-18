@@ -1,6 +1,6 @@
 class Asset < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :assets, optional: true
-  has_many :asset_prices, dependent: :destroy
+  has_many :asset_prices, dependent: :restrict_with_error
 
   validates :name, :business_name, :code, presence: true
   validates :code, uniqueness: true

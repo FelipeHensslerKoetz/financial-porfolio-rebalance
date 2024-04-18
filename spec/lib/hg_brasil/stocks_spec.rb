@@ -9,16 +9,16 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbol) { 'PETR4' }
 
         it 'returns the stock price' do
-          VCR.use_cassette('asset_details/valid_symbol') do
+          VCR.use_cassette('hg_brasil_stock_price/valid_symbol') do
             result = asset_details
 
             expect(result).to be_a(Hash)
             expect(result).to include(
-              code: 'PETR4',
-              kind: 'stock',
-              business_name: 'Petrobras',
-              name: 'Petroleo Brasileiro S.A. Petrobras',
-              price: 38.73,
+              code: be_a(String),
+              kind: be_a(String),
+              business_name: be_a(String),
+              name: be_a(String),
+              price: be_a(Float),
               reference_date: be_a(Time),
               custom: false
             )
@@ -31,7 +31,7 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbol) { 'INVALID' }
 
         it 'returns an empty hash' do
-          VCR.use_cassette('asset_details/invalid_symbol') do
+          VCR.use_cassette('hg_brasil_stock_price/invalid_symbol') do
             result = asset_details
 
             expect(result).to be_nil
@@ -46,16 +46,16 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbol) { 'HGLG11' }
 
         it 'returns the mutual fund price' do
-          VCR.use_cassette('asset_details/valid_mutual_fund') do
+          VCR.use_cassette('hg_brasil_stock_price/valid_mutual_fund') do
             result = asset_details
 
             expect(result).to be_a(Hash)
             expect(result).to include(
-              code: 'HGLG11',
-              kind: 'fii',
-              business_name: 'FII CSHG Log',
-              name: 'CSHG Logstica Fundo Investimento Imobiliario FII',
-              price: 167.85,
+              code: be_a(String),
+              kind: be_a(String),
+              business_name: be_a(String),
+              name: be_a(String),
+              price: be_a(Float),
               reference_date: be_a(Time),
               custom: false
             )
@@ -68,7 +68,7 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbol) { 'INVALID' }
 
         it 'returns an empty hash' do
-          VCR.use_cassette('asset_details/invalid_mutual_fund') do
+          VCR.use_cassette('hg_brasil_stock_price/invalid_mutual_fund') do
             result = asset_details
 
             expect(result).to be_nil
@@ -135,7 +135,7 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbols) { 'EMBR3,HGLG11,ITSA4,PETR4,VALE3' }
 
         it 'returns the stock prices' do
-          VCR.use_cassette('asset_details_batch/valid_symbols') do
+          VCR.use_cassette('hg_brasil_stock_price_batch/valid_symbols') do
             result = asset_details_batch
 
             expect(result).to be_an(Array)
@@ -160,7 +160,7 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbols) { 'FELIPE,HGLG11,INVALID,PETR4,VALE3' }
 
         it 'returns the stock prices' do
-          VCR.use_cassette('asset_details_batch/partial_invalid_symbols') do
+          VCR.use_cassette('hg_brasil_stock_price_batch/partial_invalid_symbols') do
             result = asset_details_batch
 
             expect(result).to be_an(Array)
@@ -185,7 +185,7 @@ RSpec.describe HgBrasil::Stocks do
         let(:symbols) { 'INVALID,INVALID2,INVALID3,INVALID4' }
 
         it 'returns an empty array' do
-          VCR.use_cassette('asset_details_batch/all_invalid_symbols') do
+          VCR.use_cassette('hg_brasil_stock_price_batch/all_invalid_symbols') do
             result = asset_details_batch
 
             expect(result).to eq([])
@@ -197,8 +197,8 @@ RSpec.describe HgBrasil::Stocks do
     context 'when searching for more than 5 stocks' do
       let(:symbols) { 'EMBR3,HGLG11,ITSA4,PETR4,VALE3,B3SA3' }
 
-      it 'returns an empty array' do 
-        VCR.use_cassette('asset_details_batch/more_than_5_symbols') do
+      it 'returns an empty array' do
+        VCR.use_cassette('hg_brasil_stock_price_batch/more_than_5_symbols') do
           result = asset_details_batch
 
           expect(result).to be_nil

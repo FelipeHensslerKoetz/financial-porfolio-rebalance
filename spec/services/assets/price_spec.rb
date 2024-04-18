@@ -19,6 +19,7 @@ RSpec.describe Assets::Price do
 
     before do
       create(:asset_price,
+             :with_hg_brasil_stock_price_partner_resource,
              asset:,
              currency: brl_currency,
              price: 38.94,
@@ -29,6 +30,7 @@ RSpec.describe Assets::Price do
                                currency_to: brl_currency)
 
       create(:currency_parity_exchange_rate,
+             :with_hg_brasil_stock_price_partner_resource,
              currency_parity:,
              exchange_rate: 5.12)
     end
@@ -68,6 +70,7 @@ RSpec.describe Assets::Price do
       let(:output_currency) { btc_currency }
       let!(:asset_price) do
         create(:asset_price,
+               :with_hg_brasil_stock_price_partner_resource,
                asset:,
                currency: brl_currency,
                status: :updated)
@@ -81,6 +84,7 @@ RSpec.describe Assets::Price do
       let(:output_currency) { btc_currency }
       let!(:asset_price) do
         create(:asset_price,
+               :with_hg_brasil_stock_price_partner_resource,
                asset:,
                currency: brl_currency,
                status: :updated)
@@ -93,7 +97,7 @@ RSpec.describe Assets::Price do
       end
 
       let!(:currency_parity_exchange_rate) do
-        create(:currency_parity_exchange_rate, currency_parity:, status: 'outdated')
+        create(:currency_parity_exchange_rate, :with_hg_brasil_stock_price_partner_resource, :outdated, currency_parity:)
       end
 
       it { expect { price.call }.to raise_error(OutdatedCurrencyParityError) }

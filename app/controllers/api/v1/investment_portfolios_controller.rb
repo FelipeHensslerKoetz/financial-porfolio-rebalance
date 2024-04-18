@@ -59,7 +59,8 @@ module Api
 
       def investment_portfolio_params
         params.require(:investment_portfolio).permit(:name, :description, :currency_id,
-                                                     investment_portfolio_assets_attributes: %i[id asset_id quantity allocation_weight _destroy])
+                                                     investment_portfolio_assets_attributes:
+                                                     %i[id asset_id quantity allocation_weight _destroy])
       end
     end
   end

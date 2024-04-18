@@ -4,7 +4,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
   subject(:hg_brasil_asset_discovery) { described_class.call(symbol:) }
 
   before do
-    create(:data_origin, :hg_brasil)
+    create(:partner_resource, :hg_brasil_stock_price)
     create(:currency, :brl)
   end
 
@@ -13,7 +13,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
       let(:symbol) { 'PETR4' }
 
       it 'creates a new Asset and AssetPrice' do
-        VCR.use_cassette('hg_brasil/asset_discovery_success') do
+        VCR.use_cassette('hg_brasil_stock_price/asset_discovery_success') do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
@@ -28,7 +28,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.asset_prices.count).to eq(1)
           expect(asset_price).to be_a(AssetPrice)
           expect(asset_price.currency.code).to eq('BRL')
-          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.partner_resource.name).to eq('HG Brasil - Stock Price')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.last_sync_at).to be_a(Time)
           expect(asset_price.created_at).to be_a(Time)
@@ -42,7 +42,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
       let(:symbol) { 'HGLG11' }
 
       it 'creates a new Asset and AssetPrice' do
-        VCR.use_cassette('hg_brasil/asset_discovery_fii_success') do
+        VCR.use_cassette('hg_brasil_stock_price/asset_discovery_fii_success') do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
@@ -57,7 +57,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.asset_prices.count).to eq(1)
           expect(asset_price).to be_a(AssetPrice)
           expect(asset_price.currency.code).to eq('BRL')
-          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.partner_resource.name).to eq('HG Brasil - Stock Price')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.last_sync_at).to be_a(Time)
           expect(asset_price.created_at).to be_a(Time)
@@ -71,7 +71,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
       let(:symbol) { 'BOVA11' }
 
       it 'creates a new Asset and AssetPrice' do
-        VCR.use_cassette('hg_brasil/asset_discovery_etf_success') do
+        VCR.use_cassette('hg_brasil_stock_price/asset_discovery_etf_success') do
           new_asset = hg_brasil_asset_discovery
 
           expect(new_asset).to be_a(Asset)
@@ -86,7 +86,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
           expect(new_asset.asset_prices.count).to eq(1)
           expect(asset_price).to be_a(AssetPrice)
           expect(asset_price.currency.code).to eq('BRL')
-          expect(asset_price.data_origin.name).to eq('HG Brasil')
+          expect(asset_price.partner_resource.name).to eq('HG Brasil - Stock Price')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.last_sync_at).to be_a(Time)
           expect(asset_price.created_at).to be_a(Time)
@@ -101,7 +101,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
     let(:symbol) { 'INVALID' }
 
     it 'returns empty array' do
-      VCR.use_cassette('hg_brasil/asset_discovery_not_found') do
+      VCR.use_cassette('hg_brasil_stock_price/asset_discovery_not_found') do
         expect(hg_brasil_asset_discovery).to be_nil
       end
     end
@@ -115,7 +115,7 @@ RSpec.describe Assets::Discovery::HgBrasil do
     end
 
     it 'returns empty array' do
-      VCR.use_cassette('hg_brasil/asset_discovery_error') do
+      VCR.use_cassette('hg_brasil_stock_price/asset_discovery_error') do
         expect(hg_brasil_asset_discovery).to be_nil
       end
     end

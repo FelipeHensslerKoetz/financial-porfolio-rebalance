@@ -83,11 +83,11 @@ RSpec.describe Api::V1::AssetsController, type: :controller do
     end
   end
 
-  describe 'GET #deep_search' do 
+  describe 'GET #deep_search' do
     it 'schedules an asset discovery job' do
-      expect {
+      expect do
         get :deep_search, params: { asset: 'Bitcoin' }
-      }.to change(AssetDiscoveryJob.jobs, :size).by(1)
+      end.to change(AssetDiscoveryJob.jobs, :size).by(1)
     end
 
     it 'returns a success message' do

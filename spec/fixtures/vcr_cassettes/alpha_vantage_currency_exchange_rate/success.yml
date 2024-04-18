@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&from_currency=BTC&function=CURRENCY_EXCHANGE_RATE&to_currency=BRL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:08 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409626&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=WMIswCnDun9JVmu3o0bhSSyXWT5kUUoqM%2F2usM8RQtI%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409626&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=WMIswCnDun9JVmu3o0bhSSyXWT5kUUoqM%2F2usM8RQtI%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87617153bb311cf7-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Realtime Currency Exchange Rate": {
+                "1. From_Currency Code": "BTC",
+                "2. From_Currency Name": "Bitcoin",
+                "3. To_Currency Code": "BRL",
+                "4. To_Currency Name": "Brazilian Real",
+                "5. Exchange Rate": "324896.39398200",
+                "6. Last Refreshed": "2024-04-18 03:07:08",
+                "7. Time Zone": "UTC",
+                "8. Bid Price": "324896.39398200",
+                "9. Ask Price": "324896.44632300"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:08 GMT
+recorded_with: VCR 6.2.0

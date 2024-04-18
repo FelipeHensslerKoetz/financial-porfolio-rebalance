@@ -7,7 +7,7 @@ class CreateRebalanceOrders < ActiveRecord::Migration[7.1]
       t.string :type, null: false
       t.decimal :amount
       t.string :error_message
-      t.datetime :requested_at
+      t.datetime :scheduled_at
 
       t.timestamps
     end

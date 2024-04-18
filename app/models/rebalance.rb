@@ -3,10 +3,7 @@ class Rebalance < ApplicationRecord
 
   belongs_to :rebalance_order
 
-  validates :before_rebalance, :after_rebalance,
-            :status, :expires_at, presence: true
-
-  validates :reflected_to_investment_portfolio, inclusion: { in: [true, false] }
+  validates :state_before_rebalance, :state_after_rebalance, :calculation_details, :recommended_actions, :status, presence: true
 
   scope :pending, -> { where(status: :pending) }
   scope :processing, -> { where(status: :processing) }

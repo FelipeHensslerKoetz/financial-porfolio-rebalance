@@ -1,7 +1,7 @@
 module Assets
   module Discovery
     class AlphaVantage
-      attr_reader :keywords, :data_origin
+      attr_reader :keywords, :partner_resource
 
       def self.call(keywords:)
         new(keywords:).call
@@ -9,7 +9,7 @@ module Assets
 
       def initialize(keywords:)
         @keywords = keywords
-        @data_origin = DataOrigin.find_by!(name: 'Alpha Vantage')
+        @partner_resource = PartnerResource.find_by!(name: 'Alpha Vantage - Global Quote')
       end
 
       def call
@@ -44,7 +44,7 @@ module Assets
         AssetPrice.create!(
           code: alpha_vantage_asset[:alpha_vantage_code],
           asset:,
-          data_origin:,
+          partner_resource:,
           price: asset_price_details[:price],
           currency: fetch_currency(alpha_vantage_asset[:currency]),
           last_sync_at: Time.zone.now,
@@ -63,7 +63,7 @@ module Assets
 
       def asset_already_discovered?(asset)
         asset.present? && asset.asset_prices.any? do |asset_price|
-          asset_price.data_origin == @data_origin
+          asset_price.partner_resource == @partner_resource
         end
       end
 

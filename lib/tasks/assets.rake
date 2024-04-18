@@ -5,10 +5,10 @@ namespace :assets do
   task discovery: :environment do
     puts 'Scheduling assetss search...'
 
-    brazilian_stock_list_csv = File.read(Rails.root.join('db/csv/brazilian_assets.csv'))
+    brazilian_stock_list_csv = Rails.root.join('db/csv/brazilian_assets.csv').read
     parsed_brazilian_stock_list_csv = CSV.parse(brazilian_stock_list_csv, headers: true, encoding: 'utf-8')
 
-    brazilian_asset_codes = parsed_brazilian_stock_list_csv.map { |row| row['Ticker'] } - Asset.all.pluck(:code)
+    brazilian_asset_codes = parsed_brazilian_stock_list_csv.pluck('Ticker') - Asset.pluck(:code)
 
     request_delay_in_seconds = 10
 

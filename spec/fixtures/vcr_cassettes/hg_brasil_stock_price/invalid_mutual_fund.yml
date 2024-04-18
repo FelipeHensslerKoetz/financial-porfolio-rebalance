@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=INVALID
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"55daffa73ecf4336d2abff1190c25c31"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 40270b6c-9e79-495b-838d-7ffdad4c9ebc
+      X-Runtime:
+      - '0.015764'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=JgV7d5u05fm%2BbU5%2BF6drBzMKmIzCK8JqAvS%2FLf7mHDVRynKxM879wCytLqTmocOsacXLZKFJghlUFPN%2BbVwsYfUTNaglo7fNVT82rqpNoqEyzCynKRpwkE8uPTaH%2Bsjz0euGF1vj78XbMoSg1cfg"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8761716dcaf44d48-GRU
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJJTlZBTElEIjp7ImVycm9yIjp0cnVlLCJtZXNzYWdlIjoiRXJyb3IgdG8gZ2V0IFN0b2NrIGZvciAjSU5WQUxJRDogRXJybyA4NTIgLSBTw61tYm9sbyBuw6NvIGVuY29udHJhZG8sIHBvciBmYXZvciBlbnRyZSBlbSBjb250YXRvIGNvbm9zY28gZW0gY29uc29sZS5oZ2JyYXNpbC5jb20uIn19LCJleGVjdXRpb25fdGltZSI6MC4wLCJmcm9tX2NhY2hlIjp0cnVlfQ==
+  recorded_at: Thu, 18 Apr 2024 03:07:10 GMT
+recorded_with: VCR 6.2.0

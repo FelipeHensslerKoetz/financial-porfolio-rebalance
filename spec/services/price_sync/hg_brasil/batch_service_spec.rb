@@ -5,13 +5,13 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
 
   let!(:petr4) { create(:asset, code: 'PETR4') }
   let!(:wizc3) { create(:asset, code: 'WIZC3') }
-  let!(:data_origin) { create(:data_origin, name: 'HG Brasil') }
+  let!(:partner_resource) { create(:partner_resource, :hg_brasil_stock_price) }
   let!(:petr4_price) do
     create(:asset_price,
            asset: petr4,
            code: 'PETR4',
            status: 'scheduled',
-           data_origin:)
+           partner_resource:)
   end
 
   let!(:wizc3_price) do
@@ -19,7 +19,7 @@ RSpec.describe PriceSync::HgBrasil::BatchService, type: :service do
            asset: wizc3,
            code: 'WIZC3',
            status: 'scheduled',
-           data_origin:)
+           partner_resource:)
   end
 
   let(:asset_symbols) { "#{petr4.code},#{wizc3.code}" }

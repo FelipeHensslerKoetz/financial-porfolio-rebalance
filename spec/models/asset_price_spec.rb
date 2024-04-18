@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe AssetPrice do
   describe 'associations' do
     it { is_expected.to belong_to(:asset) }
-    it { is_expected.to belong_to(:data_origin) }
+    it { is_expected.to belong_to(:partner_resource) }
     it { is_expected.to belong_to(:currency) }
   end
 
@@ -16,8 +16,8 @@ RSpec.describe AssetPrice do
   describe 'scopes' do
     describe '.updated' do
       it 'returns up to date asset prices' do
-        updated_asset_price = create(:asset_price, status: 'updated')
-        create(:asset_price, status: 'outdated')
+        updated_asset_price = create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated)
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :outdated)
         expect(AssetPrice.updated.count).to eq(1)
         expect(AssetPrice.updated).to include(updated_asset_price)
       end
@@ -25,8 +25,8 @@ RSpec.describe AssetPrice do
 
     describe '.outdated' do
       it 'returns outdated asset prices' do
-        outdated_asset_price = create(:asset_price, status: 'outdated')
-        create(:asset_price, status: 'updated')
+        outdated_asset_price = create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :outdated)
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated)
         expect(AssetPrice.outdated.count).to eq(1)
         expect(AssetPrice.outdated).to include(outdated_asset_price)
       end
@@ -34,8 +34,8 @@ RSpec.describe AssetPrice do
 
     describe '.processing' do
       it 'returns processing asset prices' do
-        processing_asset_price = create(:asset_price, status: 'processing')
-        create(:asset_price, status: 'updated')
+        processing_asset_price = create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :processing)
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated)
         expect(AssetPrice.processing.count).to eq(1)
         expect(AssetPrice.processing).to include(processing_asset_price)
       end
@@ -43,8 +43,8 @@ RSpec.describe AssetPrice do
 
     describe '.failed' do
       it 'returns failed asset prices' do
-        failed_asset_price = create(:asset_price, status: 'failed')
-        create(:asset_price, status: 'updated')
+        failed_asset_price = create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :failed)
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated)
         expect(AssetPrice.failed.count).to eq(1)
         expect(AssetPrice.failed).to include(failed_asset_price)
       end

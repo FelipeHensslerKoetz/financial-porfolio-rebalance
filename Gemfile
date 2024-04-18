@@ -87,3 +87,5 @@ group :test do
   gem 'rspec-sidekiq', '~> 4.1'
 end
 
+
+gem "securerandom", "~> 0.3.1"

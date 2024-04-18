@@ -16,7 +16,7 @@ RSpec.describe Asset, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user).optional }
-    it { should have_many(:asset_prices).dependent(:destroy) }
+    it { should have_many(:asset_prices).dependent(:restrict_with_error) }
   end
 
   describe 'scopes' do
@@ -52,25 +52,25 @@ RSpec.describe Asset, type: :model do
 
     describe '#updated?' do
       it 'returns true if there are up to date asset prices' do
-        create(:asset_price, asset:, status: 'updated')
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated, asset:)
         expect(asset.updated?).to eq(true)
       end
 
       it 'returns false if there are no up to date asset prices' do
-        create(:asset_price, asset:, status: 'outdated')
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :outdated, asset:)
         expect(asset.updated?).to eq(false)
       end
     end
 
     describe '#latest_asset_price' do
       it 'returns the latest asset price' do
-        asset_price = create(:asset_price, asset:, status: 'updated', reference_date: Time.zone.today)
-        create(:asset_price, asset:, status: 'updated', reference_date: Date.yesterday)
+        asset_price = create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated, asset:, reference_date: Time.zone.today)
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :updated, asset:, reference_date: Date.yesterday)
         expect(asset.latest_asset_price).to eq(asset_price)
       end
 
       it 'returns nil if there are no up to date asset prices' do
-        create(:asset_price, asset:, status: 'outdated')
+        create(:asset_price, :with_hg_brasil_stock_price_partner_resource, :outdated, asset:)
         expect(asset.latest_asset_price).to eq(nil)
       end
     end

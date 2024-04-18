@@ -4,7 +4,7 @@
 FactoryBot.define do
   factory :currency do
     name { Faker::Currency.name }
-    code { Faker::Currency.code }
+    code { "#{Faker::Currency.code} - #{SecureRandom.uuid}" }
   end
 
   trait :brl do

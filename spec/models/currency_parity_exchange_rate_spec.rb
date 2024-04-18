@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CurrencyParityExchangeRate, type: :model do
   describe 'associations' do
     it { should belong_to(:currency_parity) }
-    it { should belong_to(:data_origin) }
+    it { should belong_to(:partner_resource) }
   end
 
   describe 'validations' do
@@ -15,8 +15,9 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
   describe 'scopes' do
     describe '.updated' do
       it 'returns up to date currency parity exchange rate' do
-        updated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'updated')
-        create(:currency_parity_exchange_rate, status: 'outdated')
+        updated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, :updated,
+                                                       :with_hg_brasil_stock_price_partner_resource)
+        create(:currency_parity_exchange_rate, :outdated, :with_hg_brasil_stock_price_partner_resource)
         expect(CurrencyParityExchangeRate.updated.count).to eq(1)
         expect(CurrencyParityExchangeRate.updated).to include(updated_currency_parity_exchange_rate)
       end
@@ -24,8 +25,9 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
 
     describe '.outdated' do
       it 'returns outdated currency parity exchange rate' do
-        outdated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'outdated')
-        create(:currency_parity_exchange_rate, status: 'updated')
+        outdated_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, :outdated,
+                                                        :with_hg_brasil_stock_price_partner_resource)
+        create(:currency_parity_exchange_rate, :updated, :with_hg_brasil_stock_price_partner_resource)
         expect(CurrencyParityExchangeRate.outdated.count).to eq(1)
         expect(CurrencyParityExchangeRate.outdated).to include(outdated_currency_parity_exchange_rate)
       end
@@ -33,8 +35,9 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
 
     describe '.processing' do
       it 'returns processing currency parity exchange rate' do
-        processing_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'processing')
-        create(:currency_parity_exchange_rate, status: 'updated')
+        processing_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, :processing,
+                                                          :with_hg_brasil_stock_price_partner_resource)
+        create(:currency_parity_exchange_rate, :updated, :with_hg_brasil_stock_price_partner_resource)
         expect(CurrencyParityExchangeRate.processing.count).to eq(1)
         expect(CurrencyParityExchangeRate.processing).to include(processing_currency_parity_exchange_rate)
       end
@@ -42,8 +45,8 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
 
     describe '.failed' do
       it 'returns failed currency parity exchange rate' do
-        failed_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'failed')
-        create(:currency_parity_exchange_rate, status: 'updated')
+        failed_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, :failed, :with_hg_brasil_stock_price_partner_resource)
+        create(:currency_parity_exchange_rate, :updated, :with_hg_brasil_stock_price_partner_resource)
         expect(CurrencyParityExchangeRate.failed.count).to eq(1)
         expect(CurrencyParityExchangeRate.failed).to include(failed_currency_parity_exchange_rate)
       end
@@ -51,8 +54,9 @@ RSpec.describe CurrencyParityExchangeRate, type: :model do
 
     describe '.scheduled' do
       it 'returns scheduled currency parity exchange rate' do
-        scheduled_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, status: 'scheduled')
-        create(:currency_parity_exchange_rate, status: 'updated')
+        scheduled_currency_parity_exchange_rate = create(:currency_parity_exchange_rate, :scheduled,
+                                                         :with_hg_brasil_stock_price_partner_resource)
+        create(:currency_parity_exchange_rate, :updated, :with_hg_brasil_stock_price_partner_resource)
         expect(CurrencyParityExchangeRate.scheduled.count).to eq(1)
         expect(CurrencyParityExchangeRate.scheduled).to include(scheduled_currency_parity_exchange_rate)
       end

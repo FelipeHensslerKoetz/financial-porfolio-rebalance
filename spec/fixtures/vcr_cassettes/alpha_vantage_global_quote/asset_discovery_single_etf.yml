@@ -1,0 +1,148 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=SYMBOL_SEARCH&keywords=IVVB11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:15 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409635&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=hpg7uv9uCwT5TrlBW0kC4miFr24ls3kt%2BTCHMH7ate0%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409635&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=hpg7uv9uCwT5TrlBW0kC4miFr24ls3kt%2BTCHMH7ate0%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8761718d58c71a9a-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "bestMatches": [
+                {
+                    "1. symbol": "IVVB11.SAO",
+                    "2. name": "iShares S&P 500 Fundo de Investimento - Investimento No Exterior",
+                    "3. type": "ETF",
+                    "4. region": "Brazil/Sao Paolo",
+                    "5. marketOpen": "10:00",
+                    "6. marketClose": "17:30",
+                    "7. timezone": "UTC-03",
+                    "8. currency": "BRL",
+                    "9. matchScore": "0.8000"
+                }
+            ]
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:15 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=IVVB11.SAO
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:16 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=eZ6HogBDA8mnZuZrNH8NqZU0q4xZ1zruPJiZCXFRHNw%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=eZ6HogBDA8mnZuZrNH8NqZU0q4xZ1zruPJiZCXFRHNw%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87617191ae77628a-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "IVVB11.SAO",
+                "02. open": "295.9100",
+                "03. high": "295.9100",
+                "04. low": "291.9000",
+                "05. price": "292.4000",
+                "06. volume": "141316",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "295.8100",
+                "09. change": "-3.4100",
+                "10. change percent": "-1.1528%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:16 GMT
+recorded_with: VCR 6.2.0

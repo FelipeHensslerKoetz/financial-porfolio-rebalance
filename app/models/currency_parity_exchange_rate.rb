@@ -2,7 +2,7 @@ class CurrencyParityExchangeRate < ApplicationRecord
   include AASM
 
   belongs_to :currency_parity
-  belongs_to :data_origin
+  belongs_to :partner_resource
 
   validates :exchange_rate, :reference_date, :last_sync_at, presence: true
 

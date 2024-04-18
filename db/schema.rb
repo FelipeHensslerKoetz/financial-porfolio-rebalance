@@ -13,19 +13,20 @@
 ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
   create_table "asset_prices", force: :cascade do |t|
     t.integer "asset_id", null: false
-    t.integer "data_origin_id", null: false
+    t.integer "partner_resource_id", null: false
     t.string "code", null: false
     t.integer "currency_id", null: false
     t.decimal "price", precision: 10, scale: 2
     t.datetime "last_sync_at"
     t.datetime "reference_date"
+    t.datetime "scheduled_at"
     t.string "status", null: false
     t.string "error_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asset_id"], name: "index_asset_prices_on_asset_id"
     t.index ["currency_id"], name: "index_asset_prices_on_currency_id"
-    t.index ["data_origin_id"], name: "index_asset_prices_on_data_origin_id"
+    t.index ["partner_resource_id"], name: "index_asset_prices_on_partner_resource_id"
   end
 
   create_table "assets", force: :cascade do |t|
@@ -33,9 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.string "name", null: false
     t.string "business_name", null: false
     t.string "kind"
-    t.string "region"
     t.string "image_path"
-    t.json "market_time"
     t.boolean "custom", default: false, null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -49,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.string "code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_currencies_on_code", unique: true
   end
 
   create_table "currency_parities", force: :cascade do |t|
@@ -64,19 +64,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.integer "currency_parity_id", null: false
     t.decimal "exchange_rate", precision: 10, scale: 2, null: false
     t.datetime "last_sync_at", null: false
-    t.integer "data_origin_id", null: false
+    t.integer "partner_resource_id", null: false
     t.datetime "reference_date", null: false
     t.string "status", null: false
+    t.datetime "scheduled_at"
+    t.string "error_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["currency_parity_id"], name: "index_currency_parity_exchange_rates_on_currency_parity_id"
-    t.index ["data_origin_id"], name: "index_currency_parity_exchange_rates_on_data_origin_id"
-  end
-
-  create_table "data_origins", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["partner_resource_id"], name: "index_currency_parity_exchange_rates_on_partner_resource_id"
   end
 
   create_table "http_request_logs", force: :cascade do |t|
@@ -98,6 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.integer "investment_portfolio_id", null: false
     t.decimal "allocation_weight", precision: 10, scale: 2, null: false
     t.decimal "quantity", precision: 10, scale: 2, null: false
+    t.decimal "maximum_accepted_deviation_percentage", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asset_id"], name: "index_investment_portfolio_assets_on_asset_id"
@@ -116,6 +113,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.index ["user_id"], name: "index_investment_portfolios_on_user_id"
   end
 
+  create_table "partner_resources", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "url"
+    t.integer "partner_id"
+    t.index ["name"], name: "index_partner_resources_on_name", unique: true
+    t.index ["partner_id"], name: "index_partner_resources_on_partner_id"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_partners_on_name", unique: true
+  end
+
   create_table "rebalance_orders", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "investment_portfolio_id", null: false
@@ -123,7 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
     t.string "type", null: false
     t.decimal "amount"
     t.string "error_message"
-    t.datetime "requested_at"
+    t.datetime "scheduled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["investment_portfolio_id"], name: "index_rebalance_orders_on_investment_portfolio_id"
@@ -132,12 +147,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
 
   create_table "rebalances", force: :cascade do |t|
     t.integer "rebalance_order_id", null: false
-    t.json "before_rebalance", null: false
-    t.json "after_rebalance", null: false
+    t.json "state_before_rebalance", null: false
+    t.json "state_after_rebalance", null: false
+    t.json "calculation_details", null: false
+    t.json "recommended_actions", null: false
     t.string "status", null: false
-    t.boolean "reflected_to_investment_portfolio", default: false, null: false
     t.string "error_message"
-    t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rebalance_order_id"], name: "index_rebalances_on_rebalance_order_id"
@@ -160,16 +175,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_220517) do
 
   add_foreign_key "asset_prices", "assets"
   add_foreign_key "asset_prices", "currencies"
-  add_foreign_key "asset_prices", "data_origins"
+  add_foreign_key "asset_prices", "partner_resources"
   add_foreign_key "assets", "users"
   add_foreign_key "currency_parities", "currencies", column: "currency_from_id"
   add_foreign_key "currency_parities", "currencies", column: "currency_to_id"
   add_foreign_key "currency_parity_exchange_rates", "currency_parities"
-  add_foreign_key "currency_parity_exchange_rates", "data_origins"
+  add_foreign_key "currency_parity_exchange_rates", "partner_resources"
   add_foreign_key "investment_portfolio_assets", "assets"
   add_foreign_key "investment_portfolio_assets", "investment_portfolios"
   add_foreign_key "investment_portfolios", "currencies"
   add_foreign_key "investment_portfolios", "users"
+  add_foreign_key "partner_resources", "partners"
   add_foreign_key "rebalance_orders", "investment_portfolios"
   add_foreign_key "rebalance_orders", "users"
   add_foreign_key "rebalances", "rebalance_orders"

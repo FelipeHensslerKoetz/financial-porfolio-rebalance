@@ -1,7 +1,7 @@
 module PriceSync
   module HgBrasil
     class BatchService
-      attr_reader :data_origin, :asset_prices, :asset_symbols
+      attr_reader :partner_resource, :asset_prices, :asset_symbols
 
       def self.call(asset_symbols:)
         new(asset_symbols:).call
@@ -9,8 +9,8 @@ module PriceSync
 
       def initialize(asset_symbols:)
         @asset_symbols = asset_symbols
-        @data_origin = DataOrigin.find_by!(name: 'HG Brasil')
-        @asset_prices = AssetPrice.where(code: asset_symbols.split(','), data_origin:)
+        @partner_resource = PartnerResource.find_by!(name: 'HG Brasil - Stock Price')
+        @asset_prices = AssetPrice.where(code: asset_symbols.split(','), partner_resource:)
       end
 
       def call

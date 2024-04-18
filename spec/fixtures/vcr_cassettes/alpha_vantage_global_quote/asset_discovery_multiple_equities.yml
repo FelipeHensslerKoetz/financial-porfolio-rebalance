@@ -1,0 +1,782 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=SYMBOL_SEARCH&keywords=petr
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:16 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=eZ6HogBDA8mnZuZrNH8NqZU0q4xZ1zruPJiZCXFRHNw%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=eZ6HogBDA8mnZuZrNH8NqZU0q4xZ1zruPJiZCXFRHNw%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171950a03a402-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICAgImJlc3RNYXRjaGVzIjogWwogICAgICAgIHsKICAgICAgICAgICAgIjEuIHN5bWJvbCI6ICJQRVRSWSIsCiAgICAgICAgICAgICIyLiBuYW1lIjogIlZpYnJhIEVuZXJnaWEgUy5BLiIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiVW5pdGVkIFN0YXRlcyIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjA5OjMwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE2OjAwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wNCIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJVU0QiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjg4ODkiCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUEVUUjMuU0FPIiwKICAgICAgICAgICAgIjIuIG5hbWUiOiAiUGV0csOzbGVvIEJyYXNpbGVpcm8gUy5BLiAtIFBldHJvYnJhcyIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiQnJhemlsL1NhbyBQYW9sbyIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjEwOjAwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE3OjMwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wMyIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJCUkwiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjY2NjciCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUEVUUjQuU0FPIiwKICAgICAgICAgICAgIjIuIG5hbWUiOiAiUGV0csOzbGVvIEJyYXNpbGVpcm8gUy5BLiAtIFBldHJvYnJhcyIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiQnJhemlsL1NhbyBQYW9sbyIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjEwOjAwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE3OjMwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wMyIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJCUkwiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjY2NjciCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUFRUUkYiLAogICAgICAgICAgICAiMi4gbmFtZSI6ICJQZXRyYSBEaWFtb25kcyBMdGQgUnQgTmlsIFBhaWQgR0RQIEV4cCAwNjI5MjAxOCIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiVW5pdGVkIFN0YXRlcyIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjA5OjMwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE2OjAwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wNCIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJVU0QiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjY2NjciCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUEVULkxPTiIsCiAgICAgICAgICAgICIyLiBuYW1lIjogIlBldHJlbCBSZXNvdXJjZXMiLAogICAgICAgICAgICAiMy4gdHlwZSI6ICJFcXVpdHkiLAogICAgICAgICAgICAiNC4gcmVnaW9uIjogIlVuaXRlZCBLaW5nZG9tIiwKICAgICAgICAgICAgIjUuIG1hcmtldE9wZW4iOiAiMDg6MDAiLAogICAgICAgICAgICAiNi4gbWFya2V0Q2xvc2UiOiAiMTY6MzAiLAogICAgICAgICAgICAiNy4gdGltZXpvbmUiOiAiVVRDKzAxIiwKICAgICAgICAgICAgIjguIGN1cnJlbmN5IjogIkdCWCIsCiAgICAgICAgICAgICI5LiBtYXRjaFNjb3JlIjogIjAuNjY2NyIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgIjEuIHN5bWJvbCI6ICJQRVRST05FVC5CU0UiLAogICAgICAgICAgICAiMi4gbmFtZSI6ICJQRVRST05FVCBMTkcgTFRELiIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiSW5kaWEvQm9tYmF5IiwKICAgICAgICAgICAgIjUuIG1hcmtldE9wZW4iOiAiMDk6MTUiLAogICAgICAgICAgICAiNi4gbWFya2V0Q2xvc2UiOiAiMTU6MzAiLAogICAgICAgICAgICAiNy4gdGltZXpvbmUiOiAiVVRDKzUuNSIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJJTlIiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjUzMzMiCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUERMTUYiLAogICAgICAgICAgICAiMi4gbmFtZSI6ICJQZXRyYSBEaWFtb25kcyIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiVW5pdGVkIFN0YXRlcyIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjA5OjMwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE2OjAwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wNCIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJVU0QiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjQ0NDQiCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiRlBPLkZSSyIsCiAgICAgICAgICAgICIyLiBuYW1lIjogIlBldHJhIERpYW1vbmRzIEx0ZCIsCiAgICAgICAgICAgICIzLiB0eXBlIjogIkVxdWl0eSIsCiAgICAgICAgICAgICI0LiByZWdpb24iOiAiRnJhbmtmdXJ0IiwKICAgICAgICAgICAgIjUuIG1hcmtldE9wZW4iOiAiMDg6MDAiLAogICAgICAgICAgICAiNi4gbWFya2V0Q2xvc2UiOiAiMjA6MDAiLAogICAgICAgICAgICAiNy4gdGltZXpvbmUiOiAiVVRDKzAyIiwKICAgICAgICAgICAgIjguIGN1cnJlbmN5IjogIkVVUiIsCiAgICAgICAgICAgICI5LiBtYXRjaFNjb3JlIjogIjAuMzYzNiIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgIjEuIHN5bWJvbCI6ICJQREwuTE9OIiwKICAgICAgICAgICAgIjIuIG5hbWUiOiAiUGV0cmEgRGlhbW9uZHMgTHRkIiwKICAgICAgICAgICAgIjMuIHR5cGUiOiAiRXF1aXR5IiwKICAgICAgICAgICAgIjQuIHJlZ2lvbiI6ICJVbml0ZWQgS2luZ2RvbSIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjA4OjAwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE2OjMwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQyswMSIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJHQlgiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjM2MzYiCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICIxLiBzeW1ib2wiOiAiUFRQLUguVFJWIiwKICAgICAgICAgICAgIjIuIG5hbWUiOiAiUGV0cmljaG9yIEVuZXJneSBJbmMiLAogICAgICAgICAgICAiMy4gdHlwZSI6ICJFcXVpdHkiLAogICAgICAgICAgICAiNC4gcmVnaW9uIjogIlRvcm9udG8gVmVudHVyZSIsCiAgICAgICAgICAgICI1LiBtYXJrZXRPcGVuIjogIjA5OjMwIiwKICAgICAgICAgICAgIjYuIG1hcmtldENsb3NlIjogIjE2OjAwIiwKICAgICAgICAgICAgIjcuIHRpbWV6b25lIjogIlVUQy0wNSIsCiAgICAgICAgICAgICI4LiBjdXJyZW5jeSI6ICJDQUQiLAogICAgICAgICAgICAiOS4gbWF0Y2hTY29yZSI6ICIwLjM2MzYiCiAgICAgICAgfQogICAgXQp9
+  recorded_at: Thu, 18 Apr 2024 03:07:16 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PETRY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:17 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409637&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=rKg7HC6KHhWLOtiTaTqPu%2BXqNubgtFk7Yetwgx3Hn9g%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409637&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=rKg7HC6KHhWLOtiTaTqPu%2BXqNubgtFk7Yetwgx3Hn9g%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87617196bfd9a502-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PETRY",
+                "02. open": "9.9999",
+                "03. high": "9.9999",
+                "04. low": "9.1600",
+                "05. price": "9.1600",
+                "06. volume": "12472",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "9.0800",
+                "09. change": "0.0800",
+                "10. change percent": "0.8811%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:17 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PETR3.SAO
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409637&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=rKg7HC6KHhWLOtiTaTqPu%2BXqNubgtFk7Yetwgx3Hn9g%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409637&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=rKg7HC6KHhWLOtiTaTqPu%2BXqNubgtFk7Yetwgx3Hn9g%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8761719aafb8a5bd-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PETR3.SAO",
+                "02. open": "41.1900",
+                "03. high": "41.4700",
+                "04. low": "41.0000",
+                "05. price": "41.1500",
+                "06. volume": "10604200",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "41.0900",
+                "09. change": "0.0600",
+                "10. change percent": "0.1460%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:19 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PETR4.SAO
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409639&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=0DZfs329ZVt30LGKqlEaMh0o5hEIufwHbKnCUYKqFh4%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409639&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=0DZfs329ZVt30LGKqlEaMh0o5hEIufwHbKnCUYKqFh4%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171a60d2fa4ef-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PETR4.SAO",
+                "02. open": "39.4900",
+                "03. high": "39.9500",
+                "04. low": "39.3400",
+                "05. price": "39.7800",
+                "06. volume": "39033200",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "39.4900",
+                "09. change": "0.2900",
+                "10. change percent": "0.7344%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:19 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PTTRF
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:20 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409639&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=0DZfs329ZVt30LGKqlEaMh0o5hEIufwHbKnCUYKqFh4%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409639&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=0DZfs329ZVt30LGKqlEaMh0o5hEIufwHbKnCUYKqFh4%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171a958e41d27-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PTTRF",
+                "02. open": "0.1806",
+                "03. high": "0.1806",
+                "04. low": "0.1806",
+                "05. price": "0.1806",
+                "06. volume": "68750",
+                "07. latest trading day": "2018-06-26",
+                "08. previous close": "0.1806",
+                "09. change": "0.0000",
+                "10. change percent": "0.0000%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:20 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PET.LON
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:22 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409640&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=wfeuDK55XlCuTR9pTvioOUG%2FRW6siSzzB4phf6BRZMw%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409640&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=wfeuDK55XlCuTR9pTvioOUG%2FRW6siSzzB4phf6BRZMw%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171ab3863876b-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PET.LON",
+                "02. open": "1.6960",
+                "03. high": "2.1000",
+                "04. low": "1.6960",
+                "05. price": "2.0000",
+                "06. volume": "773471",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "1.6000",
+                "09. change": "0.4000",
+                "10. change percent": "25.0000%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:22 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PETRONET.BSE
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:22 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409642&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=qOkPLDoTpY4ItrDubjeV0Dlb38485Zu2%2FmIw37bLymQ%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409642&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=qOkPLDoTpY4ItrDubjeV0Dlb38485Zu2%2FmIw37bLymQ%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171b898d1a507-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PETRONET.BSE",
+                "02. open": "301.0000",
+                "03. high": "313.5000",
+                "04. low": "299.4000",
+                "05. price": "307.9500",
+                "06. volume": "638200",
+                "07. latest trading day": "2024-04-16",
+                "08. previous close": "305.0000",
+                "09. change": "2.9500",
+                "10. change percent": "0.9672%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:22 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PDLMF
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:23 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409643&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=D706fTPKOtdpq01lFyWW0VI7RzeElUzbYcLe7vzu5bs%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409643&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=D706fTPKOtdpq01lFyWW0VI7RzeElUzbYcLe7vzu5bs%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171bbe81a51f2-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PDLMF",
+                "02. open": "0.4961",
+                "03. high": "0.4961",
+                "04. low": "0.4961",
+                "05. price": "0.4961",
+                "06. volume": "0",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "0.4961",
+                "09. change": "0.0000",
+                "10. change percent": "0.0000%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:23 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=FPO.FRK
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409643&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=D706fTPKOtdpq01lFyWW0VI7RzeElUzbYcLe7vzu5bs%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409643&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=D706fTPKOtdpq01lFyWW0VI7RzeElUzbYcLe7vzu5bs%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171bfae53a4a5-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "FPO.FRK",
+                "02. open": "0.4750",
+                "03. high": "0.4790",
+                "04. low": "0.4630",
+                "05. price": "0.4790",
+                "06. volume": "1000",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "0.4740",
+                "09. change": "0.0050",
+                "10. change percent": "1.0549%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:25 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PDL.LON
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409645&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=sxEX1WAqQFpTifwTLvENpIV85JQdWn3QsbxmfmoJq9w%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409645&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=sxEX1WAqQFpTifwTLvENpIV85JQdWn3QsbxmfmoJq9w%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171c9eed001c0-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PDL.LON",
+                "02. open": "42.9000",
+                "03. high": "42.9000",
+                "04. low": "40.1000",
+                "05. price": "42.1000",
+                "06. volume": "7442",
+                "07. latest trading day": "2024-04-17",
+                "08. previous close": "42.1000",
+                "09. change": "0.0000",
+                "10. change percent": "0.0000%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:27 GMT
+- request:
+    method: get
+    uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=GLOBAL_QUOTE&symbol=PTP-H.TRV
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409647&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=AU20Z%2BgMu6zM%2FrJn6wY43RaZS7lYiBV9AjRpi17Pp1Y%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409647&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=AU20Z%2BgMu6zM%2FrJn6wY43RaZS7lYiBV9AjRpi17Pp1Y%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Allow:
+      - GET, HEAD, OPTIONS
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Cookie, Origin
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - same-origin
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 876171d96c7e6292-GRU
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "Global Quote": {
+                "01. symbol": "PTP-H.TRV",
+                "02. open": "0.0100",
+                "03. high": "0.0100",
+                "04. low": "0.0100",
+                "05. price": "0.0100",
+                "06. volume": "0",
+                "07. latest trading day": "2024-04-16",
+                "08. previous close": "0.0100",
+                "09. change": "0.0000",
+                "10. change percent": "0.0000%"
+            }
+        }
+  recorded_at: Thu, 18 Apr 2024 03:07:29 GMT
+recorded_with: VCR 6.2.0

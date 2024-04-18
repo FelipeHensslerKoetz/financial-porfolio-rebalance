@@ -1,7 +1,7 @@
 module Assets
   module Discovery
     class HgBrasil
-      attr_reader :symbol, :data_origin, :existing_asset
+      attr_reader :symbol, :partner_resource, :existing_asset
 
       def self.call(symbol:)
         new(symbol:).call
@@ -9,7 +9,7 @@ module Assets
 
       def initialize(symbol:)
         @symbol = symbol&.upcase
-        @data_origin = DataOrigin.find_by!(name: 'HG Brasil')
+        @partner_resource = PartnerResource.find_by!(name: 'HG Brasil - Stock Price')
         @existing_asset = Asset.global.find_by('code LIKE :asset',
                                                asset: "%#{symbol}%")
       end
@@ -30,7 +30,7 @@ module Assets
 
       def asset_already_discovered?
         existing_asset.present? && existing_asset.asset_prices.any? do |asset_price|
-          asset_price.data_origin == data_origin
+          asset_price.partner_resource == partner_resource
         end
       end
 
@@ -52,7 +52,7 @@ module Assets
 
       def create_asset_price(target_asset)
         AssetPrice.create!(asset: target_asset,
-                           data_origin:,
+                           partner_resource:,
                            price: asset_details[:price],
                            last_sync_at: Time.zone.now,
                            code: asset_details[:code],

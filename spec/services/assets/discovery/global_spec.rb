@@ -4,39 +4,39 @@ RSpec.describe Assets::Discovery::Global do
   subject(:global_discovery) { described_class.new(keywords:) }
 
   before do
-    create(:data_origin, :hg_brasil)
-    create(:data_origin, :alpha_vantage)
+    create(:partner_resource, :hg_brasil_stock_price)
+    create(:partner_resource, :alpha_vantage_global_quote)
     create(:currency, code: 'BRL', name: 'Brazilian Real')
     create(:currency, code: 'USD', name: 'United States Dollar')
   end
 
-  context 'when assetS were found in one data origin' do
+  context 'when assetS were found in one partner resource' do
     let(:keywords) { 'NVDA' }
 
     it 'creates a the asset with one asset price' do
-      VCR.use_cassette('global_discovery/single_data_origin_discovery') do
+      VCR.use_cassette('global_discovery/single_partner_resource_discovery') do
         assets = global_discovery.call
 
         expect(assets.count).to eq(2)
         expect(assets.first.asset_prices.count).to eq(1)
         expect(assets.second.asset_prices.count).to eq(1)
-        expect(assets.first.asset_prices.first.data_origin.name).to eq('Alpha Vantage')
-        expect(assets.last.asset_prices.first.data_origin.name).to eq('Alpha Vantage')
+        expect(assets.first.asset_prices.first.partner_resource.name).to eq('Alpha Vantage - Global Quote')
+        expect(assets.last.asset_prices.first.partner_resource.name).to eq('Alpha Vantage - Global Quote')
       end
     end
   end
 
-  context 'when asset was found in multiple data origins' do
+  context 'when asset was found in multiple partner resources' do
     let(:keywords) { 'PETR4' }
 
     it 'creates a the asset with two asset prices' do
-      VCR.use_cassette('global_discovery/multiple_data_origin_discovery') do
+      VCR.use_cassette('global_discovery/multiple_partner_resource_discovery') do
         assets = global_discovery.call
 
         expect(assets.count).to eq(1)
         expect(assets.first.asset_prices.count).to eq(2)
-        expect(assets.first.asset_prices.first.data_origin.name).to eq('HG Brasil')
-        expect(assets.first.asset_prices.second.data_origin.name).to eq('Alpha Vantage')
+        expect(assets.first.asset_prices.first.partner_resource.name).to eq('HG Brasil - Stock Price')
+        expect(assets.first.asset_prices.second.partner_resource.name).to eq('Alpha Vantage - Global Quote')
       end
     end
   end

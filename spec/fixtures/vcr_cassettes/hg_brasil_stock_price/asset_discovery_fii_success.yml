@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hgbrasil.com/finance/stock_price?key=282f20db&symbol=HGLG11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Apr 2024 03:07:35 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"51c4342a73c5300b84a1b9ec59ef47a7"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 86f234d4-f14b-426a-8039-f8ff54ab921d
+      X-Runtime:
+      - '0.007890'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Vu3dQJFQ%2FIeFC3o30BIIG6lUAuagIhWbPXnvVnYEctUYM8YHiiOj3gjnETkgetIIG12ASQYqftfcb5mpsAFRwVWjgNhmodChILJjztWCyXWP8KgJmyXWtfotNDWVz6BtoR6Y7S8l7Y1JVl3P4GfV"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8761720abda51a8a-GRU
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJIR0xHMTEiOnsia2luZCI6ImZpaSIsInN5bWJvbCI6IkhHTEcxMSIsIm5hbWUiOiJGSUkgQ1NIRyBMb2ciLCJjb21wYW55X25hbWUiOiJDU0hHIExvZ3N0aWNhIEZ1bmRvIEludmVzdGltZW50byBJbW9iaWxpYXJpbyBGSUkiLCJkb2N1bWVudCI6IjExLjcyOC42ODgvMDAwMS00NyIsImRlc2NyaXB0aW9uIjoiRmluYW5jZWlybyBlIE91dHJvcy9GdW5kb3MvRnVuZG9zIEltb2JpbGnDoXJpb3MiLCJ3ZWJzaXRlIjoiaHR0cHM6Ly93d3cuY3NoZy5jb20uYnIvIiwic2VjdG9yIjoiSW3Ds3ZlaXMgSW5kdXN0cmlhaXMgZSBMb2fDrXN0aWNvcyIsImZpbmFuY2lhbHMiOnsiZXF1aXR5Ijo1MzMxNTY4MjQ0LCJxdW90YV9jb3VudCI6MzM3ODc1NzUsImVxdWl0eV9wZXJfc2hhcmUiOjE1Ny43OTcsInByaWNlX3RvX2Jvb2tfcmF0aW8iOjEuMDQ2LCJkaXZpZGVuZHMiOnsieWllbGRfMTJtIjo4LjkxLCJ5aWVsZF8xMm1fc3VtIjoxNC43fX0sInJlZ2lvbiI6IkJyYXppbC9TYW8gUGF1bG8iLCJjdXJyZW5jeSI6IkJSTCIsIm1hcmtldF90aW1lIjp7Im9wZW4iOiIxMDowMCIsImNsb3NlIjoiMTc6MzAiLCJ0aW1lem9uZSI6LTN9LCJsb2dvIjpudWxsLCJtYXJrZXRfY2FwIjo1NTc0LjYxLCJwcmljZSI6MTY0Ljk5LCJjaGFuZ2VfcGVyY2VudCI6LTAuOTEsImNoYW5nZV9wcmljZSI6LTEuNTIsInVwZGF0ZWRfYXQiOiIyMDI0LTA0LTE3IDE3OjA1OjAwIn19LCJleGVjdXRpb25fdGltZSI6MC4wLCJmcm9tX2NhY2hlIjp0cnVlfQ==
+  recorded_at: Thu, 18 Apr 2024 03:07:35 GMT
+recorded_with: VCR 6.2.0

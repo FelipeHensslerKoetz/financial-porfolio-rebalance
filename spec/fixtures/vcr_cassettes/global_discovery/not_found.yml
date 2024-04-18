@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 09 Apr 2024 01:58:30 GMT
+      - Thu, 18 Apr 2024 03:07:34 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -39,28 +39,28 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c7950e58-6fed-417a-a47c-031b51069532
+      - 484e87fb-cd49-4b53-bb20-54487cc295b8
       X-Runtime:
-      - '0.008498'
+      - '0.010726'
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=DdzHB52qwj5CulgXaJ4r3dlSbsoKNDyIXu5X%2FMYurNECFG%2BjhrQnDwdUK0g39cq57rP6VBSCP6%2Bo76BB3BbaEUmm%2F2MKKJi3c3BmxR2PGatkzP1XnZucZP4PIbTas6Egfiih0h44tV6o0ARa3189"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=BTqZwTDmjc4RBdA%2BE53lKXUHjTgM5oRxS0DyRSBOK9gZS2XyCZhgI6%2BMdUs8DYcdetNHdr2BpKM6W6%2BTzj0f6XgnpUmmjF0iQ6OBqKTMchlrOwiZ9NoKGaNyQF2%2FS6NI6ysRquDY7fefl2J78b46"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 8716e475de44a47f-GRU
+      - 876172045ab11ab0-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         eyJieSI6InN5bWJvbCIsInZhbGlkX2tleSI6dHJ1ZSwicmVzdWx0cyI6eyJOT1RfRk9VTkQiOnsiZXJyb3IiOnRydWUsIm1lc3NhZ2UiOiJFcnJvciB0byBnZXQgU3RvY2sgZm9yICNOT1RfRk9VTkQ6IEVycm8gODUyIC0gU8OtbWJvbG8gbsOjbyBlbmNvbnRyYWRvLCBwb3IgZmF2b3IgZW50cmUgZW0gY29udGF0byBjb25vc2NvIGVtIGNvbnNvbGUuaGdicmFzaWwuY29tLiJ9fSwiZXhlY3V0aW9uX3RpbWUiOjAuMCwiZnJvbV9jYWNoZSI6dHJ1ZX0=
-  recorded_at: Tue, 09 Apr 2024 01:58:30 GMT
+  recorded_at: Thu, 18 Apr 2024 03:07:34 GMT
 - request:
     method: get
     uri: https://www.alphavantage.co/query?apikey=7V6CD72Z3YIE7LUJ&function=SYMBOL_SEARCH&keywords=NOT_FOUND
@@ -82,7 +82,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 09 Apr 2024 01:58:30 GMT
+      - Thu, 18 Apr 2024 03:07:35 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -90,9 +90,9 @@ http_interactions:
       Connection:
       - keep-alive
       Report-To:
-      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1712627910&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=MOWC%2BHssDkae2jq%2Bi3I%2FLT2mfEnygvpAqmeNjzKdsYY%3D"}]}'
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713409654&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=HHPeAX0zbbcmP9MHw9Wi%2F82mdCinMYCHCHbksUzWlTk%3D"}]}'
       Reporting-Endpoints:
-      - heroku-nel=https://nel.heroku.com/reports?ts=1712627910&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=MOWC%2BHssDkae2jq%2Bi3I%2FLT2mfEnygvpAqmeNjzKdsYY%3D
+      - heroku-nel=https://nel.heroku.com/reports?ts=1713409654&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=HHPeAX0zbbcmP9MHw9Wi%2F82mdCinMYCHCHbksUzWlTk%3D
       Nel:
       - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
       Allow:
@@ -114,12 +114,12 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8716e477fc9802fb-GRU
+      - 876172060e30030b-GRU
     body:
       encoding: UTF-8
       string: |-
         {
             "bestMatches": []
         }
-  recorded_at: Tue, 09 Apr 2024 01:58:30 GMT
+  recorded_at: Thu, 18 Apr 2024 03:07:35 GMT
 recorded_with: VCR 6.2.0

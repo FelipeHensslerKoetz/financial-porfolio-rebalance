@@ -7,7 +7,9 @@ RSpec.describe InvalidAllocationError, type: :error do
 
       error = InvalidAllocationError.new(investment_portfolio:)
 
-      expect(error.message.chomp).to eq("Invalid allocation for investment portfolio with ID: #{investment_portfolio.id}, the current total allocation weight is #{investment_portfolio.total_allocation_weight} and the target allocation is 100.0")
+      expect(error.message.chomp).to eq("Invalid allocation for investment portfolio with ID: #{investment_portfolio.id}, the current " \
+                                        "total allocation weight is #{investment_portfolio.total_allocation_weight} and the target " \
+                                        'allocation is 100.0')
     end
   end
 

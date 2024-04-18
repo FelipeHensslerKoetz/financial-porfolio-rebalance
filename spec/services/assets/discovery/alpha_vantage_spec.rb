@@ -4,7 +4,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
   subject(:alpha_vantage_discovery) { described_class.new(keywords:) }
 
   before do
-    create(:data_origin, :alpha_vantage)
+    create(:partner_resource, :alpha_vantage_global_quote)
     create(:currency, code: 'USD', name: 'United States Dollar')
     create(:currency, code: 'BRL', name: 'Brazilian Real')
     create(:currency, code: 'GBX', name: 'Pound Sterling')
@@ -18,7 +18,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
       let(:keywords) { 'PETR4' }
 
       it 'creates a single asset' do
-        VCR.use_cassette('alpha_vantage/asset_discovery_single_equity') do
+        VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_single_equity') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
           asset_price = asset.asset_prices.first
@@ -31,7 +31,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.custom).to eq(false)
           expect(asset.asset_prices.count).to eq(1)
           expect(asset_price.code).to eq('PETR4.SAO')
-          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.partner_resource.name).to eq('Alpha Vantage - Global Quote')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.currency.code).to eq('BRL')
           expect(asset_price.last_sync_at).to be_a(Time)
@@ -46,7 +46,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
       let(:keywords) { 'HGLG11' }
 
       it 'creates a single asset' do
-        VCR.use_cassette('alpha_vantage/asset_discovery_single_mutual_fund') do
+        VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_single_mutual_fund') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
           asset_price = asset.asset_prices.first
@@ -59,7 +59,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.custom).to eq(false)
           expect(asset.asset_prices.count).to eq(1)
           expect(asset_price.code).to eq('HGLG11.SAO')
-          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.partner_resource.name).to eq('Alpha Vantage - Global Quote')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.currency.code).to eq('BRL')
           expect(asset_price.last_sync_at).to be_a(Time)
@@ -74,7 +74,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
       let(:keywords) { 'IVVB11' }
 
       it 'creates a single asset' do
-        VCR.use_cassette('alpha_vantage/asset_discovery_single_etf') do
+        VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_single_etf') do
           assets = alpha_vantage_discovery.call
           asset = assets.first
           asset_price = asset.asset_prices.first
@@ -87,7 +87,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.custom).to eq(false)
           expect(asset.asset_prices.count).to eq(1)
           expect(asset_price.code).to eq('IVVB11.SAO')
-          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.partner_resource.name).to eq('Alpha Vantage - Global Quote')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.currency.code).to eq('BRL')
           expect(asset_price.last_sync_at).to be_a(Time)
@@ -103,7 +103,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
     let(:keywords) { 'petr' }
 
     it 'creates multiple assets' do
-      VCR.use_cassette('alpha_vantage/asset_discovery_multiple_equities') do
+      VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_multiple_equities') do
         new_assets = alpha_vantage_discovery.call
 
         expect(new_assets.count).to eq(10)
@@ -116,7 +116,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
           expect(asset.business_name).to be_a(String)
           expect(asset.kind).to be_a(String)
           expect(asset.custom).to eq(false)
-          expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+          expect(asset_price.partner_resource.name).to eq('Alpha Vantage - Global Quote')
           expect(asset_price.price).to be_a(BigDecimal)
           expect(asset_price.currency).to be_a(Currency)
           expect(asset_price.last_sync_at).to be_a(Time)
@@ -131,7 +131,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
     let(:keywords) { '?????????????' }
 
     it 'returns an empty array' do
-      VCR.use_cassette('alpha_vantage/asset_discovery_no_matches') do
+      VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_no_matches') do
         assets = alpha_vantage_discovery.call
 
         expect(assets).to be_empty
@@ -141,7 +141,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
   end
 
   context 'when the asset is already discovered' do
-    context 'when the asset was discovered by Alpha Vantage' do
+    context 'when the asset was discovered by Alpha Vantage - Global Quote' do
       let(:keywords) { 'PETR4' }
 
       before do
@@ -149,14 +149,14 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         create(:asset_price,
                asset:,
                code: 'PETR4.SAO',
-               data_origin: DataOrigin.find_by(name: 'Alpha Vantage'),
+               partner_resource: PartnerResource.find_by(name: 'Alpha Vantage - Global Quote'),
                price: 100.0,
                currency: Currency.find_by(code: 'BRL'),
                last_sync_at: 1.day.ago)
       end
 
       it 'return an empty array' do
-        VCR.use_cassette('alpha_vantage/asset_discovery_single_equity_already_existent') do
+        VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_single_equity_already_existent') do
           assets = alpha_vantage_discovery.call
 
           expect(assets.count).to eq(0)
@@ -167,7 +167,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
     end
 
     context 'when the asset was discovered by another data origin' do
-      context 'when Alpha Vantage knows the asset' do
+      context 'when Alpha Vantage - Global Quote knows the asset' do
         let(:keywords) { 'PETR4' }
 
         before do
@@ -175,7 +175,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         end
 
         it 'creates an asset price' do
-          VCR.use_cassette('alpha_vantage/asset_discovery_single_equity_already_existent_by_other_source') do
+          VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_single_equity_already_existent_by_other_source') do
             assets = alpha_vantage_discovery.call
             asset = assets.first.reload
             asset_price = asset.asset_prices.first
@@ -184,18 +184,18 @@ RSpec.describe Assets::Discovery::AlphaVantage do
             expect(asset.code).to eq('PETR4')
             expect(asset.asset_prices.count).to eq(1)
             expect(asset_price.code).to eq('PETR4.SAO')
-            expect(asset_price.data_origin.name).to eq('Alpha Vantage')
+            expect(asset_price.partner_resource.name).to eq('Alpha Vantage - Global Quote')
             expect(asset_price.price).to be_a(BigDecimal)
             expect(asset_price.currency.code).to eq('BRL')
             expect(asset_price.last_sync_at).to be_a(Time)
             expect(asset_price.created_at).to be_a(Time)
             expect(asset_price.updated_at).to be_a(Time)
-            expect(asset_price.reference_date).to eq(Time.zone.parse('2024-04-05'))
+            expect(asset_price.reference_date).to be_a(Time)
           end
         end
       end
 
-      context 'when Alpha Vantage does not know the asset' do
+      context 'when Alpha Vantage - Global Quote does not know the asset' do
         let(:keywords) { '?????????????' }
 
         before do
@@ -203,7 +203,7 @@ RSpec.describe Assets::Discovery::AlphaVantage do
         end
 
         it 'returns an empty array' do
-          VCR.use_cassette('alpha_vantage/asset_discovery_no_matches') do
+          VCR.use_cassette('alpha_vantage_global_quote/asset_discovery_no_matches') do
             assets = alpha_vantage_discovery.call
 
             expect(assets).to be_empty

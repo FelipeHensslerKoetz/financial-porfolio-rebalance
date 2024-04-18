@@ -5,9 +5,7 @@ class CreateAssets < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :business_name, null: false
       t.string :kind
-      t.string :region
       t.string :image_path
-      t.json :market_time
       t.boolean :custom, null: false, default: false
       t.references :user, null: true, foreign_key: true
       t.timestamps
